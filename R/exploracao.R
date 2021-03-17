@@ -4,6 +4,9 @@ library(covid19USP)
 
 questoes_ <- questoes
 dados <- importa_pesquisa()
+
+saveRDS(dados, "./R/respostas.rds")
+
 dados_validos <- dados %>% filter(!is.na(G2Q00001))
 
 
