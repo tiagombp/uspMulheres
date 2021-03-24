@@ -1,0 +1,24 @@
+* {
+    box-sizing: border-box;
+}
+
+div.inner-container {
+
+    max-width: 620px;
+    margin: 0 auto;
+
+    font-family: "Ovo";
+    color: white;
+    font-size: 1.2rem;
+
+}
+
+div.inner-container p {
+    color: #d1d1d1;
+}
+
+body {
+
+    background-color: #643b45;
+
+}
