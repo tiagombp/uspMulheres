@@ -1,3 +1,21 @@
+
+/* tema */
+
+:root {
+
+    --cor-texto : #d1d1d1;
+    --cor-titulo : white;
+    --cor-fundo : #643b45;
+
+    --tamanho: 1.2rem;
+
+    --fonte-titulo: "Ovo"; /*"Yatra One"*/
+    --fonte-corpo: "Signika";
+
+}
+
+
+
 * {
     box-sizing: border-box;
 }
@@ -7,18 +25,22 @@ div.inner-container {
     max-width: 620px;
     margin: 0 auto;
 
-    font-family: "Ovo";
-    color: white;
-    font-size: 1.2rem;
+    font-family: var(--fonte-titulo);
+    color: var(--cor-titulo);
+    font-size: var(--tamanho);
+
 
 }
 
 div.inner-container p {
-    color: #d1d1d1;
+    color: var(--cor-texto);
+    font-family: var(--fonte-corpo);
+    font-weight: 100;
 }
 
 body {
 
-    background-color: #643b45;
+    background-color: var(--cor-fundo);
+
 
 }
