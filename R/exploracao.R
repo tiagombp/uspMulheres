@@ -3,9 +3,10 @@ library(covid19USP)
 
 
 questoes_ <- questoes
-dados <- importa_pesquisa()
-
-saveRDS(dados, "./R/respostas.rds")
+# dados <- importa_pesquisa()
+# 
+# saveRDS(dados, "./R/respostas.rds")
+dados <- readRDS("./R/respostas.rds")
 
 dados_validos <- dados %>% filter(!is.na(G2Q00001))
 
@@ -23,8 +24,6 @@ ggplot(dados_validos, aes(y = G2Q00001)) +
 
 # avaliando tamanhos dos potenciais domínios ------------------------------
 
-
-
 questoes_ref <- questoes %>%
   select(titulo, questao)
 
@@ -40,3 +39,36 @@ ggplot(contagem) +
   geom_col(aes(y = reorder(questao, n), x = n))
 
 summary(contagem)
+
+
+# avaliando tamanho máximo das categorias ---------------------------------
+
+tamanhos_categorias <- dados_validos %>%
+  select(-1:-8) %>%
+  gather(key = titulo, value = resposta) %>%
+  count(titulo, resposta, sort = T, name = "qde_respostas") %>%
+  group_by(titulo) %>%
+  summarise(maior_qde_respostas = max(qde_respostas)) %>%
+  left_join(questoes_ref)
+
+
+
+# selecionando perguntas --------------------------------------------------
+
+perguntas_selecionadas <- c("G2Q00001", "G7Q00002", "G7Q00003")
+
+dados_selecionados <- dados_validos %>%
+  select(all_of(perguntas_selecionadas)) %>%
+  filter_all(all_vars(!is.na(.)))
+
+questoes_vec <- questoes %>% 
+  filter(titulo %in% perguntas_selecionadas) %>%
+  select(titulo, questao)
+
+names(dados_selecionados) <- questoes_vec$questao
+
+
+# exporta -----------------------------------------------------------------
+
+write.csv(dados_selecionados, "dados.csv", fileEncoding = "UTF-8")
+
