@@ -38,6 +38,8 @@ const vis = {
 
     },
 
+    data : null,
+
     utils : {
 
         sizings : {
@@ -64,6 +66,17 @@ const vis = {
 
             }
 
+        },
+
+        read_data : function() {
+
+            d3.csv("./dados.csv").then(function(data) {
+
+                vis.data = data;
+                vis.control.begin();
+
+            })
+
         }
     },
 
@@ -86,11 +99,20 @@ const vis = {
 
         },
 
+        begin: function() {
+
+            console.log(vis.data.columns);
+
+            // here it goes.
+
+        },
+
         init : function() {
 
             vis.control.initialize_selections();
             vis.utils.sizings.get_vsizes();
             vis.utils.sizings.set_vsize_svg();
+            vis.utils.read_data();
 
         }
 
