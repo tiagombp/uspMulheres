@@ -7,6 +7,7 @@
     --cor-titulo : white;
     --cor-fundo : #731c34; 
     --cor-fundo-vis : #643b45;
+    --cor-fundo-seletor: #a8596f;
     --cor-rect : #ccccc4;
 
     --tamanho: 1.2rem;
@@ -46,6 +47,7 @@ div.vis {
     width: 100%; /* eventualmente limitar para o caso de telas muito grandes*/
     max-width: 800px;
     margin: 0 auto;
+    background-color: var(--cor-fundo-seletor);
 
 }
 
@@ -60,7 +62,7 @@ div.vis > div.selector {
 div.vis p {
    
     margin: 0;
-    
+
 }
 
 div.vis > div.container-svg {
@@ -73,7 +75,7 @@ div.vis > div.container-svg {
 
     width: 100%;
     /* height determinado pelo JS */
-    outline: 1px solid red;
+    /*outline: 1px solid red;*/
 
 }
 
