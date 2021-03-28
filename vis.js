@@ -55,8 +55,20 @@ const vis = {
                 const sizes = ["vis", "seletor"];
 
                 sizes.forEach(size => {
+
+                    const element = vis.sels[size].node()
+
+                    let initial_size = element.offsetHeight; //getBoundingClientRect().height;
+
+                    // usei padding em vez de margins no div do seletor para que o tamanho retornado aqui já esteja correto, sem ter que arrumar um jeito de incorporar o tamanho das margins
+
+                    //let margins = getComputedStyle(element).marginTop + " " + getComputedStyle(element).marginBottom;
+
+                    //console.log(size, " margins: ", margins);
                     
-                    vis.dims[size] = vis.sels[size].node().getBoundingClientRect().height;
+                    vis.dims[size] = initial_size;
+
+                    console.log(size, " tamanho: ", vis.dims[size]);
 
                 })
 
@@ -74,6 +86,10 @@ const vis = {
 
                 vis.sels.svg.attr("height", svg_height);
 
+            },
+
+            convertRemToPixels : function(rem) {    
+                return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
             }
 
         },
