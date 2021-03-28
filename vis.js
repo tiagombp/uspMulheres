@@ -24,8 +24,8 @@ const vis = {
         dots : {
 
             qde_fileira : 4,
-            largura : 2,
-            altura : 2
+            largura : 10,
+            altura : 10
 
         }
 
@@ -34,7 +34,13 @@ const vis = {
     dims : {
 
         vis : null,
-        seletor : null
+        seletor : null,
+        svg : {
+
+            height : null,
+            width: null
+
+        }
 
     },
 
@@ -54,6 +60,8 @@ const vis = {
 
                 })
 
+                vis.dims.svg.width = vis.sels.svg.node().getBoundingClientRect().width;
+
                 console.log(vis.dims);
 
             },
@@ -61,6 +69,8 @@ const vis = {
             set_vsize_svg : function() {
 
                 const svg_height = vis.dims.vis - vis.dims.seletor;
+
+                vis.dims.svg.height = svg_height;
 
                 vis.sels.svg.attr("height", svg_height);
 
@@ -80,7 +90,27 @@ const vis = {
         }
     },
 
-    render : {},
+    render : {
+
+        create_rects : function() {
+
+            const qde_dots_maximo = Math.floor((vis.dims.svg.width - 100) / 12);
+
+            vis.sels.rects = vis.sels.svg
+              .selectAll("rect.pessoas")
+              .data(vis.data)
+              .join("rect")
+              .classed("pessoas", true)
+              .attr("height", vis.params.dots.altura)
+              .attr("width", vis.params.dots.largura)
+              .attr("x", (d,i) => 50 + ( (i%qde_dots_maximo) * 12 ) )
+              .attr("y", (d,i) => 50 + ( (Math.floor(i/qde_dots_maximo)) * 12 ) );
+
+        }
+
+
+
+    },
 
     control : {
 
@@ -95,15 +125,17 @@ const vis = {
 
             })
 
-
-
         },
 
         begin: function() {
 
             console.log(vis.data.columns);
 
-            // here it goes.
+            // tudo que depende dos dados vai aqui.
+
+            vis.render.create_rects();
+
+
 
         },
 
