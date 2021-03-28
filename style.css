@@ -5,7 +5,9 @@
 
     --cor-texto : #d1d1d1;
     --cor-titulo : white;
-    --cor-fundo : #643b45;
+    --cor-fundo : #731c34; 
+    --cor-fundo-vis : #643b45;
+    --cor-rect : #ccccc4;
 
     --tamanho: 1.2rem;
 
@@ -56,7 +58,7 @@ div.vis > div.selector {
 
 div.vis > div.container-svg {
 
-    background-color: khaki;
+    background-color: var(--cor-fundo-vis);
 
 }
 
@@ -74,5 +76,13 @@ body {
     background-color: var(--cor-fundo);
     margin: 0;
 
+
+}
+
+/*vis*/
+
+svg rect {
+
+    fill: var(--cor-rect);
 
 }
