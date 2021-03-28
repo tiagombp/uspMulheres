@@ -20,7 +20,7 @@
     box-sizing: border-box;
 }
 
-div.inner-container {
+div.intro {
 
     max-width: 620px;
     margin: 0 auto;
@@ -38,9 +38,41 @@ div.inner-container p {
     font-weight: 100;
 }
 
+div.vis {
+
+    height: 100vh;
+    width: 100%; /* eventualmente limitar para o caso de telas muito grandes*/
+    max-width: 800px;
+    margin: 0 auto;
+
+}
+
+div.vis > div.selector {
+
+    max-width: 620px;
+    margin: 0 auto;
+
+}
+
+div.vis > div.container-svg {
+
+    background-color: khaki;
+
+}
+
+.container-svg svg {
+
+    width: 100%;
+    height: 100%;
+    outline: 1px solid red;
+
+}
+
+
 body {
 
     background-color: var(--cor-fundo);
+    margin: 0;
 
 
 }
