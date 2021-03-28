@@ -85,6 +85,7 @@ const vis = {
                 vis.dims.svg.height = svg_height;
 
                 vis.sels.svg.attr("height", svg_height);
+                vis.sels.container_svg.style("height", svg_height + "px");
 
             },
 
