@@ -35,8 +35,8 @@ tamanhos_dominios <- dados_validos %>%
   left_join(questoes_ref)
 
 
-ggplot(contagem) +
-  geom_col(aes(y = reorder(questao, n), x = n))
+ggplot(tamanhos_dominios) +
+  geom_col(aes(y = reorder(questao, qde_respostas_unicas), x = qde_respostas_unicas))
 
 summary(contagem)
 
@@ -65,7 +65,22 @@ questoes_vec <- questoes %>%
   filter(titulo %in% perguntas_selecionadas) %>%
   select(titulo, questao)
 
-names(dados_selecionados) <- questoes_vec$questao
+variables <- c("vinculo", "genero", "cor")
+
+names(dados_selecionados) <- variables #questoes_vec$questao
+
+
+# prototipos --------------------------------------------------------------
+
+plota <- function(variable) {
+  
+  ggplot(dados_selecionados, aes_string(x = variable)) +
+    geom_bar() + 
+    geom_text(stat='count', aes(label = ..count..))
+  
+}
+
+purrr::map(variables, plota)
 
 
 # exporta -----------------------------------------------------------------
