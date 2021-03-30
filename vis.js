@@ -27,7 +27,9 @@ const vis = {
             largura : 10,
             altura : 10
 
-        }
+        },
+
+        palette : ["#ea7393", "#f495ab", "#a8596f", "#ccccc4", "#643b45"]
 
     },
 
@@ -122,6 +124,15 @@ const vis = {
               .attr("width", vis.params.dots.largura)
               .attr("x", (d,i) => 50 + ( (i%qde_dots_maximo) * 12 ) )
               .attr("y", (d,i) => 50 + ( (Math.floor(i/qde_dots_maximo)) * 12 ) );
+
+        },
+
+        change_colors : function() {
+
+            vis.sels.rects
+              .transition()
+              .duration(500)
+              .attr("fill", d => vis.params.palette[Math.round(Math.random()*4)]);
 
         }
 

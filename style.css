@@ -98,6 +98,6 @@ body {
 
 svg rect {
 
-    fill: var(--cor-rect);
+    /*fill: var(--cor-rect);*/
 
 }
