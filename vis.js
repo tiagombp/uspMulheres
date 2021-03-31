@@ -23,13 +23,20 @@ const vis = {
 
         dots : {
 
-            qde_fileira : 4,
-            largura : 10,
-            altura : 10
+            qde_fileira : null,
+            largura : 5,
+            altura : 5,
+            espacamento: 1
 
         },
 
-        palette : ["#ea7393", "#f495ab", "#a8596f", "#ccccc4", "#643b45"]
+        palette : ["#ea7393", "#f495ab", "#a8596f", "#ccccc4", "#643b45"],
+
+        from_data : {
+
+            qde_pontos : null
+
+        }
 
     },
 
@@ -40,7 +47,16 @@ const vis = {
         svg : {
 
             height : null,
-            width: null
+            width: null,
+
+            margins : {
+
+                top : 20,
+                right: 20,
+                bottom: 20,
+                left: 50
+
+            }
 
         }
 
@@ -96,6 +112,20 @@ const vis = {
 
             },
 
+            evaluate_bar_widths : function() {
+
+                const available_width = vis.dims.svg.width - vis.dims.svg.margins.left - vis.dims.svg.margins.right;
+
+                const quantos_quadradinhos_cabem = Math.floor(available_width / vis.params.dots.largura);
+
+                const qde_fileiras = Math.ceil(vis.params.from_data.qde_pontos / quantos_quadradinhos_cabem);
+
+                vis.params.dots.qde_fileira = qde_fileiras;
+
+                console.log("Cabem ", quantos_quadradinhos_cabem, " quadradinhos numa fileira. Precisamos de ", qde_fileiras, " fileiras, no pior caso.");
+
+            },
+
             convertRemToPixels : function(rem) {    
                 return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
             }
@@ -137,8 +167,6 @@ const vis = {
     
             },
 
-        
-
         },
 
         read_data : function() {
@@ -157,7 +185,7 @@ const vis = {
 
         create_rects : function() {
 
-            const qde_dots_maximo = Math.floor((vis.dims.svg.width - 100) / 12);
+            const qde_dots_maximo = Math.floor((vis.dims.svg.width - 100) / (vis.params.dots.largura + vis.params.dots.espacamento));
 
             vis.sels.rects = vis.sels.svg
               .selectAll("rect.pessoas")
@@ -166,8 +194,9 @@ const vis = {
               .classed("pessoas", true)
               .attr("height", vis.params.dots.altura)
               .attr("width", vis.params.dots.largura)
-              .attr("x", (d,i) => 50 + ( (i%qde_dots_maximo) * 12 ) )
-              .attr("y", (d,i) => 50 + ( (Math.floor(i/qde_dots_maximo)) * 12 ) );
+              .attr("fill", "khaki")
+              .attr("x", (d,i) => vis.dims.svg.margins.left + ( (i%qde_dots_maximo) * (vis.params.dots.largura + vis.params.dots.espacamento) ) )
+              .attr("y", (d,i) => vis.dims.svg.margins.top + ( (Math.floor(i/qde_dots_maximo)) * (vis.params.dots.largura + vis.params.dots.espacamento) ) );
 
         },
 
@@ -204,6 +233,10 @@ const vis = {
             console.log(vis.data.raw.columns);
 
             // tudo que depende dos dados vai aqui.
+
+            vis.params.from_data.qde_pontos = vis.data.raw.length;
+
+            vis.utils.sizings.evaluate_bar_widths();
 
             vis.render.create_rects();
 
