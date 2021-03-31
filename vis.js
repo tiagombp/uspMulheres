@@ -23,10 +23,10 @@ const vis = {
 
         dots : {
 
-            qde_fileira : null,
             largura : 5,
             altura : 5,
-            espacamento: 1
+            espacamento : 1,
+            margem_entre_barras : 20
 
         },
 
@@ -34,7 +34,8 @@ const vis = {
 
         from_data : {
 
-            qde_pontos : null
+            qde_pontos : null,
+            qde_fileira : null
 
         }
 
@@ -120,7 +121,7 @@ const vis = {
 
                 const qde_fileiras = Math.ceil(vis.params.from_data.qde_pontos / quantos_quadradinhos_cabem);
 
-                vis.params.dots.qde_fileira = qde_fileiras;
+                vis.params.from_data.qde_fileira = qde_fileiras;
 
                 console.log("Cabem ", quantos_quadradinhos_cabem, " quadradinhos numa fileira. Precisamos de ", qde_fileiras, " fileiras, no pior caso.");
 
@@ -167,6 +168,84 @@ const vis = {
     
             },
 
+            prepara_dados : function(criterio, ordena = false, vetor_ordem, raio, margem) {
+
+                const dados = vis.data.raw;
+
+                // determina valores únicos
+                let dados_sumarizados = this.sumariza_dados(dados, criterio, ordena, vetor_ordem);
+            
+                let contagem_maxima = d3.max(dados_sumarizados, d => d.contagem);
+            
+                let qde_linhas_grid = vis.params.from_data.qde_fileira; //Math.ceil(Math.sqrt(contagem_maxima));
+            
+                let parametros_colunas_grid = dados_sumarizados.map(d => {
+                    const qde_colunas = Math.ceil(d.contagem/qde_linhas_grid);
+                    return({ 
+                        "categoria" : d.categoria,
+                        "largura" : qde_colunas * (vis.params.dots.largura + vis.params.dots.espacamento)
+                      }
+                    )
+                });
+            
+                let pos_inicial_ac = 0;
+            
+                let posicoes_iniciais = {};
+
+                /*
+
+                parametros_colunas_grid.forEach((d,i) => {
+                    let largura_anterior =
+                      i == 0 ? 0 : parametros_colunas_grid[i-1].largura + margem;
+            
+                    pos_inicial_ac += largura_anterior;
+            
+                    d["pos_inicial"] = pos_inicial_ac;
+            
+                    posicoes_iniciais[d.categoria] = d.pos_inicial;
+                });
+                
+                let mini_dados = {};
+                mini_dados["dados"] = [];
+                let categorias = dados_sumarizados.map(d => d.categoria);
+                
+                for (cat of categorias) {
+                    dados
+                      .filter(d => d[criterio] == cat)
+                      .forEach((d,i) => mini_dados.dados.push({
+                          "nome" : d.nome,
+                          "categoria" : d[criterio], // que é próprio cat
+                          "x_ini" : d["x_ini"],
+                          "y_ini" : d["y_ini"],
+                          "x_mol" : d["x_mol"],
+                          "y_mol" : d["y_mol"],
+                          "x_S3"  : d["x_S3"],
+                          "y_S3"  : d["y_S3"],
+                          "x" : d.x,
+                          "y" : d.y,
+                          "value" : d.value,
+                          "index_relativo" : i,
+                          "eixo_principal" : Math.floor(i / (qde_linhas_grid + 1)) * 3 * raio,
+                          "eixo_secundario" : (i % (qde_linhas_grid + 1)) * 3 * raio
+                      }));
+                };
+            
+                let ultimo_conjunto = parametros_colunas_grid.slice(-1).pop();
+                let tamanho_necessario = ultimo_conjunto.pos_inicial + ultimo_conjunto.largura;
+            
+                mini_dados["parametros"] = {
+                    "posicoes_iniciais" : posicoes_iniciais,
+                    "parametros_coluna" : parametros_colunas_grid,
+                    "largura_eixo_principal_total" : tamanho_necessario,
+                    "largura_eixo_secundario_total" : qde_linhas_grid * 3 * raio,
+                    "resumo" : dados_sumarizados,
+                    "raio" : raio
+                };
+            
+                //console.log("Mini dados", mini_dados);
+            
+                return(mini_dados); */
+            }
         },
 
         read_data : function() {
