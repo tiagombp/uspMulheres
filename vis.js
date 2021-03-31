@@ -46,7 +46,12 @@ const vis = {
 
     },
 
-    data : null,
+    data : {
+
+        raw : null,
+        sumario : null
+
+    },
 
     utils : {
 
@@ -97,11 +102,50 @@ const vis = {
 
         },
 
+        data_processing : {
+
+            sumariza_dados : function(criterio, ordena = false, vetor_ordem) {
+
+                const sumario = [];
+                const dados = vis.data.raw;
+                let categorias_unicas;
+    
+                // gera array com os valores únicos dessa variável categórica
+            
+                if (vetor_ordem) categorias_unicas = vetor_ordem;
+                else {
+                  categorias_unicas = dados
+                    .map(d => d[criterio])
+                    .filter((v, i, a) => a.indexOf(v) === i);
+                }
+            
+                // faz a contagem dos casos para cada valor único da variável categórica
+            
+                for (cat of categorias_unicas) {
+                    const cont = dados
+                      .filter(d => d[criterio] === cat)
+                      .length;
+            
+                    sumario.push({"categoria" : cat,
+                                  "contagem"  : cont,
+                                  "criterio"  : criterio});                 
+                }
+            
+                if (ordena) sumario.sort((a,b) => b.contagem - a.contagem);
+            
+                return sumario;    
+    
+            },
+
+        
+
+        },
+
         read_data : function() {
 
             d3.csv("./dados.csv").then(function(data) {
 
-                vis.data = data;
+                vis.data.raw = data;
                 vis.control.begin();
 
             })
@@ -117,7 +161,7 @@ const vis = {
 
             vis.sels.rects = vis.sels.svg
               .selectAll("rect.pessoas")
-              .data(vis.data)
+              .data(vis.data.raw)
               .join("rect")
               .classed("pessoas", true)
               .attr("height", vis.params.dots.altura)
@@ -157,7 +201,7 @@ const vis = {
 
         begin: function() {
 
-            console.log(vis.data.columns);
+            console.log(vis.data.raw.columns);
 
             // tudo que depende dos dados vai aqui.
 
