@@ -344,6 +344,16 @@ const vis = {
               .duration(500)
               .attr("fill", d => vis.params.palette[Math.round(Math.random()*4)]);
 
+        },
+
+        update_positions : function() {
+
+            vis.sels.rects
+              .transition()
+              .duration(1000)
+              .attr("x", d => d.pos_longit)
+              .attr("y", d => d.pos_across);
+
         }
 
 
@@ -381,6 +391,8 @@ const vis = {
             )
 
             vis.render.create_rects();
+
+            vis.render.update_positions()
 
 
 
