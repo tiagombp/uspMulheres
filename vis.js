@@ -35,7 +35,8 @@ const vis = {
         from_data : {
 
             qde_pontos : null,
-            qde_fileira : null
+            qde_fileira : null,
+            largura_grupo : null
 
         }
 
@@ -122,6 +123,7 @@ const vis = {
                 const qde_fileiras = Math.ceil(vis.params.from_data.qde_pontos / quantos_quadradinhos_cabem);
 
                 vis.params.from_data.qde_fileira = qde_fileiras;
+                vis.params.from_data.largura_grupo = qde_fileiras * vis.params.dots.largura;
 
                 console.log("Cabem ", quantos_quadradinhos_cabem, " quadradinhos numa fileira. Precisamos de ", qde_fileiras, " fileiras, no pior caso.");
 
@@ -162,9 +164,10 @@ const vis = {
                       .filter(d => d[criterio] === cat)
                       .length;
             
-                    sumario.push({"categoria" : cat,
-                                  "contagem"  : cont,
-                                  "criterio"  : criterio});                 
+                    sumario.push({"categoria"    : cat,
+                                  "contagem"     : cont,
+                                  "criterio"     : criterio});
+                                  
                 }
             
                 if (ordena) sumario.sort((a,b) => b.contagem - a.contagem);
@@ -179,6 +182,8 @@ const vis = {
 
                 // determina valores únicos
                 let dados_sumarizados = this.sumariza_dados(criterio, ordena, vetor_ordem);
+
+                console.log(dados_sumarizados);
             
                 let contagem_maxima = d3.max(dados_sumarizados, d => d.contagem);
             
@@ -195,31 +200,51 @@ const vis = {
                 //     )
                 // });
 
-                const controle_grupos = {};
+                // faz um objeto de referencia para controlar a ordem e o contador dos loops, para cada valor da variável
 
-                console.log({dados_sumarizados})
+                const indice_grupos = {};
 
                 dados_sumarizados.forEach((d,i) => {
 
-                    console.log(d, d.categoria);
-
-                    controle_grupos[d.categoria] = {
-                        ordem_group : i,
+                    indice_grupos[d.categoria] = {
+                        ordem : i,
                         indice_atual : 0
                     }
+
                 });
 
-                console.log(controle_grupos);
+                // passa por todo o dataset calculando as posições
 
-                // dados.forEach((element,i) => {
+                dados.forEach((element,i) => {
 
-                //     const variavel = criterio;
-                //     const grupo = ordem_grupos[element[variavel]];
-                //     const pos_across_group = 
+                    // "criterio" é  variável de interesse no momento
 
-                //     element.group = grupo;
-                //     element.pos_across_group =  
-                // }
+                    const valor_atual_para_a_variavel = element[criterio];
+
+                    const parametros_grupo = indice_grupos[valor_atual_para_a_variavel]
+
+                    const grupo = parametros_grupo.ordem;
+                    const index_across_group = (parametros_grupo.indice_atual + 1) % vis.params.from_data.qde_fileira;
+                    const index_longit = Math.floor((parametros_grupo.indice_atual + 1) / vis.params.from_data.qde_fileira);
+
+
+                    element.group = grupo;
+                    element.index_across_group = index_across_group;
+                    element.index_longit = index_longit;
+
+                    element.pos_across = 
+                      grupo * (vis.params.dots.margem_entre_barras + vis.params.from_data.largura_grupo) + index_across_group * (vis.params.dots.largura + vis.params.dots.espacamento);
+
+                    element.pos_longit = index_longit * (vis.params.dots.largura + vis.params.dots.espacamento);
+
+                    // incrementa o contador para esse valor da variavel
+
+                    indice_grupos[valor_atual_para_a_variavel].indice_atual++
+
+                });
+
+                console.log(dados);
+                console.log(indice_grupos);
             
                 // let pos_inicial_ac = 0;
             
