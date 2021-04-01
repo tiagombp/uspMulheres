@@ -142,13 +142,18 @@ const vis = {
                 let categorias_unicas;
     
                 // gera array com os valores únicos dessa variável categórica
+
+                console.log(criterio);
             
-                if (vetor_ordem) categorias_unicas = vetor_ordem;
-                else {
-                  categorias_unicas = dados
-                    .map(d => d[criterio])
-                    .filter((v, i, a) => a.indexOf(v) === i);
+                if (vetor_ordem) {
+                    categorias_unicas = vetor_ordem;
                 }
+                else {
+                    categorias_unicas = dados
+                        .map(d => d[criterio])
+                        .filter((v, i, a) => a.indexOf(v) === i);
+                }
+
             
                 // faz a contagem dos casos para cada valor único da variável categórica
             
@@ -168,29 +173,57 @@ const vis = {
     
             },
 
-            prepara_dados : function(criterio, ordena = false, vetor_ordem, raio, margem) {
+            prepara_dados : function(criterio, ordena = false, vetor_ordem) {
 
                 const dados = vis.data.raw;
 
                 // determina valores únicos
-                let dados_sumarizados = this.sumariza_dados(dados, criterio, ordena, vetor_ordem);
+                let dados_sumarizados = this.sumariza_dados(criterio, ordena, vetor_ordem);
             
                 let contagem_maxima = d3.max(dados_sumarizados, d => d.contagem);
             
                 let qde_linhas_grid = vis.params.from_data.qde_fileira; //Math.ceil(Math.sqrt(contagem_maxima));
+
+                const largura_across_grupo = qde_linhas_grid * (vis.params.dots.largura + vis.params.dots.espacamento);
             
-                let parametros_colunas_grid = dados_sumarizados.map(d => {
-                    const qde_colunas = Math.ceil(d.contagem/qde_linhas_grid);
-                    return({ 
-                        "categoria" : d.categoria,
-                        "largura" : qde_colunas * (vis.params.dots.largura + vis.params.dots.espacamento)
-                      }
-                    )
+                // let parametros_colunas_grid = dados_sumarizados.map(d => {
+                //     const qde_colunas = Math.ceil(d.contagem/qde_linhas_grid);
+                //     return({ 
+                //         "categoria" : d.categoria,
+                //         "largura" : qde_colunas * (vis.params.dots.largura + vis.params.dots.espacamento)
+                //       }
+                //     )
+                // });
+
+                const controle_grupos = {};
+
+                console.log({dados_sumarizados})
+
+                dados_sumarizados.forEach((d,i) => {
+
+                    console.log(d, d.categoria);
+
+                    controle_grupos[d.categoria] = {
+                        ordem_group : i,
+                        indice_atual : 0
+                    }
                 });
+
+                console.log(controle_grupos);
+
+                // dados.forEach((element,i) => {
+
+                //     const variavel = criterio;
+                //     const grupo = ordem_grupos[element[variavel]];
+                //     const pos_across_group = 
+
+                //     element.group = grupo;
+                //     element.pos_across_group =  
+                // }
             
-                let pos_inicial_ac = 0;
+                // let pos_inicial_ac = 0;
             
-                let posicoes_iniciais = {};
+                // let posicoes_iniciais = {};
 
                 /*
 
@@ -317,7 +350,13 @@ const vis = {
 
             vis.utils.sizings.evaluate_bar_widths();
 
+            vis.utils.data_processing.prepara_dados(
+                criterio = "vinculo",
+                ordena = false            
+            )
+
             vis.render.create_rects();
+
 
 
 
