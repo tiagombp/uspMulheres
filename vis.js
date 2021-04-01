@@ -26,7 +26,7 @@ const vis = {
             largura : 5,
             altura : 5,
             espacamento : 1,
-            margem_entre_barras : 20
+            margem_entre_barras : 30
 
         },
 
@@ -123,7 +123,7 @@ const vis = {
                 const qde_fileiras = Math.ceil(vis.params.from_data.qde_pontos / quantos_quadradinhos_cabem);
 
                 vis.params.from_data.qde_fileira = qde_fileiras;
-                vis.params.from_data.largura_grupo = qde_fileiras * vis.params.dots.largura;
+                vis.params.from_data.largura_grupo = qde_fileiras * (vis.params.dots.largura + vis.params.dots.espacamento);
 
                 console.log("Cabem ", quantos_quadradinhos_cabem, " quadradinhos numa fileira. Precisamos de ", qde_fileiras, " fileiras, no pior caso.");
 
@@ -224,8 +224,8 @@ const vis = {
                     const parametros_grupo = indice_grupos[valor_atual_para_a_variavel]
 
                     const grupo = parametros_grupo.ordem;
-                    const index_across_group = (parametros_grupo.indice_atual + 1) % vis.params.from_data.qde_fileira;
-                    const index_longit = Math.floor((parametros_grupo.indice_atual + 1) / vis.params.from_data.qde_fileira);
+                    const index_across_group = parametros_grupo.indice_atual % (vis.params.from_data.qde_fileira + 1);
+                    const index_longit = Math.floor( parametros_grupo.indice_atual / (vis.params.from_data.qde_fileira + 1) );
 
 
                     element.group = grupo;
@@ -351,6 +351,7 @@ const vis = {
             vis.sels.rects
               .transition()
               .duration(1000)
+              .delay(2000)
               .attr("x", d => d.pos_longit)
               .attr("y", d => d.pos_across);
 
