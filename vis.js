@@ -15,7 +15,8 @@ const vis = {
         container_svg : null,
         vis : null,
         seletor : null,
-        rects : null
+        rects : null,
+        labels : null
 
     },
 
@@ -25,7 +26,7 @@ const vis = {
 
             largura : 5,
             altura : 5,
-            espacamento : 1,
+            espacamento : 2,
             margem_entre_barras : 40
 
         },
@@ -208,6 +209,8 @@ const vis = {
 
                 dados_sumarizados.forEach((d,i) => {
 
+                    d.ordem = i;
+
                     indice_grupos[d.categoria] = {
                         ordem : i,
                         indice_atual : 0
@@ -309,6 +312,12 @@ const vis = {
             }
         },
 
+        scales : {
+
+            color : null
+
+        },
+
         read_data : function() {
 
             d3.csv("./dados.csv").then(function(data) {
@@ -380,15 +389,38 @@ const vis = {
 
             console.log("Variavel atual", vis.control.state.current_variable);
 
-            const color = d3.scaleOrdinal()
+            vis.utils.scales.color = d3.scaleOrdinal()
               .range(vis.params.palette)
-              .domain(vetor_categorias)
+              .domain(vetor_categorias);
+
+            const color = vis.utils.scales.color;
 
             vis.sels.rects
               .transition()
               .duration(1000)
               .attr("fill", d => color(d[variavel]));
 
+        },
+
+        add_labels : function() {
+
+            vis.sels.labels = vis.sels.container_svg
+              .selectAll("p.main-label")
+              .data(vis.data.sumario)
+              .join("p")
+              .classed("main-label", true)
+              .style("top", d => (vis.dims.svg.margins.top +
+              d.ordem * (vis.params.dots.margem_entre_barras + vis.params.from_data.largura_grupo)) + "px" )
+              //.style("color", d => vis.utils.scales.color(d.categoria))
+              //.style("left", vis.dims.svg.margins.left + "px")
+              .html(d => 
+                d.categoria + 
+                " <strong>" + 
+                d.contagem + 
+                "</strong> (" + 
+                d3.format(".000%")(d.contagem / vis.params.from_data.qde_pontos) + 
+                ")");
+            
         }
 
 
@@ -440,6 +472,8 @@ const vis = {
             vis.render.update_positions();
 
             vis.render.tighten(true);
+
+            vis.render.add_labels();
 
 
 
