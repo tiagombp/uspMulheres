@@ -33,7 +33,7 @@ const vis = {
 
         },
 
-        palette : ["#ea7393", "#f495ab", "#a8596f", "#ccccc4", "#643b45"],
+        palette : ["#ea7393", "#f495ab", "#a8596f", "#ccccc4", "khaki"],
 
         from_data : {
 
@@ -371,13 +371,13 @@ const vis = {
 
         },
 
-        tighten : function(on) {
+        tighten : function(on, delay = 2000) {
 
             // on: boolean
 
             vis.sels.rects
               .transition()
-              .delay(2000)
+              .delay(delay)
               .duration(1000)
               .attr("x", d => d.pos_longit - on * (d.index_longit * vis.params.dots.espacamento))
               .attr("y", d => d.pos_across - on * (d.index_across_group * vis.params.dots.espacamento))
@@ -391,11 +391,11 @@ const vis = {
 
             console.log("Variavel atual", vis.control.state.current_variable);
 
-            vis.utils.scales.color = d3.scaleOrdinal()
+            const color = d3.scaleOrdinal()
               .range(vis.params.palette)
               .domain(vetor_categorias);
 
-            const color = vis.utils.scales.color;
+            vis.utils.scales.color = color;
 
             vis.sels.rects
               .transition()
@@ -461,10 +461,35 @@ const vis = {
                     clicked = e.target
                 );
 
-                console.log(opcao)
+                console.log(opcao);
+
+                vis.control.draw_state(opcao);
 
 
             })
+
+        },
+
+        draw_state : function(opcao) {
+
+            vis.control.state.current_variable = opcao;
+
+            vis.utils.data_processing.prepara_dados(
+                criterio = opcao,
+                ordena = true            
+            );
+
+            vis.render.tighten(false, delay = 0);
+
+            vis.render.update_colors();
+
+            vis.render.update_positions();
+
+            vis.render.tighten(true);
+
+            vis.render.add_labels();
+
+
 
         },
 
@@ -485,8 +510,6 @@ const vis = {
 
             console.log(vis.data.raw.columns);
 
-            vis.control.state.current_variable = "vinculo";
-
             // tudo que depende dos dados vai aqui.
 
             vis.params.from_data.qde_pontos = vis.data.raw.length;
@@ -494,19 +517,6 @@ const vis = {
             vis.utils.sizings.evaluate_bar_widths();
 
             vis.render.create_rects();
-
-            vis.utils.data_processing.prepara_dados(
-                criterio = "vinculo",
-                ordena = true            
-            );
-
-            vis.render.update_colors();
-
-            vis.render.update_positions();
-
-            vis.render.tighten(true);
-
-            vis.render.add_labels();
 
         },
 
