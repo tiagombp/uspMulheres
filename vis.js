@@ -26,7 +26,7 @@ const vis = {
             largura : 5,
             altura : 5,
             espacamento : 1,
-            margem_entre_barras : 30
+            margem_entre_barras : 40
 
         },
 
@@ -53,7 +53,7 @@ const vis = {
 
             margins : {
 
-                top : 20,
+                top : 50,
                 right: 20,
                 bottom: 20,
                 left: 50
@@ -233,6 +233,7 @@ const vis = {
                     element.index_longit = index_longit;
 
                     element.pos_across = 
+                      vis.dims.svg.margins.top +
                       grupo * (vis.params.dots.margem_entre_barras + vis.params.from_data.largura_grupo) + index_across_group * (vis.params.dots.largura + vis.params.dots.espacamento);
 
                     element.pos_longit = index_longit * (vis.params.dots.largura + vis.params.dots.espacamento);
@@ -355,6 +356,18 @@ const vis = {
               .attr("x", d => d.pos_longit)
               .attr("y", d => d.pos_across);
 
+        },
+
+        tighten : function(on) {
+
+            // on: boolean
+
+            vis.sels.rects
+              .transition()
+              .duration(1000)
+              .attr("x", d => d.pos_longit - on * (d.index_longit * vis.params.dots.espacamento))
+              .attr("y", d => d.pos_across - on * (d.index_across_group * vis.params.dots.espacamento))
+
         }
 
 
@@ -393,7 +406,9 @@ const vis = {
 
             vis.render.create_rects();
 
-            vis.render.update_positions()
+            vis.render.update_positions();
+
+            
 
 
 
