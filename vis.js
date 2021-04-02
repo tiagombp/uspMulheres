@@ -59,7 +59,7 @@ const vis = {
                 top : 50,
                 right: 20,
                 bottom: 20,
-                left: 50
+                left: 16 // depois fazer ele calcular isso.
 
             }
 
@@ -243,7 +243,7 @@ const vis = {
                       vis.dims.svg.margins.top +
                       grupo * (vis.params.dots.margem_entre_barras + vis.params.from_data.largura_grupo) + index_across_group * (vis.params.dots.largura + vis.params.dots.espacamento);
 
-                    element.pos_longit = index_longit * (vis.params.dots.largura + vis.params.dots.espacamento);
+                    element.pos_longit = vis.dims.svg.margins.left + index_longit * (vis.params.dots.largura + vis.params.dots.espacamento);
 
                     // incrementa o contador para esse valor da variavel
 
@@ -405,7 +405,7 @@ const vis = {
 
         },
 
-        add_labels : function() {
+        add_labels : function(delay) {
 
             vis.sels.labels = vis.sels.container_svg
               .selectAll("p.main-label")
@@ -415,14 +415,21 @@ const vis = {
               .style("top", d => (vis.dims.svg.margins.top +
               d.ordem * (vis.params.dots.margem_entre_barras + vis.params.from_data.largura_grupo)) + "px" )
               //.style("color", d => vis.utils.scales.color(d.categoria))
-              //.style("left", vis.dims.svg.margins.left + "px")
+              .style("left", vis.dims.svg.margins.left + "px")
               .html(d => 
                 d.categoria + 
                 " <strong>" + 
                 d.contagem + 
                 "</strong> (" + 
                 d3.format(".000%")(d.contagem / vis.params.from_data.qde_pontos) + 
-                ")");
+                ")")
+              .style("opacity", 0);
+
+            vis.sels.labels
+              .transition()
+              .delay(delay)
+              .duration(1000)
+              .style("opacity", 1);
             
         }
 
@@ -493,7 +500,7 @@ const vis = {
 
             vis.render.tighten(true, delay = 3000);
 
-            vis.render.add_labels();
+            vis.render.add_labels(delay = 2000);
 
 
 
