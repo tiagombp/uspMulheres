@@ -360,12 +360,12 @@ const vis = {
 
         },
 
-        update_positions : function() {
+        update_positions : function(delay) {
 
             vis.sels.rects
               .transition()
               .duration(1000)
-              .delay(1000)
+              .delay(delay)
               .attr("x", d => d.pos_longit)
               .attr("y", d => d.pos_across);
 
@@ -384,7 +384,7 @@ const vis = {
 
         },
 
-        update_colors : function() {
+        update_colors : function(delay) {
 
             const variavel = vis.control.state.current_variable;
             const vetor_categorias = vis.data.sumario.map(d => d.categoria);
@@ -399,6 +399,7 @@ const vis = {
 
             vis.sels.rects
               .transition()
+              .delay(delay)
               .duration(1000)
               .attr("fill", d => color(d[variavel]));
 
@@ -479,13 +480,14 @@ const vis = {
                 ordena = true            
             );
 
+            let delay = 0;
             vis.render.tighten(false, delay = 0);
 
-            vis.render.update_colors();
+            vis.render.update_colors(delay = 0);
 
-            vis.render.update_positions();
+            vis.render.update_positions(delay = 2000);
 
-            vis.render.tighten(true);
+            vis.render.tighten(true, delay = 3000);
 
             vis.render.add_labels();
 
