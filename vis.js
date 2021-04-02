@@ -338,6 +338,11 @@ const vis = {
 
             const qde_dots_maximo = Math.floor((vis.dims.svg.width - 100) / (vis.params.dots.largura + vis.params.dots.espacamento));
 
+            const espacamento = Math.sqrt((vis.dims.svg.width * vis.dims.svg.height) / vis.params.from_data.qde_pontos);
+
+            const n_w = Math.ceil(vis.dims.svg.width / espacamento);
+            const n_h = Math.floor(vis.dims.svg.height / espacamento);
+
             vis.sels.rects = vis.sels.svg
               .selectAll("rect.pessoas")
               .data(vis.data.raw)
@@ -345,9 +350,9 @@ const vis = {
               .classed("pessoas", true)
               .attr("height", vis.params.dots.altura)
               .attr("width", vis.params.dots.largura)
-              .attr("fill", "khaki")
-              .attr("x", (d,i) => vis.dims.svg.margins.left + ( (i%qde_dots_maximo) * (vis.params.dots.largura + vis.params.dots.espacamento) ) )
-              .attr("y", (d,i) => vis.dims.svg.margins.top + ( (Math.floor(i/qde_dots_maximo)) * (vis.params.dots.largura + vis.params.dots.espacamento) ) );
+              .attr("fill", "#70424E")
+              .attr("x", (d,i) => vis.dims.svg.margins.left + ( (i % n_w) * espacamento ) )
+              .attr("y", (d,i) => vis.dims.svg.margins.top + ( (Math.floor(i/n_w)) * espacamento) );
 
         },
 
