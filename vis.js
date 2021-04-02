@@ -464,7 +464,7 @@ const vis = {
 
             vis.utils.data_processing.prepara_dados(
                 criterio = "vinculo",
-                ordena = false            
+                ordena = true            
             );
 
             vis.render.update_colors();
