@@ -56,6 +56,7 @@ div.vis > div.selector {
 
     max-width: var(--width);
     margin: 0 auto;
+    padding-left: 1rem;
 
 }
 
@@ -65,6 +66,56 @@ div.vis p {
     padding: 1rem;
 
 }
+
+div.vis > div.selector > p {
+    padding: 0;
+    display: inline;
+}
+
+div.vis > div.selector > div.buttons {
+
+    display: inline-flex;
+    justify-content: space-between;
+    padding: .5rem 0;
+
+}
+
+.buttons button {
+
+    background-color: transparent;
+    border: 2px solid var(--cor-texto);
+    padding: .5rem .5rem;
+    border-radius: 10rem;
+    margin-left: 1rem;
+    width: 100px;
+    font-family: var(--fonte-corpo);
+    font-weight: 100;
+    font-size: 1rem;
+    color: var(--cor-texto);
+
+}
+
+.buttons button:hover, .buttons button.selected {
+
+    background-color: var(--cor-texto);
+    color: var(--cor-fundo);
+
+}
+
+.buttons button.selected {
+
+    font-weight: bold;
+    border: 2px solid var(--cor-fundo);
+
+}
+
+/* fix later */
+.buttons button:focus {
+
+    outline : none;
+
+}
+
 
 div.outer-container-svg {
 

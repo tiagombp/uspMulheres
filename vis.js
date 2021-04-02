@@ -5,7 +5,8 @@ const vis = {
         svg : "svg",
         container_svg : "div.container-svg",
         vis : "div.vis",
-        seletor : "div.selector"
+        seletor : "div.selector",
+        buttons : ".buttons"
 
     },
 
@@ -15,6 +16,7 @@ const vis = {
         container_svg : null,
         vis : null,
         seletor : null,
+        buttons : null,
         rects : null,
         labels : null
 
@@ -435,6 +437,37 @@ const vis = {
 
         },
 
+        activates_button : function(all_buttons, clicked) {
+
+            let all_buttons_arr = Array.from(all_buttons);
+            // pq o que vem é um HTML Collection
+
+            all_buttons_arr.forEach(button => {
+                button.classList.remove("selected");
+            })
+
+            clicked.classList.add("selected");
+            
+        },
+
+        monitor_buttons : function() {
+
+            vis.sels.buttons.on("click", function(e) {
+
+                const opcao = e.target.dataset.opcao;
+
+                vis.control.activates_button(
+                    all_buttons = this.children,
+                    clicked = e.target
+                );
+
+                console.log(opcao)
+
+
+            })
+
+        },
+
         initialize_selections : function() {
 
             // lista referencias
@@ -475,16 +508,12 @@ const vis = {
 
             vis.render.add_labels();
 
-
-
-
-
-
         },
 
         init : function() {
 
             vis.control.initialize_selections();
+            vis.control.monitor_buttons();
             vis.utils.sizings.get_vsizes();
             vis.utils.sizings.set_vsize_svg();
             vis.utils.read_data();
