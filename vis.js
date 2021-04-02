@@ -371,7 +371,7 @@ const vis = {
 
         },
 
-        tighten : function(on, delay = 2000) {
+        tighten : function(on, delay) {
 
             // on: boolean
 
@@ -434,6 +434,7 @@ const vis = {
 
         state : {
 
+            first_transition : true,
             current_variable : null
 
         },
@@ -473,6 +474,12 @@ const vis = {
 
         draw_state : function(opcao) {
 
+            if (vis.control.state.first_transition) {
+                vis.control.state.first_transition = false;
+            } else {
+                vis.render.tighten(false, delay = 0);
+            }
+
             vis.control.state.current_variable = opcao;
 
             vis.utils.data_processing.prepara_dados(
@@ -480,10 +487,7 @@ const vis = {
                 ordena = true            
             );
 
-            let delay = 0;
-            vis.render.tighten(false, delay = 0);
-
-            vis.render.update_colors(delay = 0);
+            vis.render.update_colors(delay = 1000);
 
             vis.render.update_positions(delay = 2000);
 
