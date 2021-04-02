@@ -171,6 +171,8 @@ const vis = {
                 }
             
                 if (ordena) sumario.sort((a,b) => b.contagem - a.contagem);
+
+                vis.data.sumario = sumario;
             
                 return sumario;    
     
@@ -352,7 +354,7 @@ const vis = {
             vis.sels.rects
               .transition()
               .duration(1000)
-              .delay(2000)
+              .delay(1000)
               .attr("x", d => d.pos_longit)
               .attr("y", d => d.pos_across);
 
@@ -364,9 +366,28 @@ const vis = {
 
             vis.sels.rects
               .transition()
+              .delay(2000)
               .duration(1000)
               .attr("x", d => d.pos_longit - on * (d.index_longit * vis.params.dots.espacamento))
               .attr("y", d => d.pos_across - on * (d.index_across_group * vis.params.dots.espacamento))
+
+        },
+
+        update_colors : function() {
+
+            const variavel = vis.control.state.current_variable;
+            const vetor_categorias = vis.data.sumario.map(d => d.categoria);
+
+            console.log("Variavel atual", vis.control.state.current_variable);
+
+            const color = d3.scaleOrdinal()
+              .range(vis.params.palette)
+              .domain(vetor_categorias)
+
+            vis.sels.rects
+              .transition()
+              .duration(1000)
+              .attr("fill", d => color(d[variavel]));
 
         }
 
@@ -375,6 +396,12 @@ const vis = {
     },
 
     control : {
+
+        state : {
+
+            current_variable : null
+
+        },
 
         initialize_selections : function() {
 
@@ -393,22 +420,28 @@ const vis = {
 
             console.log(vis.data.raw.columns);
 
+            vis.control.state.current_variable = "vinculo";
+
             // tudo que depende dos dados vai aqui.
 
             vis.params.from_data.qde_pontos = vis.data.raw.length;
 
             vis.utils.sizings.evaluate_bar_widths();
 
+            vis.render.create_rects();
+
             vis.utils.data_processing.prepara_dados(
                 criterio = "vinculo",
                 ordena = false            
-            )
+            );
 
-            vis.render.create_rects();
+            vis.render.update_colors();
 
             vis.render.update_positions();
 
-            
+            vis.render.tighten(true);
+
+
 
 
 
