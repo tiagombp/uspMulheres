@@ -35,11 +35,22 @@ const vis = {
 
         palette : ["#ea7393", "#f495ab", "#a8596f", "#ccccc4", "khaki"],
 
+        variaveis_detalhamento : ["vinculo", "genero", "cor"],
+
         from_data : {
 
-            qde_pontos : null,
-            qde_fileira : null,
-            largura_grupo : null
+            qde_pontos    : null,
+            qde_fileira   : null,
+            largura_grupo : null,
+
+            dominio_var_detalhamento : {
+
+                // usados para os detalhamentos. as chaves aqui precisam corresponder à lista vis.params.variaveis_detalhamento
+
+                "vinculo" : null,
+                "genero"  : null,
+                "cor"     : null
+            }
 
         }
 
@@ -311,6 +322,27 @@ const vis = {
                 //console.log("Mini dados", mini_dados);
             
                 return(mini_dados); */
+            },
+
+            gera_vetor_categorias_ordenado : function() {
+
+                vis.params.variaveis_detalhamento.forEach(variavel => {
+                    const sumario_variavel = vis.utils.data_processing.sumariza_dados(
+                        criterio = variavel, 
+                        ordena = true)
+
+                    vis.params.from_data.dominio_var_detalhamento[variavel] = sumario_variavel
+                      .map(d => d.categoria);
+                      
+                });
+
+            },
+
+            gera_posicoes_detalhamento : function() {
+
+
+
+
             }
         },
 
@@ -531,6 +563,8 @@ const vis = {
             // tudo que depende dos dados vai aqui.
 
             vis.params.from_data.qde_pontos = vis.data.raw.length;
+
+            vis.utils.data_processing.gera_vetor_categorias_ordenado();
 
             vis.utils.sizings.evaluate_bar_widths();
 
