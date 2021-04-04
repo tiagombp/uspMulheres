@@ -6,6 +6,7 @@ const vis = {
         container_svg : "div.container-svg",
         vis : "div.vis",
         seletor : "div.selector",
+        caixa_selecao : "#seletor-perguntas",
         buttons : ".buttons"
 
     },
@@ -16,6 +17,7 @@ const vis = {
         container_svg : null,
         vis : null,
         seletor : null,
+        caixa_selecao : null,
         buttons : null,
         rects : null,
         labels : null
@@ -496,6 +498,24 @@ const vis = {
             
         },
 
+        monitor_selector : function() {
+
+            vis.sels.caixa_selecao.on("change", function(e) {
+
+                const opcao = e.target.value;
+
+                console.log("Usuário escolheu a opção ", opcao);
+
+                if (opcao != "nenhum") {
+
+                    vis.control.draw_state(opcao);
+
+                }
+
+            })
+
+        },
+
         monitor_buttons : function() {
 
             vis.sels.buttons.on("click", function(e) {
@@ -579,6 +599,7 @@ const vis = {
 
             vis.control.initialize_selections();
             vis.control.monitor_buttons();
+            vis.control.monitor_selector();
             vis.utils.sizings.get_vsizes();
             vis.utils.sizings.set_vsize_svg();
             vis.utils.read_data();
