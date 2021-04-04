@@ -50,17 +50,23 @@
             <div class="vis">
 
                 <div class="selector">
-                    <p>
-                        Aqui vai o seletor de perguntas...
-                    </p>
+                    <select name="perguntas" id="seletor-perguntas">
+                        <option value="">--Escolha a pergunta--</option>
+                        <option value="vinculo">Seu vínculo atual com a USP é como ...</option>
+                        <option value="genero">Gênero</option>
+                        <option value="cor">Cor (IBGE)</option>
+                    </select>
+
+                </div>
+
+                <div class="outer-container-svg">
+
                     <div class="buttons">
+                        <button data-opcao="nenhum" class="selected">Nenhum</button>
                         <button data-opcao="vinculo">Vínculo</button>
                         <button data-opcao="genero">Gênero</button>
                         <button data-opcao="cor">Cor / Etnia</button>
                     </div>
-                </div>
-
-                <div class="outer-container-svg">
 
                     <div class="container-svg">
 

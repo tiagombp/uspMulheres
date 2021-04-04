@@ -56,7 +56,19 @@ div.vis > div.selector {
 
     max-width: var(--width);
     margin: 0 auto;
-    padding-left: 1rem;
+    padding: 1rem;
+
+}
+
+.selector select {
+
+    font-family: var(--fonte-corpo);
+    font-size: 0.8rem;
+    display: block;
+    background: transparent;
+    outline: none;
+    border: none;
+    color: var(--cor-texto);
 
 }
 
@@ -72,10 +84,10 @@ div.vis > div.selector > p {
     display: inline;
 }
 
-div.vis > div.selector > div.buttons {
+div.vis div.buttons {
 
-    display: inline-flex;
-    justify-content: space-between;
+    display: flex;
+    justify-content: center;
     padding: .5rem 0;
 
 }
@@ -84,13 +96,13 @@ div.vis > div.selector > div.buttons {
 
     background-color: transparent;
     border: 2px solid var(--cor-texto);
-    padding: .5rem .5rem;
-    border-radius: 10rem;
+    padding: .5em .5em;
+    border-radius: 10em;
     margin-left: 1rem;
     width: 100px;
     font-family: var(--fonte-corpo);
     font-weight: 100;
-    font-size: 1rem;
+    font-size: 0.8rem;
     color: var(--cor-texto);
 
 }
@@ -98,14 +110,14 @@ div.vis > div.selector > div.buttons {
 .buttons button:hover, .buttons button.selected {
 
     background-color: var(--cor-texto);
-    color: var(--cor-fundo);
+    color: var(--cor-fundo-vis);
 
 }
 
 .buttons button.selected {
 
     font-weight: bold;
-    border: 2px solid var(--cor-fundo);
+    /*border: 2px solid var(--cor-fundo-vis);*/
 
 }
 
