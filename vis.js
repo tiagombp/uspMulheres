@@ -500,17 +500,20 @@ const vis = {
 
             vis.sels.buttons.on("click", function(e) {
 
-                const opcao = e.target.dataset.opcao;
+                if (e.target.tagName == "BUTTON") {
 
-                vis.control.activates_button(
-                    all_buttons = this.children,
-                    clicked = e.target
-                );
+                    const opcao = e.target.dataset.opcao;
 
-                console.log(opcao);
+                    vis.control.activates_button(
+                        all_buttons = this.children,
+                        clicked = e.target
+                    );
 
-                vis.control.draw_state(opcao);
+                    console.log(opcao);
 
+                    vis.control.draw_state(opcao);
+                
+                } else console.log("Isso não é um botão, brother.")
 
             })
 
