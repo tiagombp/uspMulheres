@@ -324,7 +324,7 @@ const vis = {
                 return(mini_dados); */
             },
 
-            gera_vetor_categorias_ordenado : function() {
+            gera_dominio_ordenado_variaveis_detalhamento : function() {
 
                 vis.params.variaveis_detalhamento.forEach(variavel => {
                     const sumario_variavel = vis.utils.data_processing.sumariza_dados(
@@ -333,7 +333,7 @@ const vis = {
 
                     vis.params.from_data.dominio_var_detalhamento[variavel] = sumario_variavel
                       .map(d => d.categoria);
-                      
+
                 });
 
             },
@@ -563,8 +563,8 @@ const vis = {
             // tudo que depende dos dados vai aqui.
 
             vis.params.from_data.qde_pontos = vis.data.raw.length;
-
-            vis.utils.data_processing.gera_vetor_categorias_ordenado();
+            
+            vis.utils.data_processing.gera_dominio_ordenado_variaveis_detalhamento();
 
             vis.utils.sizings.evaluate_bar_widths();
 
