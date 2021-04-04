@@ -264,9 +264,39 @@ const vis = {
 
                     d.ordem = i;
 
+                    //////////
+
+                    // inclusão por causa dos detalhamentos
+
+                    const indice_detalhamentos = {};
+
+                    const variaveis_detalhamento = Object.keys(d.dados_detalhamento);
+
+                    variaveis_detalhamento.forEach(variavel => {
+
+                        indice_detalhamentos[variavel] = {};
+                        // para cada variavel presente, vamos fazer um loop sobre seus valores
+
+                        Object.keys(d.dados_detalhamento[variavel]).forEach((valor, indice) => {
+
+                            indice_detalhamentos[variavel][valor] = {
+                                ordem : indice,
+                                quantidade : d.dados_detalhamento[variavel][valor],
+                                indice_atual_detalhamento : 0
+                            }
+
+                        });
+
+                    });
+
+                    //////////
+
                     indice_grupos[d.categoria] = {
+
                         ordem : i,
-                        indice_atual : 0
+                        indice_atual : 0,
+                        indices_detalhamentos : indice_detalhamentos
+
                     }
 
                 });
