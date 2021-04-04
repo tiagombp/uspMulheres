@@ -176,13 +176,51 @@ const vis = {
                 // faz a contagem dos casos para cada valor único da variável categórica
             
                 for (cat of categorias_unicas) {
-                    const cont = dados
-                      .filter(d => d[criterio] === cat)
-                      .length;
+
+                    const subdados = dados
+                      .filter(d => d[criterio] === cat);
+
+                    const cont = subdados.length;
+
+                    // ///////////////
+                    // acrescenta cálculo dos subgrupos
+                    // mas só se já houver uma variável selecionado
+
+                    const tamanhos_subgrupos = {};
+
+                    if (vis.control.state.current_variable != null) {
+
+                        // loop sobre as variáveis principais que foram escolhidas para detalhamento
+
+                        vis.params.variaveis_detalhamento.forEach(variavel => {
+
+                            if (variavel != criterio) {
+
+                                tamanhos_subgrupos[variavel] = {};
+
+                                // aí agora vamos fazer um loop sobre o domínio de cada uma dessas variáveis, para pegar a contagem de cada um
+                                vis.params.from_data.dominio_var_detalhamento[variavel]
+                                  .forEach(elemento_do_dominio => {
+
+                                      const cont_dominio = subdados
+                                        .filter(d => d[variavel] == elemento_do_dominio)
+                                        .length;
+                                
+                                      tamanhos_subgrupos[variavel][elemento_do_dominio] = cont_dominio;
+                                })
+
+
+                            }
+
+                        });
+
+                    }
             
-                    sumario.push({"categoria"    : cat,
-                                  "contagem"     : cont,
-                                  "criterio"     : criterio});
+                    sumario.push({"categoria"          : cat,
+                                  "contagem"           : cont,
+                                  "criterio"           : criterio,
+                                  "dados_detalhamento" : tamanhos_subgrupos
+                                });
                                   
                 }
             
@@ -328,10 +366,14 @@ const vis = {
 
             gera_dominio_ordenado_variaveis_detalhamento : function() {
 
+                console.log("Gerando domínio")
+
                 vis.params.variaveis_detalhamento.forEach(variavel => {
                     const sumario_variavel = vis.utils.data_processing.sumariza_dados(
                         criterio = variavel, 
                         ordena = true)
+
+                    console.log("Variável atual: ", variavel);
 
                     vis.params.from_data.dominio_var_detalhamento[variavel] = sumario_variavel
                       .map(d => d.categoria);
