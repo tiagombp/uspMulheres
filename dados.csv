@@ -1,748 +1,748 @@
-"","vinculo","genero","cor"
-"1","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda"
-"2","Estudante","Masculino","Parda"
-"3","Estudante","Feminino","Branca"
-"4","Estudante","Feminino","Branca"
-"5","Docente","Feminino","Branca"
-"6","Docente","Feminino","Branca"
-"7","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"8","Docente","Masculino","Parda"
-"9","Docente","Masculino","Branca"
-"10","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"11","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"12","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda"
-"13","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Amarela"
-"14","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Amarela"
-"15","Docente","Masculino","Branca"
-"16","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"17","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"18","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"19","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"20","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Amarela"
-"21","Docente","Masculino","Branca"
-"22","Docente","Feminino","Branca"
-"23","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"24","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda"
-"25","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda"
-"26","Docente","Masculino","Branca"
-"27","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"28","Docente","Masculino","Amarela"
-"29","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"30","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"31","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda"
-"32","Docente","Masculino","Branca"
-"33","Docente","Feminino","Branca"
-"34","Docente","Feminino","Branca"
-"35","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"36","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"37","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"38","Docente","Feminino","Branca"
-"39","Docente","Feminino","Branca"
-"40","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda"
-"41","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"42","Docente","Masculino","Branca"
-"43","Docente","Masculino","Parda"
-"44","Docente","Feminino","Branca"
-"45","Docente","Feminino","Branca"
-"46","Docente","Masculino","Branca"
-"47","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Preta"
-"48","Estudante","Masculino","Branca"
-"49","Docente","Feminino","Branca"
-"50","Docente","Feminino","Branca"
-"51","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"52","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Preta"
-"53","Docente","Feminino","Branca"
-"54","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda"
-"55","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"56","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"57","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"58","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"59","Estudante","Feminino","Branca"
-"60","Docente","Masculino","Branca"
-"61","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda"
-"62","Docente","Feminino","Branca"
-"63","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"64","Docente","Feminino","Amarela"
-"65","Docente","Feminino","Branca"
-"66","Estudante","Feminino","Branca"
-"67","Docente","Feminino","Branca"
-"68","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"69","Docente","Masculino","Branca"
-"70","Docente","Feminino","Branca"
-"71","Docente","Masculino","Branca"
-"72","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"73","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"74","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"75","Estudante","Feminino","Branca"
-"76","Estudante","Feminino","Branca"
-"77","Estudante","Feminino","Amarela"
-"78","Docente","Feminino","Branca"
-"79","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"80","Docente","Feminino","Branca"
-"81","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"82","Docente","Masculino","Branca"
-"83","Estudante","Masculino","Branca"
-"84","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"85","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"86","Docente","Masculino","Branca"
-"87","Docente","Feminino","Branca"
-"88","Estudante","Feminino","Preta"
-"89","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"90","Docente","Feminino","Branca"
-"91","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"92","Estudante","Masculino","Parda"
-"93","Estudante","Feminino","Branca"
-"94","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"95","Docente","Feminino","Branca"
-"96","Docente","Feminino","Branca"
-"97","Estudante","Feminino","Branca"
-"98","Estudante","Masculino","Branca"
-"99","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"100","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda"
-"101","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Preta"
-"102","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Amarela"
-"103","Estudante","Feminino","Parda"
-"104","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda"
-"105","Docente","Feminino","Branca"
-"106","Estudante","Feminino","Branca"
-"107","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"108","Estudante","Masculino","Branca"
-"109","Estudante","Feminino","Parda"
-"110","Estudante","Feminino","Parda"
-"111","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda"
-"112","Estudante","Feminino","Branca"
-"113","Docente","Masculino","Branca"
-"114","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Amarela"
-"115","Estudante","Masculino","Branca"
-"116","Estudante","Feminino","Preta"
-"117","Estudante","Feminino","Branca"
-"118","Estudante","Feminino","Branca"
-"119","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"120","Estudante","Masculino","Branca"
-"121","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"122","Docente","Masculino","Branca"
-"123","Estudante","Feminino","Preta"
-"124","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"125","Estudante","Feminino","Parda"
-"126","Estudante","Masculino","Branca"
-"127","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"128","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"129","Docente","Feminino","Branca"
-"130","Estudante","Feminino","Amarela"
-"131","Estudante","Masculino","Parda"
-"132","Docente","Feminino","Branca"
-"133","Docente","Feminino","Branca"
-"134","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"135","Docente","Masculino","Branca"
-"136","Estudante","Feminino","Branca"
-"137","Estudante","Feminino","Parda"
-"138","Docente","Masculino","Branca"
-"139","Docente","Feminino","Branca"
-"140","Estudante","Feminino","Branca"
-"141","Estudante","Feminino","Branca"
-"142","Docente","Masculino","Branca"
-"143","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"144","Estudante","Feminino","Branca"
-"145","Estudante","Masculino","Branca"
-"146","Docente","Masculino","Branca"
-"147","Docente","Feminino","Branca"
-"148","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"149","Docente","Feminino","Branca"
-"150","Docente","Masculino","Branca"
-"151","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda"
-"152","Docente","Masculino","Branca"
-"153","Estudante","Masculino","Branca"
-"154","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"155","Estudante","Feminino","Branca"
-"156","Docente","Masculino","Branca"
-"157","Docente","Feminino","Branca"
-"158","Estudante","Masculino","Branca"
-"159","Estudante","Masculino","Branca"
-"160","Estudante","Feminino","Branca"
-"161","Docente","Feminino","Branca"
-"162","Estudante","Feminino","Branca"
-"163","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"164","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"165","Estudante","Masculino","Branca"
-"166","Estudante","Masculino","Branca"
-"167","Docente","Masculino","Branca"
-"168","Docente","Masculino","Parda"
-"169","Estudante","Masculino","Branca"
-"170","Docente","Masculino","Branca"
-"171","Estudante","Feminino","Branca"
-"172","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"173","Estudante","Masculino","Branca"
-"174","Estudante","Masculino","Branca"
-"175","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"176","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"177","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda"
-"178","Estudante","Masculino","Amarela"
-"179","Docente","Feminino","Branca"
-"180","Estudante","Feminino","Parda"
-"181","Docente","Masculino","Branca"
-"182","Estudante","Feminino","Branca"
-"183","Docente","Feminino","Branca"
-"184","Estudante","Feminino","Branca"
-"185","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"186","Estudante","Masculino","Branca"
-"187","Docente","Feminino","Branca"
-"188","Docente","Feminino","Branca"
-"189","Estudante","Feminino","Parda"
-"190","Docente","Masculino","Parda"
-"191","Estudante","Feminino","Parda"
-"192","Docente","Feminino","Branca"
-"193","Docente","Feminino","Branca"
-"194","Estudante","Feminino","Preta"
-"195","Estudante","Masculino","Branca"
-"196","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"197","Estudante","Masculino","Branca"
-"198","Estudante","Masculino","Branca"
-"199","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda"
-"200","Docente","Masculino","Branca"
-"201","Estudante","Feminino","Branca"
-"202","Docente","Feminino","Branca"
-"203","Docente","Feminino","Preta"
-"204","Estudante","Feminino","Branca"
-"205","Estudante","Feminino","Branca"
-"206","Estudante","Masculino","Branca"
-"207","Docente","Masculino","Branca"
-"208","Docente","Masculino","Branca"
-"209","Estudante","Feminino","Parda"
-"210","Docente","Masculino","Parda"
-"211","Docente","Feminino","Parda"
-"212","Estudante","Feminino","Branca"
-"213","Estudante","Feminino","Branca"
-"214","Estudante","Feminino","Parda"
-"215","Estudante","Masculino","Preta"
-"216","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"217","Estudante","Masculino","Parda"
-"218","Estudante","Feminino","Branca"
-"219","Docente","Masculino","Amarela"
-"220","Estudante","Feminino","Parda"
-"221","Estudante","Feminino","Branca"
-"222","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"223","Docente","Feminino","Branca"
-"224","Estudante","Feminino","Branca"
-"225","Docente","Feminino","Branca"
-"226","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda"
-"227","Docente","Feminino","Branca"
-"228","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda"
-"229","Docente","Feminino","Branca"
-"230","Estudante","Feminino","Branca"
-"231","Docente","Masculino","Branca"
-"232","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda"
-"233","Estudante","Masculino","Parda"
-"234","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"235","Estudante","Feminino","Branca"
-"236","Estudante","Feminino","Branca"
-"237","Estudante","Masculino","Branca"
-"238","Estudante","Feminino","Branca"
-"239","Docente","Feminino","Amarela"
-"240","Docente","Feminino","Branca"
-"241","Estudante","Feminino","Branca"
-"242","Estudante","Masculino","Branca"
-"243","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Preta"
-"244","Estudante","Masculino","Branca"
-"245","Estudante","Feminino","Branca"
-"246","Docente","Masculino","Amarela"
-"247","Docente","Feminino","Branca"
-"248","Estudante","Feminino","Branca"
-"249","Estudante","Masculino","Branca"
-"250","Docente","Feminino","Branca"
-"251","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda"
-"252","Estudante","Masculino","Branca"
-"253","Docente","Masculino","Branca"
-"254","Docente","Feminino","Branca"
-"255","Docente","Masculino","Branca"
-"256","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"257","Estudante","Masculino","Branca"
-"258","Docente","Masculino","Branca"
-"259","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda"
-"260","Docente","Masculino","Amarela"
-"261","Estudante","Masculino","Branca"
-"262","Estudante","Feminino","Branca"
-"263","Estudante","Feminino","Branca"
-"264","Estudante","Masculino","Branca"
-"265","Docente","Feminino","Branca"
-"266","Estudante","Feminino","Branca"
-"267","Docente","Feminino","Branca"
-"268","Docente","Feminino","Branca"
-"269","Estudante","Masculino","Amarela"
-"270","Estudante","Feminino","Branca"
-"271","Estudante","Feminino","Amarela"
-"272","Docente","Feminino","Branca"
-"273","Estudante","Masculino","Branca"
-"274","Estudante","Masculino","Amarela"
-"275","Estudante","Masculino","Amarela"
-"276","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"277","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"278","Estudante","Masculino","Parda"
-"279","Docente","Feminino","Branca"
-"280","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"281","Estudante","Masculino","Branca"
-"282","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"283","Docente","Feminino","Branca"
-"284","Estudante","Masculino","Branca"
-"285","Estudante","Feminino","Branca"
-"286","Estudante","Feminino","Branca"
-"287","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"288","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Amarela"
-"289","Estudante","Masculino","Branca"
-"290","Docente","Masculino","Branca"
-"291","Docente","Masculino","Amarela"
-"292","Estudante","Masculino","Parda"
-"293","Docente","Masculino","Branca"
-"294","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"295","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"296","Docente","Masculino","Branca"
-"297","Docente","Masculino","Branca"
-"298","Docente","Masculino","Parda"
-"299","Docente","Feminino","Branca"
-"300","Estudante","Feminino","Parda"
-"301","Docente","Feminino","Branca"
-"302","Estudante","Não-binário","Branca"
-"303","Estudante","Feminino","Parda"
-"304","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda"
-"305","Docente","Feminino","Branca"
-"306","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"307","Estudante","Feminino","Branca"
-"308","Estudante","Masculino","Branca"
-"309","Estudante","Feminino","Parda"
-"310","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"311","Docente","Feminino","Branca"
-"312","Estudante","Feminino","Branca"
-"313","Estudante","Masculino","Branca"
-"314","Estudante","Feminino","Branca"
-"315","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"316","Docente","Não-binário","Parda"
-"317","Estudante","Feminino","Branca"
-"318","Estudante","Feminino","Branca"
-"319","Estudante","Feminino","Parda"
-"320","Estudante","Feminino","Branca"
-"321","Estudante","Feminino","Parda"
-"322","Estudante","Masculino","Branca"
-"323","Estudante","Feminino","Indígena"
-"324","Estudante","Masculino","Amarela"
-"325","Estudante","Feminino","Branca"
-"326","Estudante","Feminino","Branca"
-"327","Estudante","Feminino","Parda"
-"328","Estudante","Masculino","Amarela"
-"329","Estudante","Feminino","Branca"
-"330","Estudante","Feminino","Parda"
-"331","Estudante","Masculino","Branca"
-"332","Estudante","Feminino","Parda"
-"333","Estudante","Feminino","Amarela"
-"334","Estudante","Masculino","Branca"
-"335","Estudante","Feminino","Branca"
-"336","Estudante","Masculino","Parda"
-"337","Estudante","Feminino","Branca"
-"338","Estudante","Feminino","Branca"
-"339","Estudante","Masculino","Branca"
-"340","Estudante","Feminino","Branca"
-"341","Estudante","Feminino","Parda"
-"342","Estudante","Feminino","Branca"
-"343","Estudante","Feminino","Branca"
-"344","Estudante","Masculino","Branca"
-"345","Estudante","Feminino","Amarela"
-"346","Estudante","Masculino","Parda"
-"347","Estudante","Feminino","Branca"
-"348","Estudante","Masculino","Branca"
-"349","Estudante","Feminino","Branca"
-"350","Estudante","Feminino","Branca"
-"351","Estudante","Masculino","Branca"
-"352","Estudante","Feminino","Branca"
-"353","Estudante","Masculino","Branca"
-"354","Estudante","Masculino","Branca"
-"355","Estudante","Masculino","Branca"
-"356","Estudante","Feminino","Branca"
-"357","Estudante","Masculino","Parda"
-"358","Estudante","Feminino","Branca"
-"359","Estudante","Feminino","Branca"
-"360","Estudante","Masculino","Branca"
-"361","Estudante","Feminino","Parda"
-"362","Estudante","Masculino","Branca"
-"363","Estudante","Feminino","Branca"
-"364","Estudante","Feminino","Parda"
-"365","Estudante","Feminino","Branca"
-"366","Estudante","Feminino","Preta"
-"367","Estudante","Feminino","Branca"
-"368","Estudante","Masculino","Branca"
-"369","Estudante","Masculino","Branca"
-"370","Estudante","Feminino","Branca"
-"371","Estudante","Masculino","Parda"
-"372","Estudante","Feminino","Branca"
-"373","Estudante","Feminino","Amarela"
-"374","Estudante","Feminino","Parda"
-"375","Estudante","Feminino","Parda"
-"376","Estudante","Feminino","Branca"
-"377","Estudante","Feminino","Branca"
-"378","Estudante","Feminino","Branca"
-"379","Estudante","Masculino","Branca"
-"380","Estudante","Feminino","Parda"
-"381","Estudante","Masculino","Branca"
-"382","Estudante","Feminino","Branca"
-"383","Estudante","Masculino","Branca"
-"384","Estudante","Feminino","Parda"
-"385","Estudante","Feminino","Branca"
-"386","Estudante","Masculino","Parda"
-"387","Estudante","Feminino","Preta"
-"388","Estudante","Masculino","Parda"
-"389","Estudante","Feminino","Branca"
-"390","Estudante","Masculino","Branca"
-"391","Estudante","Masculino","Parda"
-"392","Estudante","Masculino","Branca"
-"393","Estudante","Masculino","Branca"
-"394","Estudante","Feminino","Branca"
-"395","Estudante","Masculino","Branca"
-"396","Estudante","Masculino","Preta"
-"397","Estudante","Feminino","Branca"
-"398","Estudante","Feminino","Branca"
-"399","Estudante","Masculino","Branca"
-"400","Estudante","Masculino","Parda"
-"401","Estudante","Feminino","Branca"
-"402","Estudante","Feminino","Branca"
-"403","Estudante","Feminino","Branca"
-"404","Estudante","Feminino","Branca"
-"405","Estudante","Feminino","Amarela"
-"406","Estudante","Feminino","Branca"
-"407","Estudante","Feminino","Branca"
-"408","Docente","Masculino","Branca"
-"409","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"410","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Preta"
-"411","Docente","Feminino","Branca"
-"412","Docente","Feminino","Branca"
-"413","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"414","Docente","Masculino","Branca"
-"415","Docente","Masculino","Branca"
-"416","Docente","Masculino","Branca"
-"417","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"418","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"419","Docente","Masculino","Branca"
-"420","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Amarela"
-"421","Docente","Masculino","Branca"
-"422","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"423","Docente","Feminino","Branca"
-"424","Docente","Feminino","Branca"
-"425","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"426","Docente","Masculino","Parda"
-"427","Docente","Feminino","Branca"
-"428","Docente","Feminino","Branca"
-"429","Docente","Masculino","Branca"
-"430","Docente","Masculino","Branca"
-"431","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"432","Docente","Feminino","Branca"
-"433","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"434","Docente","Feminino","Branca"
-"435","Docente","Masculino","Branca"
-"436","Docente","Masculino","Parda"
-"437","Docente","Masculino","Branca"
-"438","Docente","Masculino","Parda"
-"439","Docente","Feminino","Amarela"
-"440","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"441","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"442","Docente","Feminino","Branca"
-"443","Docente","Masculino","Branca"
-"444","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda"
-"445","Docente","Feminino","Branca"
-"446","Docente","Masculino","Branca"
-"447","Docente","Masculino","Parda"
-"448","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Amarela"
-"449","Docente","Feminino","Branca"
-"450","Docente","Masculino","Amarela"
-"451","Docente","Feminino","Branca"
-"452","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda"
-"453","Docente","Feminino","Branca"
-"454","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda"
-"455","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"456","Docente","Feminino","Branca"
-"457","Docente","Feminino","Branca"
-"458","Docente","Feminino","Branca"
-"459","Docente","Feminino","Branca"
-"460","Docente","Masculino","Branca"
-"461","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"462","Docente","Feminino","Branca"
-"463","Estudante","Feminino","Branca"
-"464","Docente","Feminino","Branca"
-"465","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda"
-"466","Docente","Feminino","Branca"
-"467","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"468","Docente","Feminino","Branca"
-"469","Docente","Masculino","Branca"
-"470","Docente","Masculino","Branca"
-"471","Docente","Feminino","Branca"
-"472","Docente","Masculino","Amarela"
-"473","Estudante","Masculino","Parda"
-"474","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"475","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda"
-"476","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"477","Docente","Masculino","Branca"
-"478","Estudante","Masculino","Branca"
-"479","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda"
-"480","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"481","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"482","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Amarela"
-"483","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"484","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"485","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"486","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"487","Docente","Masculino","Parda"
-"488","Docente","Feminino","Branca"
-"489","Docente","Feminino","Branca"
-"490","Docente","Feminino","Branca"
-"491","Docente","Masculino","Branca"
-"492","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"493","Docente","Feminino","Branca"
-"494","Docente","Feminino","Branca"
-"495","Docente","Feminino","Amarela"
-"496","Docente","Feminino","Branca"
-"497","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Amarela"
-"498","Docente","Feminino","Branca"
-"499","Estudante","Feminino","Parda"
-"500","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"501","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda"
-"502","Estudante","Feminino","Amarela"
-"503","Docente","Feminino","Branca"
-"504","Docente","Masculino","Branca"
-"505","Docente","Feminino","Branca"
-"506","Docente","Feminino","Branca"
-"507","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"508","Docente","Masculino","Branca"
-"509","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Amarela"
-"510","Docente","Feminino","Branca"
-"511","Docente","Feminino","Branca"
-"512","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"513","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"514","Docente","Masculino","Branca"
-"515","Docente","Masculino","Branca"
-"516","Docente","Feminino","Branca"
-"517","Docente","Masculino","Branca"
-"518","Docente","Feminino","Branca"
-"519","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"520","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"521","Estudante","Masculino","Branca"
-"522","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"523","Docente","Feminino","Branca"
-"524","Docente","Feminino","Branca"
-"525","Docente","Masculino","Branca"
-"526","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"527","Estudante","Masculino","Parda"
-"528","Docente","Masculino","Branca"
-"529","Docente","Masculino","Branca"
-"530","Docente","Masculino","Branca"
-"531","Docente","Feminino","Branca"
-"532","Docente","Feminino","Branca"
-"533","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Amarela"
-"534","Estudante","Não-binário","Branca"
-"535","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"536","Docente","Feminino","Branca"
-"537","Estudante","Masculino","Branca"
-"538","Estudante","Feminino","Branca"
-"539","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"540","Estudante","Feminino","Branca"
-"541","Docente","Feminino","Branca"
-"542","Docente","Feminino","Branca"
-"543","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"544","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"545","Docente","Feminino","Branca"
-"546","Estudante","Feminino","Branca"
-"547","Estudante","Feminino","Amarela"
-"548","Estudante","Feminino","Branca"
-"549","Docente","Feminino","Branca"
-"550","Estudante","Feminino","Branca"
-"551","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"552","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"553","Estudante","Feminino","Branca"
-"554","Estudante","Feminino","Branca"
-"555","Docente","Masculino","Branca"
-"556","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Preta"
-"557","Estudante","Masculino","Branca"
-"558","Estudante","Feminino","Branca"
-"559","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"560","Docente","Feminino","Branca"
-"561","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda"
-"562","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"563","Docente","Masculino","Branca"
-"564","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"565","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"566","Docente","Masculino","Branca"
-"567","Estudante","Feminino","Branca"
-"568","Estudante","Masculino","Preta"
-"569","Estudante","Feminino","Branca"
-"570","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"571","Estudante","Feminino","Branca"
-"572","Docente","Masculino","Branca"
-"573","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"574","Docente","Masculino","Amarela"
-"575","Docente","Masculino","Branca"
-"576","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda"
-"577","Estudante","Masculino","Branca"
-"578","Docente","Feminino","Branca"
-"579","Estudante","Feminino","Branca"
-"580","Docente","Feminino","Parda"
-"581","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"582","Docente","Feminino","Branca"
-"583","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"584","Docente","Feminino","Branca"
-"585","Docente","Feminino","Branca"
-"586","Estudante","Masculino","Branca"
-"587","Docente","Masculino","Branca"
-"588","Estudante","Masculino","Branca"
-"589","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"590","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"591","Estudante","Masculino","Amarela"
-"592","Docente","Feminino","Branca"
-"593","Estudante","Feminino","Branca"
-"594","Estudante","Feminino","Parda"
-"595","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"596","Estudante","Feminino","Amarela"
-"597","Estudante","Feminino","Preta"
-"598","Estudante","Feminino","Branca"
-"599","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"600","Docente","Masculino","Amarela"
-"601","Estudante","Masculino","Branca"
-"602","Estudante","Feminino","Branca"
-"603","Docente","Feminino","Branca"
-"604","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"605","Estudante","Feminino","Amarela"
-"606","Docente","Masculino","Branca"
-"607","Estudante","Feminino","Parda"
-"608","Estudante","Feminino","Branca"
-"609","Estudante","Masculino","Branca"
-"610","Docente","Masculino","Amarela"
-"611","Estudante","Feminino","Branca"
-"612","Estudante","Feminino","Branca"
-"613","Estudante","Masculino","Branca"
-"614","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"615","Estudante","Feminino","Branca"
-"616","Estudante","Feminino","Branca"
-"617","Estudante","Feminino","Amarela"
-"618","Estudante","Feminino","Preta"
-"619","Docente","Masculino","Branca"
-"620","Docente","Masculino","Branca"
-"621","Estudante","Feminino","Branca"
-"622","Estudante","Feminino","Branca"
-"623","Estudante","Masculino","Branca"
-"624","Estudante","Masculino","Amarela"
-"625","Estudante","Feminino","Branca"
-"626","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"627","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"628","Estudante","Feminino","Branca"
-"629","Estudante","Feminino","Amarela"
-"630","Estudante","Masculino","Parda"
-"631","Docente","Feminino","Branca"
-"632","Estudante","Feminino","Branca"
-"633","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"634","Docente","Feminino","Branca"
-"635","Estudante","Feminino","Branca"
-"636","Docente","Feminino","Branca"
-"637","Docente","Masculino","Branca"
-"638","Estudante","Masculino","Branca"
-"639","Docente","Masculino","Branca"
-"640","Docente","Feminino","Branca"
-"641","Docente","Feminino","Parda"
-"642","Docente","Feminino","Branca"
-"643","Docente","Masculino","Branca"
-"644","Docente","Masculino","Branca"
-"645","Estudante","Feminino","Branca"
-"646","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"647","Docente","Masculino","Branca"
-"648","Docente","Feminino","Branca"
-"649","Docente","Masculino","Branca"
-"650","Docente","Masculino","Branca"
-"651","Estudante","Feminino","Parda"
-"652","Docente","Feminino","Branca"
-"653","Docente","Feminino","Branca"
-"654","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"655","Docente","Feminino","Branca"
-"656","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"657","Estudante","Feminino","Parda"
-"658","Docente","Feminino","Branca"
-"659","Docente","Feminino","Parda"
-"660","Docente","Feminino","Branca"
-"661","Docente","Masculino","Amarela"
-"662","Estudante","Feminino","Branca"
-"663","Docente","Masculino","Parda"
-"664","Docente","Masculino","Parda"
-"665","Docente","Masculino","Branca"
-"666","Docente","Masculino","Branca"
-"667","Docente","Masculino","Branca"
-"668","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"669","Docente","Feminino","Branca"
-"670","Docente","Feminino","Branca"
-"671","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda"
-"672","Docente","Feminino","Parda"
-"673","Docente","Feminino","Branca"
-"674","Estudante","Não-binário","Branca"
-"675","Estudante","Masculino","Branca"
-"676","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"677","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"678","Estudante","Masculino","Branca"
-"679","Docente","Feminino","Branca"
-"680","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"681","Docente","Feminino","Branca"
-"682","Estudante","Feminino","Branca"
-"683","Docente","Masculino","Branca"
-"684","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"685","Docente","Feminino","Branca"
-"686","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"687","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"688","Estudante","Masculino","Branca"
-"689","Estudante","Masculino","Branca"
-"690","Estudante","Masculino","Preta"
-"691","Docente","Masculino","Branca"
-"692","Estudante","Feminino","Branca"
-"693","Docente","Feminino","Branca"
-"694","Docente","Feminino","Branca"
-"695","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"696","Estudante","Feminino","Parda"
-"697","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Preta"
-"698","Docente","Feminino","Branca"
-"699","Estudante","Feminino","Parda"
-"700","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda"
-"701","Docente","Masculino","Branca"
-"702","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"703","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"704","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda"
-"705","Docente","Feminino","Branca"
-"706","Docente","Feminino","Branca"
-"707","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Preta"
-"708","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"709","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"710","Estudante","Feminino","Branca"
-"711","Estudante","Feminino","Parda"
-"712","Estudante","Feminino","Branca"
-"713","Docente","Masculino","Branca"
-"714","Estudante","Feminino","Branca"
-"715","Docente","Feminino","Branca"
-"716","Docente","Feminino","Branca"
-"717","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"718","Docente","Feminino","Branca"
-"719","Estudante","Feminino","Preta"
-"720","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"721","Estudante","Feminino","Amarela"
-"722","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"723","Docente","Feminino","Branca"
-"724","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Preta"
-"725","Docente","Masculino","Amarela"
-"726","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"727","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"728","Estudante","Feminino","Branca"
-"729","Estudante","Feminino","Branca"
-"730","Estudante","Feminino","Parda"
-"731","Estudante","Feminino","Parda"
-"732","Estudante","Feminino","Amarela"
-"733","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda"
-"734","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"735","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Preta"
-"736","Estudante","Feminino","Branca"
-"737","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"738","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca"
-"739","Docente","Feminino","Amarela"
-"740","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"741","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca"
-"742","Estudante","Masculino","Branca"
-"743","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Preta"
-"744","Estudante","Não-binário","Branca"
-"745","Docente","Feminino","Branca"
-"746","Docente","Feminino","Branca"
-"747","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda"
+"","vinculo","genero","cor","indice_vinculo","indice_genero","indice_cor"
+"1","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda",1,1,1
+"2","Estudante","Masculino","Parda",1,2,2
+"3","Estudante","Feminino","Branca",2,1,1
+"4","Estudante","Feminino","Branca",3,2,2
+"5","Docente","Feminino","Branca",1,3,3
+"6","Docente","Feminino","Branca",2,4,4
+"7","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",2,5,5
+"8","Docente","Masculino","Parda",3,3,3
+"9","Docente","Masculino","Branca",4,4,6
+"10","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",3,5,7
+"11","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",4,6,8
+"12","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda",5,7,4
+"13","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Amarela",6,8,1
+"14","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Amarela",7,6,2
+"15","Docente","Masculino","Branca",5,7,9
+"16","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",8,8,10
+"17","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",9,9,11
+"18","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",10,10,12
+"19","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",11,11,13
+"20","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Amarela",12,12,3
+"21","Docente","Masculino","Branca",6,9,14
+"22","Docente","Feminino","Branca",7,13,15
+"23","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",13,14,16
+"24","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda",14,15,5
+"25","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda",15,10,6
+"26","Docente","Masculino","Branca",8,11,17
+"27","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",16,16,18
+"28","Docente","Masculino","Amarela",9,12,4
+"29","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",17,17,19
+"30","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",18,18,20
+"31","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda",19,13,7
+"32","Docente","Masculino","Branca",10,14,21
+"33","Docente","Feminino","Branca",11,19,22
+"34","Docente","Feminino","Branca",12,20,23
+"35","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",20,15,24
+"36","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",21,21,25
+"37","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",22,22,26
+"38","Docente","Feminino","Branca",13,23,27
+"39","Docente","Feminino","Branca",14,24,28
+"40","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda",23,16,8
+"41","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",24,25,29
+"42","Docente","Masculino","Branca",15,17,30
+"43","Docente","Masculino","Parda",16,18,9
+"44","Docente","Feminino","Branca",17,26,31
+"45","Docente","Feminino","Branca",18,27,32
+"46","Docente","Masculino","Branca",19,19,33
+"47","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Preta",25,28,1
+"48","Estudante","Masculino","Branca",4,20,34
+"49","Docente","Feminino","Branca",20,29,35
+"50","Docente","Feminino","Branca",21,30,36
+"51","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",26,31,37
+"52","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Preta",27,21,2
+"53","Docente","Feminino","Branca",22,32,38
+"54","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda",28,22,10
+"55","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",29,33,39
+"56","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",30,23,40
+"57","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",31,34,41
+"58","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",32,24,42
+"59","Estudante","Feminino","Branca",5,35,43
+"60","Docente","Masculino","Branca",23,25,44
+"61","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda",33,26,11
+"62","Docente","Feminino","Branca",24,36,45
+"63","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",34,27,46
+"64","Docente","Feminino","Amarela",25,37,5
+"65","Docente","Feminino","Branca",26,38,47
+"66","Estudante","Feminino","Branca",6,39,48
+"67","Docente","Feminino","Branca",27,40,49
+"68","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",35,41,50
+"69","Docente","Masculino","Branca",28,28,51
+"70","Docente","Feminino","Branca",29,42,52
+"71","Docente","Masculino","Branca",30,29,53
+"72","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",36,30,54
+"73","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",37,43,55
+"74","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",38,44,56
+"75","Estudante","Feminino","Branca",7,45,57
+"76","Estudante","Feminino","Branca",8,46,58
+"77","Estudante","Feminino","Amarela",9,47,6
+"78","Docente","Feminino","Branca",31,48,59
+"79","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",39,49,60
+"80","Docente","Feminino","Branca",32,50,61
+"81","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",40,31,62
+"82","Docente","Masculino","Branca",33,32,63
+"83","Estudante","Masculino","Branca",10,33,64
+"84","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",41,51,65
+"85","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",42,52,66
+"86","Docente","Masculino","Branca",34,34,67
+"87","Docente","Feminino","Branca",35,53,68
+"88","Estudante","Feminino","Preta",11,54,3
+"89","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",43,55,69
+"90","Docente","Feminino","Branca",36,56,70
+"91","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",44,57,71
+"92","Estudante","Masculino","Parda",12,35,12
+"93","Estudante","Feminino","Branca",13,58,72
+"94","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",45,59,73
+"95","Docente","Feminino","Branca",37,60,74
+"96","Docente","Feminino","Branca",38,61,75
+"97","Estudante","Feminino","Branca",14,62,76
+"98","Estudante","Masculino","Branca",15,36,77
+"99","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",46,37,78
+"100","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda",47,63,13
+"101","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Preta",48,64,4
+"102","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Amarela",49,65,7
+"103","Estudante","Feminino","Parda",16,66,14
+"104","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda",50,67,15
+"105","Docente","Feminino","Branca",39,68,79
+"106","Estudante","Feminino","Branca",17,69,80
+"107","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",51,38,81
+"108","Estudante","Masculino","Branca",18,39,82
+"109","Estudante","Feminino","Parda",19,70,16
+"110","Estudante","Feminino","Parda",20,71,17
+"111","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda",52,72,18
+"112","Estudante","Feminino","Branca",21,73,83
+"113","Docente","Masculino","Branca",40,40,84
+"114","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Amarela",53,41,8
+"115","Estudante","Masculino","Branca",22,42,85
+"116","Estudante","Feminino","Preta",23,74,5
+"117","Estudante","Feminino","Branca",24,75,86
+"118","Estudante","Feminino","Branca",25,76,87
+"119","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",54,77,88
+"120","Estudante","Masculino","Branca",26,43,89
+"121","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",55,78,90
+"122","Docente","Masculino","Branca",41,44,91
+"123","Estudante","Feminino","Preta",27,79,6
+"124","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",56,80,92
+"125","Estudante","Feminino","Parda",28,81,19
+"126","Estudante","Masculino","Branca",29,45,93
+"127","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",57,82,94
+"128","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",58,46,95
+"129","Docente","Feminino","Branca",42,83,96
+"130","Estudante","Feminino","Amarela",30,84,9
+"131","Estudante","Masculino","Parda",31,47,20
+"132","Docente","Feminino","Branca",43,85,97
+"133","Docente","Feminino","Branca",44,86,98
+"134","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",59,87,99
+"135","Docente","Masculino","Branca",45,48,100
+"136","Estudante","Feminino","Branca",32,88,101
+"137","Estudante","Feminino","Parda",33,89,21
+"138","Docente","Masculino","Branca",46,49,102
+"139","Docente","Feminino","Branca",47,90,103
+"140","Estudante","Feminino","Branca",34,91,104
+"141","Estudante","Feminino","Branca",35,92,105
+"142","Docente","Masculino","Branca",48,50,106
+"143","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",60,93,107
+"144","Estudante","Feminino","Branca",36,94,108
+"145","Estudante","Masculino","Branca",37,51,109
+"146","Docente","Masculino","Branca",49,52,110
+"147","Docente","Feminino","Branca",50,95,111
+"148","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",61,96,112
+"149","Docente","Feminino","Branca",51,97,113
+"150","Docente","Masculino","Branca",52,53,114
+"151","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda",62,54,22
+"152","Docente","Masculino","Branca",53,55,115
+"153","Estudante","Masculino","Branca",38,56,116
+"154","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",63,98,117
+"155","Estudante","Feminino","Branca",39,99,118
+"156","Docente","Masculino","Branca",54,57,119
+"157","Docente","Feminino","Branca",55,100,120
+"158","Estudante","Masculino","Branca",40,58,121
+"159","Estudante","Masculino","Branca",41,59,122
+"160","Estudante","Feminino","Branca",42,101,123
+"161","Docente","Feminino","Branca",56,102,124
+"162","Estudante","Feminino","Branca",43,103,125
+"163","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",64,60,126
+"164","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",65,104,127
+"165","Estudante","Masculino","Branca",44,61,128
+"166","Estudante","Masculino","Branca",45,62,129
+"167","Docente","Masculino","Branca",57,63,130
+"168","Docente","Masculino","Parda",58,64,23
+"169","Estudante","Masculino","Branca",46,65,131
+"170","Docente","Masculino","Branca",59,66,132
+"171","Estudante","Feminino","Branca",47,105,133
+"172","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",66,67,134
+"173","Estudante","Masculino","Branca",48,68,135
+"174","Estudante","Masculino","Branca",49,69,136
+"175","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",67,106,137
+"176","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",68,107,138
+"177","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda",69,108,24
+"178","Estudante","Masculino","Amarela",50,70,10
+"179","Docente","Feminino","Branca",60,109,139
+"180","Estudante","Feminino","Parda",51,110,25
+"181","Docente","Masculino","Branca",61,71,140
+"182","Estudante","Feminino","Branca",52,111,141
+"183","Docente","Feminino","Branca",62,112,142
+"184","Estudante","Feminino","Branca",53,113,143
+"185","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",70,114,144
+"186","Estudante","Masculino","Branca",54,72,145
+"187","Docente","Feminino","Branca",63,115,146
+"188","Docente","Feminino","Branca",64,116,147
+"189","Estudante","Feminino","Parda",55,117,26
+"190","Docente","Masculino","Parda",65,73,27
+"191","Estudante","Feminino","Parda",56,118,28
+"192","Docente","Feminino","Branca",66,119,148
+"193","Docente","Feminino","Branca",67,120,149
+"194","Estudante","Feminino","Preta",57,121,7
+"195","Estudante","Masculino","Branca",58,74,150
+"196","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",71,75,151
+"197","Estudante","Masculino","Branca",59,76,152
+"198","Estudante","Masculino","Branca",60,77,153
+"199","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda",72,122,29
+"200","Docente","Masculino","Branca",68,78,154
+"201","Estudante","Feminino","Branca",61,123,155
+"202","Docente","Feminino","Branca",69,124,156
+"203","Docente","Feminino","Preta",70,125,8
+"204","Estudante","Feminino","Branca",62,126,157
+"205","Estudante","Feminino","Branca",63,127,158
+"206","Estudante","Masculino","Branca",64,79,159
+"207","Docente","Masculino","Branca",71,80,160
+"208","Docente","Masculino","Branca",72,81,161
+"209","Estudante","Feminino","Parda",65,128,30
+"210","Docente","Masculino","Parda",73,82,31
+"211","Docente","Feminino","Parda",74,129,32
+"212","Estudante","Feminino","Branca",66,130,162
+"213","Estudante","Feminino","Branca",67,131,163
+"214","Estudante","Feminino","Parda",68,132,33
+"215","Estudante","Masculino","Preta",69,83,9
+"216","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",73,133,164
+"217","Estudante","Masculino","Parda",70,84,34
+"218","Estudante","Feminino","Branca",71,134,165
+"219","Docente","Masculino","Amarela",75,85,11
+"220","Estudante","Feminino","Parda",72,135,35
+"221","Estudante","Feminino","Branca",73,136,166
+"222","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",74,137,167
+"223","Docente","Feminino","Branca",76,138,168
+"224","Estudante","Feminino","Branca",74,139,169
+"225","Docente","Feminino","Branca",77,140,170
+"226","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda",75,141,36
+"227","Docente","Feminino","Branca",78,142,171
+"228","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda",76,143,37
+"229","Docente","Feminino","Branca",79,144,172
+"230","Estudante","Feminino","Branca",75,145,173
+"231","Docente","Masculino","Branca",80,86,174
+"232","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda",77,87,38
+"233","Estudante","Masculino","Parda",76,88,39
+"234","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",78,146,175
+"235","Estudante","Feminino","Branca",77,147,176
+"236","Estudante","Feminino","Branca",78,148,177
+"237","Estudante","Masculino","Branca",79,89,178
+"238","Estudante","Feminino","Branca",80,149,179
+"239","Docente","Feminino","Amarela",81,150,12
+"240","Docente","Feminino","Branca",82,151,180
+"241","Estudante","Feminino","Branca",81,152,181
+"242","Estudante","Masculino","Branca",82,90,182
+"243","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Preta",79,153,10
+"244","Estudante","Masculino","Branca",83,91,183
+"245","Estudante","Feminino","Branca",84,154,184
+"246","Docente","Masculino","Amarela",83,92,13
+"247","Docente","Feminino","Branca",84,155,185
+"248","Estudante","Feminino","Branca",85,156,186
+"249","Estudante","Masculino","Branca",86,93,187
+"250","Docente","Feminino","Branca",85,157,188
+"251","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda",80,158,40
+"252","Estudante","Masculino","Branca",87,94,189
+"253","Docente","Masculino","Branca",86,95,190
+"254","Docente","Feminino","Branca",87,159,191
+"255","Docente","Masculino","Branca",88,96,192
+"256","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",81,97,193
+"257","Estudante","Masculino","Branca",88,98,194
+"258","Docente","Masculino","Branca",89,99,195
+"259","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda",82,100,41
+"260","Docente","Masculino","Amarela",90,101,14
+"261","Estudante","Masculino","Branca",89,102,196
+"262","Estudante","Feminino","Branca",90,160,197
+"263","Estudante","Feminino","Branca",91,161,198
+"264","Estudante","Masculino","Branca",92,103,199
+"265","Docente","Feminino","Branca",91,162,200
+"266","Estudante","Feminino","Branca",93,163,201
+"267","Docente","Feminino","Branca",92,164,202
+"268","Docente","Feminino","Branca",93,165,203
+"269","Estudante","Masculino","Amarela",94,104,15
+"270","Estudante","Feminino","Branca",95,166,204
+"271","Estudante","Feminino","Amarela",96,167,16
+"272","Docente","Feminino","Branca",94,168,205
+"273","Estudante","Masculino","Branca",97,105,206
+"274","Estudante","Masculino","Amarela",98,106,17
+"275","Estudante","Masculino","Amarela",99,107,18
+"276","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",83,169,207
+"277","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",84,170,208
+"278","Estudante","Masculino","Parda",100,108,42
+"279","Docente","Feminino","Branca",95,171,209
+"280","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",85,109,210
+"281","Estudante","Masculino","Branca",101,110,211
+"282","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",86,172,212
+"283","Docente","Feminino","Branca",96,173,213
+"284","Estudante","Masculino","Branca",102,111,214
+"285","Estudante","Feminino","Branca",103,174,215
+"286","Estudante","Feminino","Branca",104,175,216
+"287","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",87,176,217
+"288","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Amarela",88,177,19
+"289","Estudante","Masculino","Branca",105,112,218
+"290","Docente","Masculino","Branca",97,113,219
+"291","Docente","Masculino","Amarela",98,114,20
+"292","Estudante","Masculino","Parda",106,115,43
+"293","Docente","Masculino","Branca",99,116,220
+"294","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",89,178,221
+"295","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",90,117,222
+"296","Docente","Masculino","Branca",100,118,223
+"297","Docente","Masculino","Branca",101,119,224
+"298","Docente","Masculino","Parda",102,120,44
+"299","Docente","Feminino","Branca",103,179,225
+"300","Estudante","Feminino","Parda",107,180,45
+"301","Docente","Feminino","Branca",104,181,226
+"302","Estudante","Não-binário","Branca",108,1,227
+"303","Estudante","Feminino","Parda",109,182,46
+"304","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda",91,121,47
+"305","Docente","Feminino","Branca",105,183,228
+"306","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",92,184,229
+"307","Estudante","Feminino","Branca",110,185,230
+"308","Estudante","Masculino","Branca",111,122,231
+"309","Estudante","Feminino","Parda",112,186,48
+"310","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",93,187,232
+"311","Docente","Feminino","Branca",106,188,233
+"312","Estudante","Feminino","Branca",113,189,234
+"313","Estudante","Masculino","Branca",114,123,235
+"314","Estudante","Feminino","Branca",115,190,236
+"315","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",94,191,237
+"316","Docente","Não-binário","Parda",107,2,49
+"317","Estudante","Feminino","Branca",116,192,238
+"318","Estudante","Feminino","Branca",117,193,239
+"319","Estudante","Feminino","Parda",118,194,50
+"320","Estudante","Feminino","Branca",119,195,240
+"321","Estudante","Feminino","Parda",120,196,51
+"322","Estudante","Masculino","Branca",121,124,241
+"323","Estudante","Feminino","Indígena",122,197,1
+"324","Estudante","Masculino","Amarela",123,125,21
+"325","Estudante","Feminino","Branca",124,198,242
+"326","Estudante","Feminino","Branca",125,199,243
+"327","Estudante","Feminino","Parda",126,200,52
+"328","Estudante","Masculino","Amarela",127,126,22
+"329","Estudante","Feminino","Branca",128,201,244
+"330","Estudante","Feminino","Parda",129,202,53
+"331","Estudante","Masculino","Branca",130,127,245
+"332","Estudante","Feminino","Parda",131,203,54
+"333","Estudante","Feminino","Amarela",132,204,23
+"334","Estudante","Masculino","Branca",133,128,246
+"335","Estudante","Feminino","Branca",134,205,247
+"336","Estudante","Masculino","Parda",135,129,55
+"337","Estudante","Feminino","Branca",136,206,248
+"338","Estudante","Feminino","Branca",137,207,249
+"339","Estudante","Masculino","Branca",138,130,250
+"340","Estudante","Feminino","Branca",139,208,251
+"341","Estudante","Feminino","Parda",140,209,56
+"342","Estudante","Feminino","Branca",141,210,252
+"343","Estudante","Feminino","Branca",142,211,253
+"344","Estudante","Masculino","Branca",143,131,254
+"345","Estudante","Feminino","Amarela",144,212,24
+"346","Estudante","Masculino","Parda",145,132,57
+"347","Estudante","Feminino","Branca",146,213,255
+"348","Estudante","Masculino","Branca",147,133,256
+"349","Estudante","Feminino","Branca",148,214,257
+"350","Estudante","Feminino","Branca",149,215,258
+"351","Estudante","Masculino","Branca",150,134,259
+"352","Estudante","Feminino","Branca",151,216,260
+"353","Estudante","Masculino","Branca",152,135,261
+"354","Estudante","Masculino","Branca",153,136,262
+"355","Estudante","Masculino","Branca",154,137,263
+"356","Estudante","Feminino","Branca",155,217,264
+"357","Estudante","Masculino","Parda",156,138,58
+"358","Estudante","Feminino","Branca",157,218,265
+"359","Estudante","Feminino","Branca",158,219,266
+"360","Estudante","Masculino","Branca",159,139,267
+"361","Estudante","Feminino","Parda",160,220,59
+"362","Estudante","Masculino","Branca",161,140,268
+"363","Estudante","Feminino","Branca",162,221,269
+"364","Estudante","Feminino","Parda",163,222,60
+"365","Estudante","Feminino","Branca",164,223,270
+"366","Estudante","Feminino","Preta",165,224,11
+"367","Estudante","Feminino","Branca",166,225,271
+"368","Estudante","Masculino","Branca",167,141,272
+"369","Estudante","Masculino","Branca",168,142,273
+"370","Estudante","Feminino","Branca",169,226,274
+"371","Estudante","Masculino","Parda",170,143,61
+"372","Estudante","Feminino","Branca",171,227,275
+"373","Estudante","Feminino","Amarela",172,228,25
+"374","Estudante","Feminino","Parda",173,229,62
+"375","Estudante","Feminino","Parda",174,230,63
+"376","Estudante","Feminino","Branca",175,231,276
+"377","Estudante","Feminino","Branca",176,232,277
+"378","Estudante","Feminino","Branca",177,233,278
+"379","Estudante","Masculino","Branca",178,144,279
+"380","Estudante","Feminino","Parda",179,234,64
+"381","Estudante","Masculino","Branca",180,145,280
+"382","Estudante","Feminino","Branca",181,235,281
+"383","Estudante","Masculino","Branca",182,146,282
+"384","Estudante","Feminino","Parda",183,236,65
+"385","Estudante","Feminino","Branca",184,237,283
+"386","Estudante","Masculino","Parda",185,147,66
+"387","Estudante","Feminino","Preta",186,238,12
+"388","Estudante","Masculino","Parda",187,148,67
+"389","Estudante","Feminino","Branca",188,239,284
+"390","Estudante","Masculino","Branca",189,149,285
+"391","Estudante","Masculino","Parda",190,150,68
+"392","Estudante","Masculino","Branca",191,151,286
+"393","Estudante","Masculino","Branca",192,152,287
+"394","Estudante","Feminino","Branca",193,240,288
+"395","Estudante","Masculino","Branca",194,153,289
+"396","Estudante","Masculino","Preta",195,154,13
+"397","Estudante","Feminino","Branca",196,241,290
+"398","Estudante","Feminino","Branca",197,242,291
+"399","Estudante","Masculino","Branca",198,155,292
+"400","Estudante","Masculino","Parda",199,156,69
+"401","Estudante","Feminino","Branca",200,243,293
+"402","Estudante","Feminino","Branca",201,244,294
+"403","Estudante","Feminino","Branca",202,245,295
+"404","Estudante","Feminino","Branca",203,246,296
+"405","Estudante","Feminino","Amarela",204,247,26
+"406","Estudante","Feminino","Branca",205,248,297
+"407","Estudante","Feminino","Branca",206,249,298
+"408","Docente","Masculino","Branca",108,157,299
+"409","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",95,250,300
+"410","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Preta",96,251,14
+"411","Docente","Feminino","Branca",109,252,301
+"412","Docente","Feminino","Branca",110,253,302
+"413","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",97,254,303
+"414","Docente","Masculino","Branca",111,158,304
+"415","Docente","Masculino","Branca",112,159,305
+"416","Docente","Masculino","Branca",113,160,306
+"417","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",98,255,307
+"418","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",99,256,308
+"419","Docente","Masculino","Branca",114,161,309
+"420","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Amarela",100,257,27
+"421","Docente","Masculino","Branca",115,162,310
+"422","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",101,258,311
+"423","Docente","Feminino","Branca",116,259,312
+"424","Docente","Feminino","Branca",117,260,313
+"425","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",102,163,314
+"426","Docente","Masculino","Parda",118,164,70
+"427","Docente","Feminino","Branca",119,261,315
+"428","Docente","Feminino","Branca",120,262,316
+"429","Docente","Masculino","Branca",121,165,317
+"430","Docente","Masculino","Branca",122,166,318
+"431","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",103,263,319
+"432","Docente","Feminino","Branca",123,264,320
+"433","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",104,265,321
+"434","Docente","Feminino","Branca",124,266,322
+"435","Docente","Masculino","Branca",125,167,323
+"436","Docente","Masculino","Parda",126,168,71
+"437","Docente","Masculino","Branca",127,169,324
+"438","Docente","Masculino","Parda",128,170,72
+"439","Docente","Feminino","Amarela",129,267,28
+"440","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",105,171,325
+"441","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",106,268,326
+"442","Docente","Feminino","Branca",130,269,327
+"443","Docente","Masculino","Branca",131,172,328
+"444","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda",107,270,73
+"445","Docente","Feminino","Branca",132,271,329
+"446","Docente","Masculino","Branca",133,173,330
+"447","Docente","Masculino","Parda",134,174,74
+"448","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Amarela",108,272,29
+"449","Docente","Feminino","Branca",135,273,331
+"450","Docente","Masculino","Amarela",136,175,30
+"451","Docente","Feminino","Branca",137,274,332
+"452","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda",109,176,75
+"453","Docente","Feminino","Branca",138,275,333
+"454","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda",110,276,76
+"455","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",111,277,334
+"456","Docente","Feminino","Branca",139,278,335
+"457","Docente","Feminino","Branca",140,279,336
+"458","Docente","Feminino","Branca",141,280,337
+"459","Docente","Feminino","Branca",142,281,338
+"460","Docente","Masculino","Branca",143,177,339
+"461","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",112,178,340
+"462","Docente","Feminino","Branca",144,282,341
+"463","Estudante","Feminino","Branca",207,283,342
+"464","Docente","Feminino","Branca",145,284,343
+"465","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda",113,285,77
+"466","Docente","Feminino","Branca",146,286,344
+"467","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",114,287,345
+"468","Docente","Feminino","Branca",147,288,346
+"469","Docente","Masculino","Branca",148,179,347
+"470","Docente","Masculino","Branca",149,180,348
+"471","Docente","Feminino","Branca",150,289,349
+"472","Docente","Masculino","Amarela",151,181,31
+"473","Estudante","Masculino","Parda",208,182,78
+"474","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",115,290,350
+"475","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda",116,183,79
+"476","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",117,291,351
+"477","Docente","Masculino","Branca",152,184,352
+"478","Estudante","Masculino","Branca",209,185,353
+"479","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda",118,186,80
+"480","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",119,292,354
+"481","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",120,293,355
+"482","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Amarela",121,294,32
+"483","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",122,295,356
+"484","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",123,296,357
+"485","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",124,297,358
+"486","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",125,298,359
+"487","Docente","Masculino","Parda",153,187,81
+"488","Docente","Feminino","Branca",154,299,360
+"489","Docente","Feminino","Branca",155,300,361
+"490","Docente","Feminino","Branca",156,301,362
+"491","Docente","Masculino","Branca",157,188,363
+"492","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",126,302,364
+"493","Docente","Feminino","Branca",158,303,365
+"494","Docente","Feminino","Branca",159,304,366
+"495","Docente","Feminino","Amarela",160,305,33
+"496","Docente","Feminino","Branca",161,306,367
+"497","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Amarela",127,307,34
+"498","Docente","Feminino","Branca",162,308,368
+"499","Estudante","Feminino","Parda",210,309,82
+"500","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",128,310,369
+"501","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda",129,311,83
+"502","Estudante","Feminino","Amarela",211,312,35
+"503","Docente","Feminino","Branca",163,313,370
+"504","Docente","Masculino","Branca",164,189,371
+"505","Docente","Feminino","Branca",165,314,372
+"506","Docente","Feminino","Branca",166,315,373
+"507","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",130,316,374
+"508","Docente","Masculino","Branca",167,190,375
+"509","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Amarela",131,317,36
+"510","Docente","Feminino","Branca",168,318,376
+"511","Docente","Feminino","Branca",169,319,377
+"512","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",132,320,378
+"513","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",133,191,379
+"514","Docente","Masculino","Branca",170,192,380
+"515","Docente","Masculino","Branca",171,193,381
+"516","Docente","Feminino","Branca",172,321,382
+"517","Docente","Masculino","Branca",173,194,383
+"518","Docente","Feminino","Branca",174,322,384
+"519","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",134,323,385
+"520","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",135,324,386
+"521","Estudante","Masculino","Branca",212,195,387
+"522","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",136,325,388
+"523","Docente","Feminino","Branca",175,326,389
+"524","Docente","Feminino","Branca",176,327,390
+"525","Docente","Masculino","Branca",177,196,391
+"526","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",137,328,392
+"527","Estudante","Masculino","Parda",213,197,84
+"528","Docente","Masculino","Branca",178,198,393
+"529","Docente","Masculino","Branca",179,199,394
+"530","Docente","Masculino","Branca",180,200,395
+"531","Docente","Feminino","Branca",181,329,396
+"532","Docente","Feminino","Branca",182,330,397
+"533","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Amarela",138,331,37
+"534","Estudante","Não-binário","Branca",214,3,398
+"535","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",139,201,399
+"536","Docente","Feminino","Branca",183,332,400
+"537","Estudante","Masculino","Branca",215,202,401
+"538","Estudante","Feminino","Branca",216,333,402
+"539","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",140,203,403
+"540","Estudante","Feminino","Branca",217,334,404
+"541","Docente","Feminino","Branca",184,335,405
+"542","Docente","Feminino","Branca",185,336,406
+"543","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",141,337,407
+"544","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",142,204,408
+"545","Docente","Feminino","Branca",186,338,409
+"546","Estudante","Feminino","Branca",218,339,410
+"547","Estudante","Feminino","Amarela",219,340,38
+"548","Estudante","Feminino","Branca",220,341,411
+"549","Docente","Feminino","Branca",187,342,412
+"550","Estudante","Feminino","Branca",221,343,413
+"551","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",143,344,414
+"552","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",144,205,415
+"553","Estudante","Feminino","Branca",222,345,416
+"554","Estudante","Feminino","Branca",223,346,417
+"555","Docente","Masculino","Branca",188,206,418
+"556","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Preta",145,347,15
+"557","Estudante","Masculino","Branca",224,207,419
+"558","Estudante","Feminino","Branca",225,348,420
+"559","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",146,208,421
+"560","Docente","Feminino","Branca",189,349,422
+"561","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda",147,350,85
+"562","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",148,351,423
+"563","Docente","Masculino","Branca",190,209,424
+"564","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",149,352,425
+"565","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",150,353,426
+"566","Docente","Masculino","Branca",191,210,427
+"567","Estudante","Feminino","Branca",226,354,428
+"568","Estudante","Masculino","Preta",227,211,16
+"569","Estudante","Feminino","Branca",228,355,429
+"570","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",151,356,430
+"571","Estudante","Feminino","Branca",229,357,431
+"572","Docente","Masculino","Branca",192,212,432
+"573","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",152,358,433
+"574","Docente","Masculino","Amarela",193,213,39
+"575","Docente","Masculino","Branca",194,214,434
+"576","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda",153,215,86
+"577","Estudante","Masculino","Branca",230,216,435
+"578","Docente","Feminino","Branca",195,359,436
+"579","Estudante","Feminino","Branca",231,360,437
+"580","Docente","Feminino","Parda",196,361,87
+"581","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",154,362,438
+"582","Docente","Feminino","Branca",197,363,439
+"583","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",155,364,440
+"584","Docente","Feminino","Branca",198,365,441
+"585","Docente","Feminino","Branca",199,366,442
+"586","Estudante","Masculino","Branca",232,217,443
+"587","Docente","Masculino","Branca",200,218,444
+"588","Estudante","Masculino","Branca",233,219,445
+"589","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",156,367,446
+"590","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",157,368,447
+"591","Estudante","Masculino","Amarela",234,220,40
+"592","Docente","Feminino","Branca",201,369,448
+"593","Estudante","Feminino","Branca",235,370,449
+"594","Estudante","Feminino","Parda",236,371,88
+"595","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",158,372,450
+"596","Estudante","Feminino","Amarela",237,373,41
+"597","Estudante","Feminino","Preta",238,374,17
+"598","Estudante","Feminino","Branca",239,375,451
+"599","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",159,221,452
+"600","Docente","Masculino","Amarela",202,222,42
+"601","Estudante","Masculino","Branca",240,223,453
+"602","Estudante","Feminino","Branca",241,376,454
+"603","Docente","Feminino","Branca",203,377,455
+"604","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",160,378,456
+"605","Estudante","Feminino","Amarela",242,379,43
+"606","Docente","Masculino","Branca",204,224,457
+"607","Estudante","Feminino","Parda",243,380,89
+"608","Estudante","Feminino","Branca",244,381,458
+"609","Estudante","Masculino","Branca",245,225,459
+"610","Docente","Masculino","Amarela",205,226,44
+"611","Estudante","Feminino","Branca",246,382,460
+"612","Estudante","Feminino","Branca",247,383,461
+"613","Estudante","Masculino","Branca",248,227,462
+"614","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",161,384,463
+"615","Estudante","Feminino","Branca",249,385,464
+"616","Estudante","Feminino","Branca",250,386,465
+"617","Estudante","Feminino","Amarela",251,387,45
+"618","Estudante","Feminino","Preta",252,388,18
+"619","Docente","Masculino","Branca",206,228,466
+"620","Docente","Masculino","Branca",207,229,467
+"621","Estudante","Feminino","Branca",253,389,468
+"622","Estudante","Feminino","Branca",254,390,469
+"623","Estudante","Masculino","Branca",255,230,470
+"624","Estudante","Masculino","Amarela",256,231,46
+"625","Estudante","Feminino","Branca",257,391,471
+"626","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",162,392,472
+"627","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",163,393,473
+"628","Estudante","Feminino","Branca",258,394,474
+"629","Estudante","Feminino","Amarela",259,395,47
+"630","Estudante","Masculino","Parda",260,232,90
+"631","Docente","Feminino","Branca",208,396,475
+"632","Estudante","Feminino","Branca",261,397,476
+"633","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",164,398,477
+"634","Docente","Feminino","Branca",209,399,478
+"635","Estudante","Feminino","Branca",262,400,479
+"636","Docente","Feminino","Branca",210,401,480
+"637","Docente","Masculino","Branca",211,233,481
+"638","Estudante","Masculino","Branca",263,234,482
+"639","Docente","Masculino","Branca",212,235,483
+"640","Docente","Feminino","Branca",213,402,484
+"641","Docente","Feminino","Parda",214,403,91
+"642","Docente","Feminino","Branca",215,404,485
+"643","Docente","Masculino","Branca",216,236,486
+"644","Docente","Masculino","Branca",217,237,487
+"645","Estudante","Feminino","Branca",264,405,488
+"646","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",165,238,489
+"647","Docente","Masculino","Branca",218,239,490
+"648","Docente","Feminino","Branca",219,406,491
+"649","Docente","Masculino","Branca",220,240,492
+"650","Docente","Masculino","Branca",221,241,493
+"651","Estudante","Feminino","Parda",265,407,92
+"652","Docente","Feminino","Branca",222,408,494
+"653","Docente","Feminino","Branca",223,409,495
+"654","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",166,410,496
+"655","Docente","Feminino","Branca",224,411,497
+"656","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",167,412,498
+"657","Estudante","Feminino","Parda",266,413,93
+"658","Docente","Feminino","Branca",225,414,499
+"659","Docente","Feminino","Parda",226,415,94
+"660","Docente","Feminino","Branca",227,416,500
+"661","Docente","Masculino","Amarela",228,242,48
+"662","Estudante","Feminino","Branca",267,417,501
+"663","Docente","Masculino","Parda",229,243,95
+"664","Docente","Masculino","Parda",230,244,96
+"665","Docente","Masculino","Branca",231,245,502
+"666","Docente","Masculino","Branca",232,246,503
+"667","Docente","Masculino","Branca",233,247,504
+"668","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",168,418,505
+"669","Docente","Feminino","Branca",234,419,506
+"670","Docente","Feminino","Branca",235,420,507
+"671","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda",169,248,97
+"672","Docente","Feminino","Parda",236,421,98
+"673","Docente","Feminino","Branca",237,422,508
+"674","Estudante","Não-binário","Branca",268,4,509
+"675","Estudante","Masculino","Branca",269,249,510
+"676","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",170,423,511
+"677","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",171,250,512
+"678","Estudante","Masculino","Branca",270,251,513
+"679","Docente","Feminino","Branca",238,424,514
+"680","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",172,425,515
+"681","Docente","Feminino","Branca",239,426,516
+"682","Estudante","Feminino","Branca",271,427,517
+"683","Docente","Masculino","Branca",240,252,518
+"684","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",173,428,519
+"685","Docente","Feminino","Branca",241,429,520
+"686","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",174,430,521
+"687","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",175,253,522
+"688","Estudante","Masculino","Branca",272,254,523
+"689","Estudante","Masculino","Branca",273,255,524
+"690","Estudante","Masculino","Preta",274,256,19
+"691","Docente","Masculino","Branca",242,257,525
+"692","Estudante","Feminino","Branca",275,431,526
+"693","Docente","Feminino","Branca",243,432,527
+"694","Docente","Feminino","Branca",244,433,528
+"695","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",176,434,529
+"696","Estudante","Feminino","Parda",276,435,99
+"697","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Preta",177,258,20
+"698","Docente","Feminino","Branca",245,436,530
+"699","Estudante","Feminino","Parda",277,437,100
+"700","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda",178,438,101
+"701","Docente","Masculino","Branca",246,259,531
+"702","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",179,439,532
+"703","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",180,440,533
+"704","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Parda",181,260,102
+"705","Docente","Feminino","Branca",247,441,534
+"706","Docente","Feminino","Branca",248,442,535
+"707","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Preta",182,443,21
+"708","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",183,444,536
+"709","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",184,445,537
+"710","Estudante","Feminino","Branca",278,446,538
+"711","Estudante","Feminino","Parda",279,447,103
+"712","Estudante","Feminino","Branca",280,448,539
+"713","Docente","Masculino","Branca",249,261,540
+"714","Estudante","Feminino","Branca",281,449,541
+"715","Docente","Feminino","Branca",250,450,542
+"716","Docente","Feminino","Branca",251,451,543
+"717","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",185,452,544
+"718","Docente","Feminino","Branca",252,453,545
+"719","Estudante","Feminino","Preta",282,454,22
+"720","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",186,262,546
+"721","Estudante","Feminino","Amarela",283,455,49
+"722","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",187,456,547
+"723","Docente","Feminino","Branca",253,457,548
+"724","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Preta",188,263,23
+"725","Docente","Masculino","Amarela",254,264,50
+"726","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",189,458,549
+"727","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",190,459,550
+"728","Estudante","Feminino","Branca",284,460,551
+"729","Estudante","Feminino","Branca",285,461,552
+"730","Estudante","Feminino","Parda",286,462,104
+"731","Estudante","Feminino","Parda",287,463,105
+"732","Estudante","Feminino","Amarela",288,464,51
+"733","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda",191,465,106
+"734","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",192,466,553
+"735","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Preta",193,467,24
+"736","Estudante","Feminino","Branca",289,468,554
+"737","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",194,265,555
+"738","Servidor(a) técnico(a)/ administrativo(a)","Masculino","Branca",195,266,556
+"739","Docente","Feminino","Amarela",255,469,52
+"740","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",196,470,557
+"741","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Branca",197,471,558
+"742","Estudante","Masculino","Branca",290,267,559
+"743","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Preta",198,472,25
+"744","Estudante","Não-binário","Branca",291,5,560
+"745","Docente","Feminino","Branca",256,473,561
+"746","Docente","Feminino","Branca",257,474,562
+"747","Servidor(a) técnico(a)/ administrativo(a)","Feminino","Parda",199,475,107

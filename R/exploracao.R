@@ -57,9 +57,10 @@ tamanhos_categorias <- dados_validos %>%
 
 perguntas_selecionadas <- c("G2Q00001", "G7Q00002", "G7Q00003")
 
-dados_selecionados <- dados_validos %>%
+dados_selecionados_pre <- dados_validos %>%
   select(all_of(perguntas_selecionadas)) %>%
   filter_all(all_vars(!is.na(.)))
+  
 
 questoes_vec <- questoes %>% 
   filter(titulo %in% perguntas_selecionadas) %>%
@@ -67,8 +68,29 @@ questoes_vec <- questoes %>%
 
 variables <- c("vinculo", "genero", "cor")
 
-names(dados_selecionados) <- variables #questoes_vec$questao
+names(dados_selecionados_pre) <- variables #questoes_vec$questao
 
+
+# gera índices das variáveis principais (para facilitar o JS)  --------
+
+
+
+gera_indice <- function(variable) {
+  
+  var <- as.name(variable)
+  
+  dados_selecionados_pre %>%
+    group_by({{var}}) %>%
+    mutate("indice_{{var}}" := row_number()) %>%
+    ungroup() %>%
+    select(starts_with("indice_"))
+  
+}
+
+indices <- purrr::map(variables, gera_indice) %>%
+  bind_cols()
+
+dados_selecionados <- bind_cols(dados_selecionados_pre, indices)
 
 # prototipos --------------------------------------------------------------
 
