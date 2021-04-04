@@ -91,7 +91,7 @@ const vis = {
 
             get_vsizes : function() {
 
-                const sizes = ["vis", "seletor"];
+                const sizes = ["vis", "seletor", "buttons"];
 
                 sizes.forEach(size => {
 
@@ -119,7 +119,7 @@ const vis = {
 
             set_vsize_svg : function() {
 
-                const svg_height = vis.dims.vis - vis.dims.seletor;
+                const svg_height = vis.dims.vis - vis.dims.seletor - vis.dims.buttons;
 
                 vis.dims.svg.height = svg_height;
 
@@ -563,7 +563,7 @@ const vis = {
             // tudo que depende dos dados vai aqui.
 
             vis.params.from_data.qde_pontos = vis.data.raw.length;
-            
+
             vis.utils.data_processing.gera_dominio_ordenado_variaveis_detalhamento();
 
             vis.utils.sizings.evaluate_bar_widths();
