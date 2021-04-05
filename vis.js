@@ -727,6 +727,26 @@ const vis = {
             
         },
 
+        desabilita_botao : function(opcao) {
+
+            const all_buttons_arr = Array.from(vis.sels.buttons.node().children);
+
+            const button = all_buttons_arr.filter(d => d.dataset.opcao == opcao)[0];
+
+            button.classList.add("desabilitado");   
+
+        },
+
+        habilita_botoes : function() {
+
+            const all_buttons_arr = Array.from(vis.sels.buttons.node().children);
+
+            all_buttons_arr.forEach(button => {
+                button.classList.remove("desabilitado");
+            })
+
+        },
+
         monitor_selector : function() {
 
             vis.sels.caixa_selecao.on("change", function(e) {

@@ -104,6 +104,7 @@ div.vis div.buttons {
     font-weight: 100;
     font-size: 0.8rem;
     color: var(--cor-texto);
+    cursor: pointer;
 
 }
 
@@ -118,6 +119,13 @@ div.vis div.buttons {
 
     font-weight: bold;
     /*border: 2px solid var(--cor-fundo-vis);*/
+
+}
+
+.buttons button.desabilitado {
+
+    pointer-events: none;
+    opacity: .5;
 
 }
 
