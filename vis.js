@@ -147,6 +147,25 @@ const vis = {
 
             },
 
+            recalcula_margens_subgrupos : function(opcao_detalhamento) {
+
+                const maximos = Object.values(vis.data.maximos_valores_variaveis_detalhamento[opcao_detalhamento]);
+
+                const espaco_total = d3.sum(maximos);
+
+                const espaco_svg = vis.dims.svg.width - vis.dims.svg.margins.left - vis.dims.svg.margins.right;
+
+                console.log({espaco_svg})
+
+                const espaco_livre = espaco_svg - espaco_total;
+                const qde_grupos = maximos.length;
+
+                const espacamento_melhor = espaco_livre / (qde_grupos - 1);
+
+                vis.params.dots.margem_entre_grupos_det = espacamento_melhor;
+
+            },
+
             convertRemToPixels : function(rem) {    
                 return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
             }
@@ -341,6 +360,10 @@ const vis = {
                 console.log(maximos);
 
                 Object.keys(maximos).forEach(variavel_detalhamento => {
+
+                    // acrescenta isso aqui para recalcular margens entre subgrupos
+                    vis.utils.sizings.recalcula_margens_subgrupos(variavel_detalhamento);
+                    ////////////
 
                     const dominio = vis.params.from_data.dominio_var_detalhamento[variavel_detalhamento];
                     let posicao_acumulada = 0; // fora a margem lateral esquerda, mas vamos incluí-la no cálculo mais adiante
