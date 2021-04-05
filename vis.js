@@ -338,6 +338,8 @@ const vis = {
                 // agora que temos os maximos, novo loop para usar esses máximos para calcular onde deve começar cada subgrupo do detalhamento
                 const posicoes_iniciais_detalhamento = {};
 
+                console.log(maximos);
+
                 Object.keys(maximos).forEach(variavel_detalhamento => {
 
                     const dominio = vis.params.from_data.dominio_var_detalhamento[variavel_detalhamento];
@@ -377,8 +379,9 @@ const vis = {
                     const parametros_grupo = indice_grupos[valor_atual_para_a_variavel]
 
                     const grupo = parametros_grupo.ordem;
-                    const index_across_group = parametros_grupo.indice_atual % (vis.params.from_data.qde_fileira + 1);
-                    const index_longit = Math.floor( parametros_grupo.indice_atual / (vis.params.from_data.qde_fileira + 1) );
+                    const index_across_group = parametros_grupo.indice_atual % (vis.params.from_data.qde_fileira );//+ 1);
+                    
+                    const index_longit = Math.floor( parametros_grupo.indice_atual / (vis.params.from_data.qde_fileira )); //+ 1) );
 
 
                     element.group = grupo;
@@ -412,14 +415,16 @@ const vis = {
                           [valor_atual_variavel_detalhamento]
                           .indice_atual_detalhamento 
 
-                        const index_across_subgroup = indice_atual_det % (vis.params.from_data.qde_fileira + 1);
+                        const index_across_subgroup = indice_atual_det % (vis.params.from_data.qde_fileira ); //+ 1);
 
                         const index_longit_subgroup = Math.floor( 
-                            indice_atual_det / (vis.params.from_data.qde_fileira + 1) );
+                            indice_atual_det / (vis.params.from_data.qde_fileira )); //+ 1) );
 
                         const posicao_inicial_longit_subgroup = posicoes_iniciais_detalhamento
                           [variavel_detalhamento]
                           [valor_atual_variavel_detalhamento];
+
+                        //if (valor_atual_variavel_detalhamento == "Branca" & valor_atual_para_a_variavel == "Docente") console.log(valor_atual_para_a_variavel,valor_atual_variavel_detalhamento, indice_atual_det, index_longit_subgroup, index_across_subgroup, posicao_inicial_longit_subgroup);
 
 
                         posicoes_nos_detalhamentos[variavel_detalhamento] = {
