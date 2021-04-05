@@ -395,6 +395,7 @@ const vis = {
 
                     indice_grupos[valor_atual_para_a_variavel].indice_atual++
 
+                    ///////////////
                     ///// para o cálculo das posições nos detalhamentos
 
                     const posicoes_nos_detalhamentos = {};
@@ -405,16 +406,46 @@ const vis = {
 
                         const valor_atual_variavel_detalhamento = element[variavel_detalhamento];
 
+                        const indice_atual_det = parametros_grupo
+                          .indices_detalhamentos
+                          [variavel_detalhamento]
+                          [valor_atual_variavel_detalhamento]
+                          .indice_atual_detalhamento 
+
+                        const index_across_subgroup = indice_atual_det % (vis.params.from_data.qde_fileira + 1);
+
+                        const index_longit_subgroup = Math.floor( 
+                            indice_atual_det / (vis.params.from_data.qde_fileira + 1) );
+
+                        const posicao_inicial_longit_subgroup = posicoes_iniciais_detalhamento
+                          [variavel_detalhamento]
+                          [valor_atual_variavel_detalhamento];
+
+
                         posicoes_nos_detalhamentos[variavel_detalhamento] = {
+
+                            pos_across_subgroup : vis.dims.svg.margins.top +
+                            grupo * (vis.params.dots.margem_entre_barras + vis.params.from_data.largura_grupo) + index_across_subgroup * (vis.params.dots.largura + vis.params.dots.espacamento),
+
+                            pos_longit_subgroup : vis.dims.svg.margins.left + index_longit_subgroup * (vis.params.dots.largura + vis.params.dots.espacamento) + posicao_inicial_longit_subgroup
 
                         }
 
-                    })
+                        // incorpora essas posicoes no dataset
+                        element.posicao_detalhamento = posicoes_nos_detalhamentos;
 
+                        // incrementa o índice relativo
 
+                        indice_grupos
+                        [valor_atual_para_a_variavel]
+                        .indices_detalhamentos
+                        [variavel_detalhamento]
+                        [valor_atual_variavel_detalhamento]
+                        .indice_atual_detalhamento++;
 
+                    });
 
-                    
+                    ///////////
 
                 });
 
