@@ -633,6 +633,17 @@ const vis = {
 
         },
 
+        update_positions_detalhamento : function(opcao_detalhamento, delay) {
+
+            vis.sels.rects
+              .transition()
+              .duration(1000)
+              .delay(delay)
+              .attr("x", d => d.posicao_detalhamento[opcao_detalhamento].pos_longit_subgroup)
+              .attr("y", d => d.posicao_detalhamento[opcao_detalhamento].pos_across_subgroup);
+
+        },
+
         add_labels : function(delay) {
 
             vis.sels.labels = vis.sels.container_svg
@@ -670,7 +681,8 @@ const vis = {
         state : {
 
             first_transition : true,
-            current_variable : null
+            current_variable : null,
+            current_detalhamento: null
 
         },
 
@@ -711,16 +723,16 @@ const vis = {
 
                 if (e.target.tagName == "BUTTON") {
 
-                    const opcao = e.target.dataset.opcao;
+                    const opcao_detalhamento = e.target.dataset.opcao;
 
                     vis.control.activates_button(
                         all_buttons = this.children,
                         clicked = e.target
                     );
 
-                    console.log(opcao);
+                    console.log(opcao_detalhamento);
 
-                    vis.control.draw_state(opcao);
+                    vis.control.draw_state_detalhado(opcao_detalhamento);
                 
                 } else console.log("Isso não é um botão, brother.")
 
@@ -751,7 +763,22 @@ const vis = {
 
             vis.render.add_labels(delay = 2000);
 
+        },
 
+        draw_state_detalhado : function(opcao_detalhamento) {
+
+            if (vis.control.state.current_variable != opcao_detalhamento) {
+
+                vis.control.state.current_variable = opcao_detalhamento;
+
+                vis.render.tighten(false, delay = 0)
+                vis.render.update_positions_detalhamento(opcao_detalhamento, delay = 1000);
+
+            } else {
+
+                vis.control.state.current_variable = "nenhum";
+
+            }
 
         },
 
