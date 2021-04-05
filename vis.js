@@ -31,7 +31,8 @@ const vis = {
             largura : 5,
             altura : 5,
             espacamento : 2,
-            margem_entre_barras : 40
+            margem_entre_barras : 40,
+            margem_entre_grupos_det : 20
 
         },
 
@@ -175,7 +176,7 @@ const vis = {
 
                 // para alinhar no modo detalhado, precisamos calcular o valor máximo para cada categoria de cada variável de detalhamento.
                 // por exemplo, se estamos vendo "vínculo", e o usuário pede para detalhar os valores dos diversos vínculos por gênero, é preciso saber quais as maiores contagens de cada combinação vínculo x gênero, para cada gênero. Ou seja, para o gênero feminino, qual a maior contagem, considerando os diversos vínculos?
-                 
+
                 const maximos_valores_variaveis_detalhamento = {};
                 /////////
 
@@ -333,6 +334,38 @@ const vis = {
 
                 });
 
+
+                // agora que temos os maximos, novo loop para usar esses máximos para calcular onde deve começar cada subgrupo do detalhamento
+                const posicoes_iniciais_detalhamento = {};
+
+                Object.keys(maximos).forEach(variavel_detalhamento => {
+
+                    const dominio = vis.params.from_data.dominio_var_detalhamento[variavel_detalhamento];
+                    let posicao_acumulada = 0; // fora a margem lateral esquerda, mas vamos incluí-la no cálculo mais adiante
+
+                    posicoes_iniciais_detalhamento[variavel_detalhamento] = {};
+
+                    dominio.forEach(valor_variavel_detalhamento => {
+
+                        posicoes_iniciais_detalhamento[variavel_detalhamento][valor_variavel_detalhamento] = posicao_acumulada;
+
+                        const qde_maxima = maximos[variavel_detalhamento][valor_variavel_detalhamento];
+
+                        const qde_fileiras_longitudinais_grupo = Math.ceil(qde_maxima / qde_linhas_grid);
+
+                        const tamanho_atual = qde_fileiras_longitudinais_grupo * (vis.params.dots.largura + vis.params.dots.espacamento) + vis.params.dots.margem_entre_grupos_det;
+
+                        posicao_acumulada += tamanho_atual;
+
+                    });
+
+                });
+
+                console.log("POSICOES INICIAIS ", posicoes_iniciais_detalhamento);
+
+
+
+
                 // passa por todo o dataset calculando as posições
 
                 dados.forEach((element,i) => {
@@ -367,6 +400,16 @@ const vis = {
                     const posicoes_nos_detalhamentos = {};
 
                     const detalhamentos_possiveis = Object.keys(parametros_grupo.indices_detalhamentos);
+
+                    detalhamentos_possiveis.forEach(variavel_detalhamento => {
+
+                        const valor_atual_variavel_detalhamento = element[variavel_detalhamento];
+
+                        posicoes_nos_detalhamentos[variavel_detalhamento] = {
+
+                        }
+
+                    })
 
 
 
