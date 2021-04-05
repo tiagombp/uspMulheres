@@ -727,13 +727,33 @@ const vis = {
             
         },
 
+        deactivates_buttons : function() {
+
+            const all_buttons_arr = Array.from(vis.sels.buttons.node().children);
+
+            all_buttons_arr.forEach(button => {
+                button.classList.remove("selected");
+            })       
+
+        },
+
         desabilita_botao : function(opcao) {
 
             const all_buttons_arr = Array.from(vis.sels.buttons.node().children);
 
-            const button = all_buttons_arr.filter(d => d.dataset.opcao == opcao)[0];
+            // para o inicio
+            if (opcao == "todos") {
 
-            button.classList.add("desabilitado");   
+                all_buttons_arr.forEach(button => button.classList.add("desabilitado"));
+
+            } else {
+
+                const button = all_buttons_arr.filter(d => d.dataset.opcao == opcao)[0];
+
+                button.classList.add("desabilitado");   
+                vis.control.state.current_detalhamento = null;
+
+            }
 
         },
 
@@ -751,6 +771,9 @@ const vis = {
 
             vis.sels.caixa_selecao.on("change", function(e) {
 
+                // se tiver um botao selecionado, tira a seleção
+                vis.control.deactivates_buttons();
+
                 const opcao = e.target.value;
 
                 console.log("Usuário escolheu a opção ", opcao);
@@ -760,6 +783,14 @@ const vis = {
                     vis.control.draw_state(opcao);
 
                 }
+
+                // testa se a opcão escolhida no seletor é uma das variáveis de detalhamento, e desabilita o botão respectivo, se for
+
+                vis.control.habilita_botoes();
+
+                if (vis.params.variaveis_detalhamento.includes(opcao)) {
+                    vis.control.desabilita_botao(opcao);
+                } 
 
             })
 
@@ -863,6 +894,7 @@ const vis = {
 
             vis.control.initialize_selections();
             vis.control.monitor_buttons();
+            vis.control.desabilita_botao("todos");
             vis.control.monitor_selector();
             vis.utils.sizings.get_vsizes();
             vis.utils.sizings.set_vsize_svg();
