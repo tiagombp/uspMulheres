@@ -83,7 +83,8 @@ const vis = {
     data : {
 
         raw : null,
-        sumario : null
+        sumario : null,
+        maximos_valores_variaveis_detalhamento : null
 
     },
 
@@ -172,6 +173,11 @@ const vis = {
                         .filter((v, i, a) => a.indexOf(v) === i);
                 }
 
+                // para alinhar no modo detalhado, precisamos calcular o valor máximo para cada ocorrencia dos valores presentes nas variáveis de detalhamento.
+                // por exemplo, se estamos vendo "vínculo", e o usuário pede para detalhar os valores dos diversos vínculos por gênero, é preciso saber quais as maiores contagens de cada combinação vínculo x gênero, para cada gênero 
+                const maximos_valores_variaveis_detalhamento = {};
+                /////////
+
             
                 // faz a contagem dos casos para cada valor único da variável categórica
             
@@ -196,11 +202,21 @@ const vis = {
 
                             if (variavel != criterio) {
 
+                                // para calcular os máximos
+                                maximos_valores_variaveis_detalhamento[variavel] = {};
+                                ////////
+
                                 tamanhos_subgrupos[variavel] = {};
 
                                 // aí agora vamos fazer um loop sobre o domínio de cada uma dessas variáveis, para pegar a contagem de cada um
                                 vis.params.from_data.dominio_var_detalhamento[variavel]
                                   .forEach(elemento_do_dominio => {
+
+                                      // para calcular os máximos                         
+                                      maximos_valores_variaveis_detalhamento
+                                      [variavel]
+                                      [elemento_do_dominio] = 0
+                                      ///////
 
                                       const cont_dominio = subdados
                                         .filter(d => d[variavel] == elemento_do_dominio)
@@ -227,6 +243,7 @@ const vis = {
                 if (ordena) sumario.sort((a,b) => b.contagem - a.contagem);
 
                 vis.data.sumario = sumario;
+                vis.data.maximos_valores_variaveis_detalhamento = maximos_valores_variaveis_detalhamento;
             
                 return sumario;    
     
@@ -259,8 +276,11 @@ const vis = {
                 // faz um objeto de referencia para controlar a ordem e o contador dos loops, para cada valor da variável
 
                 const indice_grupos = {};
+                const maximos = vis.data.maximos_valores_variaveis_detalhamento;
 
                 dados_sumarizados.forEach((d,i) => {
+
+                    // d aqui vai ser cada uma das categorias da questao selecionada
 
                     d.ordem = i;
 
@@ -277,13 +297,24 @@ const vis = {
                         indice_detalhamentos[variavel] = {};
                         // para cada variavel presente, vamos fazer um loop sobre seus valores
 
+
                         Object.keys(d.dados_detalhamento[variavel]).forEach((valor, indice) => {
+
+                            const qde = d.dados_detalhamento[variavel][valor];
+
+                            // para computar os máximos, para o detalhamento
+                            if (qde > maximos[variavel][valor]) {
+                                maximos[variavel][valor] = qde;
+                            }
+                            ///////
 
                             indice_detalhamentos[variavel][valor] = {
                                 ordem : indice,
-                                quantidade : d.dados_detalhamento[variavel][valor],
+                                quantidade : qde,
                                 indice_atual_detalhamento : 0
                             }
+
+                        
 
                         });
 
@@ -329,6 +360,17 @@ const vis = {
                     // incrementa o contador para esse valor da variavel
 
                     indice_grupos[valor_atual_para_a_variavel].indice_atual++
+
+                    ///// para o cálculo das posições nos detalhamentos
+
+                    const posicoes_nos_detalhamentos = {};
+
+                    const detalhamentos_possiveis = Object.keys(parametros_grupo.indices_detalhamentos);
+
+
+
+
+                    
 
                 });
 
