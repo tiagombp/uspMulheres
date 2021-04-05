@@ -173,8 +173,9 @@ const vis = {
                         .filter((v, i, a) => a.indexOf(v) === i);
                 }
 
-                // para alinhar no modo detalhado, precisamos calcular o valor máximo para cada ocorrencia dos valores presentes nas variáveis de detalhamento.
-                // por exemplo, se estamos vendo "vínculo", e o usuário pede para detalhar os valores dos diversos vínculos por gênero, é preciso saber quais as maiores contagens de cada combinação vínculo x gênero, para cada gênero 
+                // para alinhar no modo detalhado, precisamos calcular o valor máximo para cada categoria de cada variável de detalhamento.
+                // por exemplo, se estamos vendo "vínculo", e o usuário pede para detalhar os valores dos diversos vínculos por gênero, é preciso saber quais as maiores contagens de cada combinação vínculo x gênero, para cada gênero. Ou seja, para o gênero feminino, qual a maior contagem, considerando os diversos vínculos?
+                 
                 const maximos_valores_variaveis_detalhamento = {};
                 /////////
 
