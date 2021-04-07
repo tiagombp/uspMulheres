@@ -31,8 +31,8 @@ const vis = {
             largura : 5,
             altura : 5,
             espacamento : 2,
-            margem_entre_barras : 40,
-            margem_entre_grupos_det : 20
+            margem_entre_barras : 50,
+            margem_minima_entre_grupos_det : 20
 
         },
 
@@ -42,9 +42,11 @@ const vis = {
 
         from_data : {
 
-            qde_pontos    : null,
-            qde_fileira   : null,
-            largura_grupo : null,
+            qde_pontos             : null,
+            qde_fileira            : null,
+            qde_fileira_ajustada   : null,
+            largura_grupo          : null,
+            margem_minima_ajustada : null,
 
             dominio_var_detalhamento : {
 
@@ -147,22 +149,72 @@ const vis = {
 
             },
 
-            recalcula_margens_subgrupos : function(opcao_detalhamento) {
+            calcula_qde_fileiras: function(opcao_detalhamento) {
 
                 const maximos = Object.values(vis.data.maximos_valores_variaveis_detalhamento[opcao_detalhamento]);
 
-                const espaco_total = d3.sum(maximos);
+                const qde_total = d3.sum(maximos);
+                let qde_fileira = vis.params.from_data.qde_fileira_ajustada;
+                const espaco_unitario = vis.params.dots.largura + vis.params.dots.espacamento;
+                const qde_grupos = maximos.length;
+
+                console.log(qde_total, qde_fileira, espaco_unitario, vis.params.dots.margem_minima_entre_grupos_det)
+
+                const espaco_total = 
+                  (qde_total / qde_fileira) * espaco_unitario 
+                  + vis.params.dots.margem_minima_entre_grupos_det * ( qde_grupos - 1 );
+
+                console.log("Espaço total ", espaco_total);
 
                 const espaco_svg = vis.dims.svg.width - vis.dims.svg.margins.left - vis.dims.svg.margins.right;
 
                 console.log({espaco_svg})
 
                 const espaco_livre = espaco_svg - espaco_total;
+                let espaco_entre_grupos = vis.params.dots.margem_minima_entre_grupos_det;
+
+                if (espaco_livre < 0) {
+
+                    qde_fileira = ( espaco_unitario * qde_total ) / (espaco_svg - espaco_entre_grupos * (qde_grupos - 1) );
+
+                    qde_fileira = Math.round(qde_fileira);
+
+                    vis.params.from_data.qde_fileira_ajustada = qde_fileira;
+
+                }
+
+            },
+
+            recalcula_margens_subgrupos : function(opcao_detalhamento) {
+
+                const maximos = Object.values(vis.data.maximos_valores_variaveis_detalhamento[opcao_detalhamento]);
+
+                const qde_total = d3.sum(maximos);
+                let qde_fileira = vis.params.from_data.qde_fileira_ajustada;
+                const espaco_unitario = vis.params.dots.largura + vis.params.dots.espacamento;
                 const qde_grupos = maximos.length;
 
-                const espacamento_melhor = espaco_livre / (qde_grupos - 1);
+                const espaco_total = 
+                  (qde_total / qde_fileira) * espaco_unitario 
+                  + vis.params.dots.margem_minima_entre_grupos_det * ( qde_grupos - 1 );
 
-                vis.params.dots.margem_entre_grupos_det = espacamento_melhor;
+                console.log("Espaço total ", espaco_total);
+
+                const espaco_svg = vis.dims.svg.width - vis.dims.svg.margins.left - vis.dims.svg.margins.right;
+
+                console.log({espaco_svg})
+
+                const espaco_livre = espaco_svg - espaco_total;
+
+                if (espaco_livre > 0) {
+
+                    vis.params.from_data.margem_minima_ajustada = espaco_livre / (qde_grupos - 1);
+
+                } else {
+
+                    vis.params.from_data.margem_minima_ajustada = vis.params.dots.margem_minima_entre_grupos_det;
+
+                }
 
             },
 
@@ -279,11 +331,9 @@ const vis = {
 
                 console.log(dados_sumarizados);
             
-                let contagem_maxima = d3.max(dados_sumarizados, d => d.contagem);
-            
-                let qde_linhas_grid = vis.params.from_data.qde_fileira; //Math.ceil(Math.sqrt(contagem_maxima));
+                //let contagem_maxima = d3.max(dados_sumarizados, d => d.contagem);
 
-                const largura_across_grupo = qde_linhas_grid * (vis.params.dots.largura + vis.params.dots.espacamento);
+                //const largura_across_grupo = qde_linhas_grid * (vis.params.dots.largura + vis.params.dots.espacamento);
             
                 // let parametros_colunas_grid = dados_sumarizados.map(d => {
                 //     const qde_colunas = Math.ceil(d.contagem/qde_linhas_grid);
@@ -359,6 +409,21 @@ const vis = {
 
                 console.log(maximos);
 
+                // vamos testar se os pontos com a quantidade de fileiras atual, os subgrupos do detalhamento e o espacamento entre subgrupos caberiam na largura do svg. se não couber, vamos aumentar a quantidade de fileiras.
+
+                // começa setando a qde_fileiras que vai ser calculada para o valor inicial padrão
+                vis.params.from_data.qde_fileira_ajustada = vis.params.from_data.qde_fileira;
+
+                Object.keys(maximos).forEach(variavel_detalhamento => {
+
+                    vis.utils.sizings.calcula_qde_fileiras(variavel_detalhamento);
+
+                });
+
+                let qde_linhas_grid = vis.params.from_data.qde_fileira_ajustada; //Math.ceil(Math.sqrt(contagem_maxima));
+
+                // tem que ser separado, pq ele tem que ficar com uma quantidade só de fileiras. as margens podem ser diferentes.
+
                 Object.keys(maximos).forEach(variavel_detalhamento => {
 
                     // acrescenta isso aqui para recalcular margens entre subgrupos
@@ -378,7 +443,7 @@ const vis = {
 
                         const qde_fileiras_longitudinais_grupo = Math.ceil(qde_maxima / qde_linhas_grid);
 
-                        const tamanho_atual = qde_fileiras_longitudinais_grupo * (vis.params.dots.largura + vis.params.dots.espacamento) + vis.params.dots.margem_entre_grupos_det;
+                        const tamanho_atual = qde_fileiras_longitudinais_grupo * (vis.params.dots.largura + vis.params.dots.espacamento) + vis.params.from_data.margem_minima_ajustada;
 
                         posicao_acumulada += tamanho_atual;
 
@@ -710,7 +775,7 @@ const vis = {
 
             first_transition : true,
             current_variable : null,
-            current_detalhamento: null
+            current_detalhamento: "nenhum"
 
         },
 
@@ -751,7 +816,7 @@ const vis = {
                 const button = all_buttons_arr.filter(d => d.dataset.opcao == opcao)[0];
 
                 button.classList.add("desabilitado");   
-                vis.control.state.current_detalhamento = null;
+                vis.control.state.current_detalhamento = "nenhum";
 
             }
 
@@ -811,7 +876,19 @@ const vis = {
 
                     console.log(opcao_detalhamento);
 
-                    vis.control.draw_state_detalhado(opcao_detalhamento);
+                    if (opcao_detalhamento == "nenhum") {
+
+                        console.log("Variavel atual", vis.control.state.current_variable);
+
+                        vis.control.state.current_detalhamento = "nenhum";
+                        vis.control.draw_state(vis.control.state.current_variable);
+                        
+
+                    } else {
+
+                        vis.control.draw_state_detalhado(opcao_detalhamento);
+
+                    }    
                 
                 } else console.log("Isso não é um botão, brother.")
 
@@ -827,7 +904,10 @@ const vis = {
                 vis.render.tighten(false, delay = 0);
             }
 
+            console.log("Desenhar estado ", opcao, vis.control.state.current_variable);
+
             vis.control.state.current_variable = opcao;
+            vis.control.state.current_detalhamento = "nenhum";
 
             vis.utils.data_processing.prepara_dados(
                 criterio = opcao,
@@ -848,14 +928,14 @@ const vis = {
 
             if (vis.control.state.current_variable != opcao_detalhamento) {
 
-                vis.control.state.current_variable = opcao_detalhamento;
+                vis.control.state.current_detalhamento = opcao_detalhamento;
 
                 vis.render.tighten(false, delay = 0)
                 vis.render.update_positions_detalhamento(opcao_detalhamento, delay = 1000);
 
             } else {
 
-                vis.control.state.current_variable = "nenhum";
+                vis.control.state.current_detalhamento = "nenhum";
 
             }
 
