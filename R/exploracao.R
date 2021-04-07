@@ -109,3 +109,13 @@ purrr::map(variables, plota)
 
 write.csv(dados_selecionados, "dados.csv", fileEncoding = "UTF-8")
 
+
+# outros testes -----------------------------------------------------------
+
+dados_selecionados %>%
+  filter(cor == "Amarela") %>%
+  count(vinculo)
+
+dados_selecionados %>%
+  filter(genero == "Feminino") %>%
+  count(vinculo)
