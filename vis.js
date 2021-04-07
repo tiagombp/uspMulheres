@@ -218,6 +218,34 @@ const vis = {
 
             },
 
+            recalcula_altura_svg : function() {
+
+                const qde_categorias = vis.data.sumario.length;
+                const qde_fileiras   = vis.params.from_data.qde_fileira_ajustada;
+                const tamanho_unitario = vis.params.dots.largura + vis.params.dots.espacamento;
+                const margem = vis.params.dots.margem_entre_barras;
+
+                const area_transversal_grafico = 
+                  qde_categorias * qde_fileiras * tamanho_unitario +
+                  (qde_categorias - 1) * margem;
+
+                const altura_svg = vis.dims.svg.height;
+
+                const altura_liquida_svg = altura_svg - vis.dims.svg.margins.top - vis.dims.svg.margins.bottom;
+
+                let ajuste = area_transversal_grafico - altura_liquida_svg;
+                
+                if (ajuste < 0) {
+
+                    ajuste = 0
+
+                };
+
+                vis.sels.svg.attr("height", altura_svg + ajuste);
+                vis.sels.container_svg.style("height", altura_svg + ajuste + "px");
+
+            },
+
             convertRemToPixels : function(rem) {    
                 return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
             }
@@ -913,6 +941,8 @@ const vis = {
                 criterio = opcao,
                 ordena = true            
             );
+
+            vis.utils.sizings.recalcula_altura_svg();
 
             vis.render.update_colors(delay = 1000);
 
