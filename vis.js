@@ -32,7 +32,7 @@ const vis = {
             altura : 5,
             espacamento : 2,
             margem_entre_barras : 50,
-            margem_minima_entre_grupos_det : 20
+            margem_minima_entre_grupos_det : 40
 
         },
 
@@ -186,6 +186,7 @@ const vis = {
                         console.log("Precisa aumentar a quantidade de fileiras", qde_fileira, vis.params.from_data.qde_fileira_ajustada )
 
                         vis.params.from_data.qde_fileira_ajustada = qde_fileira;
+                        vis.params.from_data.largura_grupo = qde_fileira * (vis.params.dots.largura + vis.params.dots.espacamento);
 
                     }
 
@@ -465,8 +466,10 @@ const vis = {
                 Object.keys(maximos).forEach(variavel_detalhamento => {
 
                     // acrescenta isso aqui para recalcular margens entre subgrupos
-                    vis.utils.sizings.recalcula_margens_subgrupos(variavel_detalhamento);
+                    // vis.utils.sizings.recalcula_margens_subgrupos(variavel_detalhamento);
                     ////////////
+
+                    // como agora calculamos a qde de fileiras necessária para caber com o espacamento mínimo indicado, e recalculamos a altura do svg se for necessário, não precisa mais recalcular as margens entre grupos.
 
                     const dominio = vis.params.from_data.dominio_var_detalhamento[variavel_detalhamento];
                     let posicao_acumulada = 0; // fora a margem lateral esquerda, mas vamos incluí-la no cálculo mais adiante
@@ -481,7 +484,7 @@ const vis = {
 
                         const qde_fileiras_longitudinais_grupo = Math.ceil(qde_maxima / qde_linhas_grid);
 
-                        const tamanho_atual = qde_fileiras_longitudinais_grupo * (vis.params.dots.largura + vis.params.dots.espacamento) + vis.params.from_data.margem_minima_ajustada;
+                        const tamanho_atual = qde_fileiras_longitudinais_grupo * (vis.params.dots.largura + vis.params.dots.espacamento) + vis.params.dots.margem_minima_entre_grupos_det;
 
                         posicao_acumulada += tamanho_atual;
 
@@ -505,9 +508,9 @@ const vis = {
                     const parametros_grupo = indice_grupos[valor_atual_para_a_variavel]
 
                     const grupo = parametros_grupo.ordem;
-                    const index_across_group = parametros_grupo.indice_atual % (vis.params.from_data.qde_fileira );//+ 1);
+                    const index_across_group = parametros_grupo.indice_atual % ( qde_linhas_grid );//+ 1);
                     
-                    const index_longit = Math.floor( parametros_grupo.indice_atual / (vis.params.from_data.qde_fileira )); //+ 1) );
+                    const index_longit = Math.floor( parametros_grupo.indice_atual / ( qde_linhas_grid )); //+ 1) );
 
 
                     element.group = grupo;
@@ -541,10 +544,10 @@ const vis = {
                           [valor_atual_variavel_detalhamento]
                           .indice_atual_detalhamento 
 
-                        const index_across_subgroup = indice_atual_det % (vis.params.from_data.qde_fileira ); //+ 1);
+                        const index_across_subgroup = indice_atual_det % (qde_linhas_grid ); //+ 1);
 
                         const index_longit_subgroup = Math.floor( 
-                            indice_atual_det / (vis.params.from_data.qde_fileira )); //+ 1) );
+                            indice_atual_det / ( qde_linhas_grid )); //+ 1) );
 
                         const posicao_inicial_longit_subgroup = posicoes_iniciais_detalhamento
                           [variavel_detalhamento]
