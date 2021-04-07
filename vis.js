@@ -175,11 +175,19 @@ const vis = {
 
                 if (espaco_livre < 0) {
 
+                    console.log("Não tem espaço suficiente", qde_fileira, vis.params.from_data.qde_fileira_ajustada )
+
                     qde_fileira = ( espaco_unitario * qde_total ) / (espaco_svg - espaco_entre_grupos * (qde_grupos - 1) );
 
                     qde_fileira = Math.round(qde_fileira);
 
-                    vis.params.from_data.qde_fileira_ajustada = qde_fileira;
+                    if (vis.params.from_data.qde_fileira_ajustada <= qde_fileira) {
+
+                        console.log("Precisa aumentar a quantidade de fileiras", qde_fileira, vis.params.from_data.qde_fileira_ajustada )
+
+                        vis.params.from_data.qde_fileira_ajustada = qde_fileira;
+
+                    }
 
                 }
 
@@ -207,6 +215,8 @@ const vis = {
                 const espaco_livre = espaco_svg - espaco_total;
 
                 if (espaco_livre > 0) {
+
+                    console.log("tem espaço sobrando, a margem que era ", vis.params.from_data.margem_minima_ajustada, ", agora vai ficar ", espaco_livre / (qde_grupos - 1))
 
                     vis.params.from_data.margem_minima_ajustada = espaco_livre / (qde_grupos - 1);
 
