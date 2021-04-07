@@ -101,7 +101,6 @@ div.vis div.buttons {
     border: 2px solid var(--cor-texto);
     padding: .5em .5em;
     border-radius: 10em;
-    margin-left: 1rem;
     width: 100px;
     font-family: var(--fonte-corpo);
     font-weight: 100;
@@ -109,6 +108,12 @@ div.vis div.buttons {
     color: var(--cor-texto);
     cursor: pointer;
 
+}
+
+.buttons button + button {
+
+    margin-left: 1rem;
+    
 }
 
 .buttons button:hover, .buttons button.selected {
