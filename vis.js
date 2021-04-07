@@ -525,7 +525,7 @@ const vis = {
 
                     const vetor = labels.map((d,i) => (
                         {
-                            label : d,
+                            label : d == "Servidor(a) técnico(a)/ administrativo(a)" ? "Servidor" : d,
                             posicao : posicoes[i]
                         })
                     );
@@ -1096,7 +1096,7 @@ const vis = {
                 move_principal = true;
             } 
 
-            vis.render.add_labels_detalhamento(move_principal, opcao_detalhamento, 0);
+            vis.render.add_labels_detalhamento(move_principal, opcao_detalhamento, 1000);
 
         },
 
