@@ -17,6 +17,9 @@
 
     --width : 620px;
 
+    --size-label-secundario : 12px;
+    --padding-bottom-label  : 5px;
+
 }
 
 
@@ -176,11 +179,18 @@ svg rect {
 
 }
 
-.container-svg p.main-label {
+.container-svg p.main-label, 
+.container-svg p.sec-label {
 
     position: absolute;
     transform: translateY(-100%);
     padding: 0;
-    padding-bottom: 5px;
+    padding-bottom: var(--padding-bottom-label);
+
+}
+
+p.sec-label {
+
+    font-size : var(--size-label-secundario);
 
 }

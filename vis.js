@@ -11,6 +11,23 @@ const vis = {
 
     },
 
+    styles : {
+
+        size_label_secundario : {
+
+            ref   : "--size-label-secundario",
+            value : null
+
+        },
+
+        padding_bottom_label : {
+
+            ref   :  "--padding-bottom-label",
+            value : null
+        }
+
+    },
+
     sels : {
 
         svg : null,
@@ -20,7 +37,8 @@ const vis = {
         caixa_selecao : null,
         buttons : null,
         rects : null,
-        labels : null
+        labels : null,
+        labels_secundarios : null
 
     },
 
@@ -87,7 +105,8 @@ const vis = {
 
         raw : null,
         sumario : null,
-        maximos_valores_variaveis_detalhamento : null
+        maximos_valores_variaveis_detalhamento : null,
+        posicoes_iniciais_det : null
 
     },
 
@@ -494,10 +513,31 @@ const vis = {
 
                 console.log("POSICOES INICIAIS ", posicoes_iniciais_detalhamento);
 
+                /////////
+                // constroi vetor de posicoes iniciais
 
+                vis.data.posicoes_iniciais_det = {};
 
+                Object.keys(posicoes_iniciais_detalhamento).forEach(variavel_detalhamento => {
 
-                // passa por todo o dataset calculando as posições
+                    const labels   = Object.keys(posicoes_iniciais_detalhamento[variavel_detalhamento]);
+                    const posicoes = Object.values(posicoes_iniciais_detalhamento[variavel_detalhamento]);
+
+                    const vetor = labels.map((d,i) => (
+                        {
+                            label : d,
+                            posicao : posicoes[i]
+                        })
+                    );
+
+                    vis.data.posicoes_iniciais_det[variavel_detalhamento] = vetor;
+
+                });
+
+                //////////
+
+                ///////////
+                // agora passa por todo o dataset calculando as posições
 
                 dados.forEach((element,i) => {
 
@@ -665,15 +705,22 @@ const vis = {
 
             gera_posicoes_detalhamento : function() {
 
-
-
-
             }
         },
 
         scales : {
 
             color : null
+
+        },
+
+        get_styles : function(ref_style) {
+
+            let  style = getComputedStyle(document.documentElement).getPropertyValue(vis.styles[ref_style].ref).slice(1);
+
+            vis.styles[ref_style].value = style;
+
+
 
         },
 
@@ -806,24 +853,56 @@ const vis = {
             
         },
 
-        add_labels_detalhamento : function(delay) {
+        add_labels_detalhamento : function(move_principal, detalhamento, delay) {
 
-            vis.sels.labels
-              .transition()
-              .delay(delay)
-              .duration(1000)
-              .style("top", function(d) {
-                  const label = d3.select(this);
-                  const altura = +label.style("height").slice(0,-2);
-                  const top = +label.style("top").slice(0,-2);
-                  console.log(altura, top, top - altura);
+            // desloca os labels principais
 
-                  return (top - altura) + "px"
-              });
+            if (move_principal) {
+
+                vis.sels.labels
+                    .filter((d,i) => i == 0)
+                    .transition()
+                    .delay(delay)
+                    .duration(1000)
+                    .style("top", function(d) {
+    
+                        const label = d3.select(this);
+                        //const altura = +label.style("height").slice(0,-2);
+                        const altura = vis.styles.size_label_secundario.value.slice(0,-2);
+                        const top = +label.style("top").slice(0,-2);
+                        const padding = vis.styles.padding_bottom_label.value.slice(0,-2);
+                        console.log(altura, top, top - altura);
+        
+                        return (top - altura - padding) + "px"
+    
+                    })
+                ;
+
+            }
+
+            // acrescenta as secundárias
+
+            const detalhamentos = vis.data.posicoes_iniciais_det[detalhamento];
+            //Object.keys(vis.data.sumario[variavel].dados_detalhamento[detalhamento]);
+
+            vis.sels.labels_secundarios = vis.sels.container_svg
+              .selectAll("p.sec-label")
+              .data(detalhamentos)
+              .join("p")
+              .classed("sec-label", true)
+              .style("top", d => (vis.dims.svg.margins.top + "px" ))
+            //.style("color", d => vis.utils.scales.color(d.categoria))
+              .style("left", d => vis.dims.svg.margins.left + d.posicao + "px")
+              .text(d => d.label)
+              .style("opacity", 0);
+
+            vis.sels.labels_secundarios
+                .transition()
+                .delay(delay)
+                .duration(1000)
+                .style("opacity", 1);
 
         }
-
-
 
     },
 
@@ -888,6 +967,12 @@ const vis = {
             all_buttons_arr.forEach(button => {
                 button.classList.remove("desabilitado");
             })
+
+        },
+
+        remove_labels_detalhamento : function() {
+
+            if (vis.sels.labels_secundarios) vis.sels.labels_secundarios.remove();
 
         },
 
@@ -967,6 +1052,7 @@ const vis = {
 
             vis.control.state.current_variable = opcao;
             vis.control.state.current_detalhamento = "nenhum";
+            vis.control.remove_labels_detalhamento();
             vis.control.state.first_detalhamento = true;
 
             vis.utils.data_processing.prepara_dados(
@@ -1003,10 +1089,14 @@ const vis = {
 
             console.log(vis.control.state.first_detalhamento);
 
+            let move_principal = false;
+
             if (vis.control.state.first_detalhamento) {
                 vis.control.state.first_detalhamento = false;
-                vis.render.add_labels_detalhamento(0);
+                move_principal = true;
             } 
+
+            vis.render.add_labels_detalhamento(move_principal, opcao_detalhamento, 0);
 
         },
 
@@ -1020,6 +1110,12 @@ const vis = {
                 vis.sels[referencia] = d3.select(vis.refs[referencia]);
 
             })
+
+        },
+
+        initialize_styles : function() {
+
+            Object.keys(vis.styles).forEach(estilo => vis.utils.get_styles(estilo));
 
         },
 
@@ -1045,6 +1141,7 @@ const vis = {
             vis.control.monitor_buttons();
             vis.control.desabilita_botao("todos");
             vis.control.monitor_selector();
+            vis.control.initialize_styles();
             vis.utils.sizings.get_vsizes();
             vis.utils.sizings.set_vsize_svg();
             vis.utils.read_data();
