@@ -50,7 +50,7 @@ const vis = {
             altura : 5,
             espacamento : 2,
             margem_entre_barras : 50,
-            margem_minima_entre_grupos_det : 40
+            margem_minima_entre_grupos_det : 30
 
         },
 
@@ -91,7 +91,7 @@ const vis = {
             margins : {
 
                 top : 50,
-                right: 20,
+                right: 25,
                 bottom: 20,
                 left: 16 // depois fazer ele calcular isso.
 
@@ -740,12 +740,16 @@ const vis = {
 
         create_rects : function() {
 
-            const qde_dots_maximo = Math.floor((vis.dims.svg.width - 100) / (vis.params.dots.largura + vis.params.dots.espacamento));
+            const svg_net_width = vis.dims.svg.width - ( vis.dims.svg.margins.left + vis.dims.svg.margins.right );
 
-            const espacamento = Math.sqrt((vis.dims.svg.width * vis.dims.svg.height) / vis.params.from_data.qde_pontos);
+            const svg_net_height = vis.dims.svg.height - ( vis.dims.svg.margins.top + vis.dims.svg.margins.bottom );
 
-            const n_w = Math.ceil(vis.dims.svg.width / espacamento);
-            const n_h = Math.floor(vis.dims.svg.height / espacamento);
+            const qde_dots_maximo = Math.floor( (svg_net_width) / (vis.params.dots.largura + vis.params.dots.espacamento) );
+
+            const espacamento = Math.sqrt((svg_net_width * svg_net_height) / vis.params.from_data.qde_pontos);
+
+            const n_w = Math.ceil(svg_net_width / espacamento);
+            const n_h = Math.floor(svg_net_height / espacamento);
 
             vis.sels.rects = vis.sels.svg
               .selectAll("rect.pessoas")
