@@ -801,6 +801,23 @@ const vis = {
               .duration(1000)
               .style("opacity", 1);
             
+        },
+
+        add_labels_detalhamento : function(delay) {
+
+            vis.sels.labels
+              .transition()
+              .delay(delay)
+              .duration(1000)
+              .style("top", function(d) {
+                  const label = d3.select(this);
+                  const altura = +label.style("height").slice(0,-2);
+                  const top = +label.style("top").slice(0,-2);
+                  console.log(altura, top, top - altura);
+
+                  return (top - altura) + "px"
+              });
+
         }
 
 
@@ -812,6 +829,7 @@ const vis = {
         state : {
 
             first_transition : true,
+            first_delhamento : true,
             current_variable : null,
             current_detalhamento: "nenhum"
 
@@ -946,6 +964,7 @@ const vis = {
 
             vis.control.state.current_variable = opcao;
             vis.control.state.current_detalhamento = "nenhum";
+            vis.control.state.first_detalhamento = true;
 
             vis.utils.data_processing.prepara_dados(
                 criterio = opcao,
@@ -978,6 +997,13 @@ const vis = {
                 vis.control.state.current_detalhamento = "nenhum";
 
             }
+
+            console.log(vis.control.state.first_detalhamento);
+
+            if (vis.control.state.first_detalhamento) {
+                vis.control.state.first_detalhamento = false;
+                vis.render.add_labels_detalhamento(0);
+            } 
 
         },
 
