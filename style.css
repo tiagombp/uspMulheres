@@ -199,3 +199,45 @@ p.sec-label {
     font-size : var(--size-label-secundario);
 
 }
+
+/* vamos tentar */
+
+.sticky {
+
+    position: sticky;
+    top: .5rem
+
+}
+
+.inner-container {
+    background-color: transparent;
+    scroll-snap-type: block mandatory;
+}
+
+.resultados {
+
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 0 1rem;
+
+    font-family: var(--fonte-titulo);
+    color: var(--cor-titulo);
+    font-size: var(--tamanho);
+
+}
+
+.slide {
+    width: 100vw;
+    height: 100vh;
+    scroll-snap-align: start;
+    position: relative;
+
+}
+
+.slide > h2 {
+    padding-top: 1rem;
+    padding-left: 2rem;
+    padding-right: 1rem;;
+    /*font-family: "Esteban";*/
+    /*font-size: 1.5rem;*/
+}
