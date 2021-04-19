@@ -202,6 +202,11 @@ p.sec-label {
 
 /* vamos tentar */
 
+html {
+    scroll-snap-type: block mandatory;
+    overflow-y: scroll;
+}
+
 .sticky {
 
     position: sticky;
@@ -211,7 +216,6 @@ p.sec-label {
 
 .inner-container {
     background-color: transparent;
-    scroll-snap-type: block mandatory;
 }
 
 .resultados {
@@ -227,17 +231,24 @@ p.sec-label {
 }
 
 .slide {
+
+    padding-top: 1rem;
+    max-width: 620px;
+    margin: 0 auto;
     width: 100vw;
     height: 100vh;
     scroll-snap-align: start;
+    scroll-snap-stop: always;
     position: relative;
+
+    font-family: var(--fonte-titulo);
+    color: var(--cor-titulo);
+    font-size: var(--tamanho);
 
 }
 
 .slide > h2 {
-    padding-top: 1rem;
-    padding-left: 2rem;
-    padding-right: 1rem;;
+
     /*font-family: "Esteban";*/
     /*font-size: 1.5rem;*/
 }
