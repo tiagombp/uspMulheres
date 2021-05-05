@@ -13,71 +13,77 @@
 </head>
 <body>
     <div class="container">
-        <div class="inner-container">
-            <div class="intro">
 
-                <h1> Impactos da Covid-19 entre as mulheres e os homens da USP </h1>
+        <div class="inner-container vis">
 
-                <p> A premissa norteadora deste levantamento é que as diferenças de gênero, cor/etnia, somadas às diferenças socioeconômicas e
-                do tipo de vínculo mantido com a Universidade de São Paulo produzem relações diferenciadas
-                com esta pandemia. </p> 
+            <div class="outer-container-svg">
 
-                <p> Conhecer as formas específicas como os diferentes grupos sociais da USP
-                estão lidando com a crise atual permitirá lançar luz sobre desafios comuns e particulares,
-                problemas conjunturais e estruturais, cuja compreensão poderá orientar a administração da
-                Universidade no desenho de políticas e outras ações para o curto, médio e longo prazo. Por meio
-                de um survey online, será aplicado um questionário estruturado junto aos servidores técnicos,
-                estudantes e docentes dos campi da USP na capital, no interior e no litoral, no qual os participantes
-                responderão questões relacionadas à sua posição institucional, ao desempenho das suas atividades
-                durante a pandemia (se presencial/essencial ou por teletrabalho/estudo à distância), à sua saúde
-                física e mental, à situação de trabalhos remunerados que porventura desempenhem além do
-                vínculo com a USP, e às interações conflituosas fora e dentro do lar, além dos dados
-                socioeconômicos. </p> 
+                <div class="buttons">
+                    <button data-opcao="nenhum" class="selected">Nenhum</button>
+                    <button data-opcao="vinculo">Vínculo</button>
+                    <button data-opcao="genero">Gênero</button>
+                    <button data-opcao="cor">Cor / Etnia</button>
+                </div>
 
-                <p> O convite à participação será enviado nos e-mails institucionais e o
-                monitoramento das respostas será orientado por um desenho amostral calculado sobre a população
-                registrada no Anuário Estatístico da USP 2020. A partir deste levantamento, deverá ser produzido
-                um relatório técnico e serão organizados eventos que discutam a totalidade dos resultados obtidos
-                e, em separado, cada um desses aspectos. A coordenação do estudo instituirá ainda um conselho
-                consultivo com órgãos internos e especialistas da Universidade, tendo em vista a realização
-                conjunta dessas análises e debates.
-                </p>
+                <div class="container-svg">
 
-                <h2>Os resultados da pesquisa</h2>
-
-            </div>
-
-            <div class="vis">
-
-                <div class="selector">
-                    <select name="perguntas" id="seletor-perguntas">
-                        <option value="nenhum">--Escolha a pergunta--</option>
-                        <option value="vinculo">Seu vínculo atual com a USP é como ...</option>
-                        <option value="genero">Gênero</option>
-                        <option value="cor">Cor (IBGE)</option>
-                    </select>
+                    <svg></svg>
 
                 </div>
 
-                <div class="outer-container-svg">
+            </div>
 
-                    <div class="buttons">
-                        <button data-opcao="nenhum" class="selected">Nenhum</button>
-                        <button data-opcao="vinculo">Vínculo</button>
-                        <button data-opcao="genero">Gênero</button>
-                        <button data-opcao="cor">Cor / Etnia</button>
+            <article>
+
+                <div class="slide first">
+
+                    <div class="intro">
+        
+                        <h1> Impactos da Covid-19 entre as mulheres e os homens da USP </h1>
+        
+                        <p> A premissa norteadora deste levantamento é que as diferenças de gênero, cor/etnia, somadas às diferenças socioeconômicas e
+                        do tipo de vínculo mantido com a Universidade de São Paulo produzem relações diferenciadas
+                        com esta pandemia. </p> 
+        
                     </div>
-
-                    <div class="container-svg">
-
-                        <svg></svg>
+                    
+                </div>
     
+                <div class="slide">
+    
+                    <div class="inner-container-selector">
+                        <div class="selector" data-bloco="facetas">
+                            <h3>Facetas</h3>
+                            <select name="perguntas" id="seletor-perguntas">
+                                <option value="nenhum">--Escolha a pergunta--</option>
+                                <option value="vinculo">Seu vínculo atual com a USP é como ...</option>
+                                <option value="genero">Gênero</option>
+                                <option value="cor">Cor (IBGE)</option>
+                            </select>
+        
+                        </div>
                     </div>
-
+    
+                </div>
+    
+                <div class="slide">
+                    <div class="inner-container-selector">
+    
+                        <div class="selector" data-bloco="trabalho e estudo">
+                            <h3>Trabalho e Estudo</h3>
+                            <select name="perguntas" id="seletor-perguntas">
+                                <option value="nenhum">--Escolha a pergunta--</option>
+                                <option value="vinculo">Seu vínculo atual com a USP é como ...</option>
+                                <option value="genero">Gênero</option>
+                                <option value="cor">Cor (IBGE)</option>
+                            </select>
+        
+                        </div>
+                    </div>
+    
                 </div>
 
-
-            </div>
+            </article>
 
         </div>
 
