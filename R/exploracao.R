@@ -3,7 +3,7 @@ library(covid19USP)
 
 
 questoes_ <- questoes
-# dados <- importa_pesquisa()
+dados <- importa_pesquisa()
 # 
 # saveRDS(dados, "./R/respostas.rds")
 dados <- readRDS("./R/respostas.rds")
