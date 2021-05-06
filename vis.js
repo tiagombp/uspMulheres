@@ -77,6 +77,35 @@ const vis = {
                 "cor"     : null
             }
 
+        },
+
+        perguntas : {
+
+            // blocos
+            facetas : {
+
+                vinculo : {
+
+                    pergunta_completa : ,
+                    tipo : 'simples',
+                    subperguntas : '',
+                    niveis : ''
+
+                },
+
+                
+
+            },
+
+            trabalho_estudo : {},
+
+            renda : {},
+
+            saude : {},
+
+            interacoes_lar : {}
+
+
         }
 
     },
