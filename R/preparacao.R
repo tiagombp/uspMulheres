@@ -46,8 +46,8 @@ output <- list()
 
 # facetas
 
-blocos <- list(facetas, saude)
-nomes_blocos <- c("facetas", "saude")
+blocos <- list(facetas, trabalho_estudo, renda, saude, interacoes_lar)
+nomes_blocos <- c("facetas", "trabalho_estudo", "renda", "saude", "interacoes_lar")
 
 output <- list()
 i <- 1
@@ -114,6 +114,18 @@ for (bloco in blocos) {
   }
   
 }
+
+
+# export ------------------------------------------------------------------
+
+jsonlite::write_json(output, "output.json")
+
+
+
+
+
+# crap --------------------------------------------------------------------
+
 
 
 
