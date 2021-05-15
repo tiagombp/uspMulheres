@@ -925,8 +925,26 @@ const vis = {
 
             seletores.forEach(seletor => {
 
-                const bloco = seletor.dataset.bloco;
-                console.log(bloco);
+                const nome_bloco = seletor.dataset.bloco;
+
+                const bloco = vis.data.raw[nome_bloco]
+
+                const cod_questoes = Object.keys(bloco);
+
+                cod_questoes.forEach(questao => {
+                    
+                    const nome_completo = bloco[questao].nome_completo[0];
+                    const tipo_pergunta = bloco[questao].tipo[0];
+
+                    const new_option = document.createElement('option');
+
+                    new_option.value = questao;
+                    new_option.dataset.tipoPergunta = tipo_pergunta;
+                    new_option.text = nome_completo + ' (' + questao + ')';
+
+                    seletor.append(new_option);
+                    
+                });
 
             })
 

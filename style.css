@@ -122,12 +122,15 @@ h2.section-title {
 .selector select {
 
     font-family: var(--fonte-corpo);
-    font-size: 1rem;
+    font-size: .8rem;
+    height: 2rem;
+    width: 100%;
     display: block;
     background: transparent;
     outline: none;
     border: none;
     color: var(--cor-texto);
+    text-overflow: ellipsis;
 
 }
 
