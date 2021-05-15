@@ -38,7 +38,7 @@ saude <- c("G5Q00005","G05Q247","G5Q00006","G5Q00007","G500082","G05Q00083","G05
 
 interacoes_lar <- c("G6Q00006", "G6Q00009", "G6Q00018", "G6Q00020", "G6Q00022", "G6Q00042", "G6Q00017", "G6Q00019", "G6Q00021")
 
-nomes_questoes <- questoes$questao_completa
+nomes_questoes <- questoes$questao
 names(nomes_questoes) <- questoes$titulo
 
 df <- base[["G04Q240"]]
@@ -122,7 +122,7 @@ for (bloco in blocos) {
 
 # export ------------------------------------------------------------------
 
-jsonlite::write_json(output, "../output.json", )
+jsonlite::write_json(output, "output.json", )
 
 
 
