@@ -7,7 +7,7 @@ const vis = {
         outer_container_svg : ".outer-container-svg",
         vis_slide : ".slide",
         seletor : ".selector",
-        caixa_selecao : "#seletor-perguntas",
+        caixa_selecao : ".seletor-perguntas",
         buttons : ".buttons"
 
     },
@@ -948,8 +948,59 @@ const vis = {
 
             })
 
+        },
 
-        }
+        monitor_selector : function() {
+
+            const seletores = document.querySelectorAll(this.ref_principal);
+
+            seletores.forEach(function(seletor) {
+
+                console.log('monitoring seletor ', seletor.dataset.bloco);
+
+                seletor.addEventListener('change', function(e) {
+
+                    const opcao = e.target.value;
+                    const tipo = e.target.dataset.tipoPergunta;
+
+                    const bloco = e.target.parentNode.dataset.bloco;
+
+                    console.log("Usuário escolheu a opção ", opcao, ", é uma pergunta do tipo ", tipo);
+                    console.log(e);
+                    console.log(e.target, e.target.dataset.bloco);
+
+                })
+
+            })
+
+            // vis.sels.caixa_selecao.on("change", function(e) {
+
+            //     // se tiver um botao selecionado, tira a seleção
+            //     vis.control.deactivates_buttons();
+
+            //     const opcao = e.target.value;
+
+            //     const tipo = e.target.dataset.tipoPergunta;
+
+            //     console.log("Usuário escolheu a opção ", opcao, ", é uma pergunta do tipo ", tipo);
+
+            //     if (opcao != "nenhum") {
+
+            //         //vis.control.draw_state(opcao);
+
+            //     }
+
+            //     // testa se a opcão escolhida no seletor é uma das variáveis de detalhamento, e desabilita o botão respectivo, se for
+
+            //     vis.control.habilita_botoes();
+
+            //     if (vis.params.variaveis_detalhamento.includes(opcao)) {
+            //         vis.control.desabilita_botao(opcao);
+            //     } 
+
+            // })
+
+        },
 
     },
 
@@ -1020,35 +1071,6 @@ const vis = {
         remove_labels_detalhamento : function() {
 
             if (vis.sels.labels_secundarios) vis.sels.labels_secundarios.remove();
-
-        },
-
-        monitor_selector : function() {
-
-            vis.sels.caixa_selecao.on("change", function(e) {
-
-                // se tiver um botao selecionado, tira a seleção
-                vis.control.deactivates_buttons();
-
-                const opcao = e.target.value;
-
-                console.log("Usuário escolheu a opção ", opcao);
-
-                if (opcao != "nenhum") {
-
-                    vis.control.draw_state(opcao);
-
-                }
-
-                // testa se a opcão escolhida no seletor é uma das variáveis de detalhamento, e desabilita o botão respectivo, se for
-
-                vis.control.habilita_botoes();
-
-                if (vis.params.variaveis_detalhamento.includes(opcao)) {
-                    vis.control.desabilita_botao(opcao);
-                } 
-
-            })
 
         },
 
@@ -1176,7 +1198,7 @@ const vis = {
 
             vis.params.from_data.qde_pontos = vis.data.raw.length;
 
-            vis.utils.data_processing.gera_dominio_ordenado_variaveis_detalhamento();
+            //vis.utils.data_processing.gera_dominio_ordenado_variaveis_detalhamento();
 
             vis.utils.sizings.evaluate_bar_widths();
 
@@ -1189,7 +1211,7 @@ const vis = {
             vis.control.initialize_selections();
             vis.control.monitor_buttons();
             vis.control.desabilita_botao("todos");
-            vis.control.monitor_selector();
+            vis.selectors.monitor_selector();
             vis.control.initialize_styles();
             vis.utils.sizings.get_vsizes();
             vis.utils.sizings.set_vsize_svg();

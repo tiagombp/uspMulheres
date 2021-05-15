@@ -81,6 +81,20 @@ nav a {
 
 /* fim navegacao */
 
+/* seletor subquestao */
+
+.escondido {
+
+    display: none;
+    opacity: 0;
+    transform: translateY(-100%);
+
+}
+
+.selector.subquestao {
+
+    transition: opacity .5s, transform .5s;
+}
 
 div.intro {
 
