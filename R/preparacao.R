@@ -1,16 +1,19 @@
+#remotes::install_github("pesquisasuspmulheres/covid19USP")
 library(tidyverse)
+library(jsonlite)
 
 load("./R/base.rda")
+load("./R/questoes.rda")
 
-df <- base[["G3Q00019"]] 
-
-tsa <- df %>% group_by(G7Q00002, G2Q00001, G7Q00003, pergunta) %>% count(resposta)
-
-df2 <- base[["G3Q00001"]] 
-
-tsa2 <- df2 %>% group_by(G7Q00002, G2Q00001, G7Q00003, pergunta) %>% count(resposta) %>% spread(resposta, value = n)
-
-df2 %>% count(resposta) %>% spread(resposta, value = n)
+# df <- base[["G3Q00019"]] 
+# 
+# tsa <- df %>% group_by(G7Q00002, G2Q00001, G7Q00003, pergunta) %>% count(resposta)
+# 
+# df2 <- base[["G3Q00001"]] 
+# 
+# tsa2 <- df2 %>% group_by(G7Q00002, G2Q00001, G7Q00003, pergunta) %>% count(resposta) %>% spread(resposta, value = n)
+# 
+# df2 %>% count(resposta) %>% spread(resposta, value = n)
 
 
 
@@ -35,11 +38,12 @@ saude <- c("G5Q00005","G05Q247","G5Q00006","G5Q00007","G500082","G05Q00083","G05
 
 interacoes_lar <- c("G6Q00006", "G6Q00009", "G6Q00018", "G6Q00020", "G6Q00022", "G6Q00042", "G6Q00017", "G6Q00019", "G6Q00021")
 
-nomes_questoes <- questoes_$questao_completa
-names(nomes_questoes) <- questoes_$titulo
+nomes_questoes <- questoes$questao_completa
+names(nomes_questoes) <- questoes$titulo
 
 df <- base[["G04Q240"]]
 df2 <- base[["G3Q00026"]]
+df2 <- base[["G3Q00019"]]
 nomes_questoes[["G3Q00026"]]
 
 output <- list()
@@ -118,7 +122,7 @@ for (bloco in blocos) {
 
 # export ------------------------------------------------------------------
 
-jsonlite::write_json(output, "output.json")
+jsonlite::write_json(output, "../output.json", )
 
 
 
