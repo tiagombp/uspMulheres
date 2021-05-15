@@ -79,35 +79,6 @@ const vis = {
 
         },
 
-        perguntas : {
-
-            // blocos
-            facetas : {
-
-                vinculo : {
-
-                    pergunta_completa : ,
-                    tipo : 'simples',
-                    subperguntas : '',
-                    niveis : ''
-
-                },
-
-                
-
-            },
-
-            trabalho_estudo : {},
-
-            renda : {},
-
-            saude : {},
-
-            interacoes_lar : {}
-
-
-        }
-
     },
 
     dims : {
@@ -760,7 +731,7 @@ const vis = {
 
         read_data : function() {
 
-            d3.csv("./dados.csv").then(function(data) {
+            d3.json("./output.json").then(function(data) {
 
                 vis.data.raw = data;
                 vis.control.begin();
@@ -939,6 +910,26 @@ const vis = {
                 .delay(delay)
                 .duration(1000)
                 .style("opacity", 1);
+
+        }
+
+    },
+
+    selectors : {
+
+        ref_principal : '.seletor-perguntas',
+
+        popula_perguntas : function() {
+
+            const seletores = document.querySelectorAll(this.ref_principal);
+
+            seletores.forEach(seletor => {
+
+                const bloco = seletor.dataset.bloco;
+                console.log(bloco);
+
+            })
+
 
         }
 
@@ -1162,6 +1153,8 @@ const vis = {
             console.log(vis.data.raw.columns);
 
             // tudo que depende dos dados vai aqui.
+
+            vis.selectors.popula_perguntas();
 
             vis.params.from_data.qde_pontos = vis.data.raw.length;
 
