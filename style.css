@@ -20,6 +20,8 @@
     --size-label-secundario : 12px;
     --padding-bottom-label  : 5px;
 
+    --nav-height: 3rem;
+
 }
 
 
@@ -28,9 +30,57 @@
     box-sizing: border-box;
 }
 
+html {
+
+    scroll-behavior: smooth;
+
+}
+
 body {
     overflow: hidden;
 }
+
+/* navegação */
+
+.container-perguntas {
+    position: relative;
+}
+
+nav {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    /*align-items: center;*/
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: .5rem;
+    height: var(--nav-height);
+    background-color: black;
+
+}
+
+nav a {
+
+    text-decoration: none;
+    color: yellow;
+    /*height: 2rem;*/
+    flex: 0 0 10vw;
+    text-align: center;
+    /*border: 1px solid white;*/
+    font-size: .8rem;
+    /*padding: .2rem .4rem;*/
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+}
+
+/* fim navegacao */
+
 
 div.intro {
 
@@ -88,6 +138,8 @@ h2.section-title {
 
 .slide {
 
+    margin-top: 2rem;
+
     height: 100vh;
     width: 100%; /* eventualmente limitar para o caso de telas muito grandes*/
     background-color: transparent;
@@ -98,6 +150,7 @@ h2.section-title {
 /*div.vis > div.selector*/
 .inner-container-selector {
 
+    padding-top: var(--nav-height);
     background-color: var(--cor-fundo-seletor);
 
 }
@@ -106,7 +159,7 @@ h2.section-title {
 
     max-width: var(--width);
     margin: 0 auto;
-    padding: 1rem;
+    padding: .5rem 1rem;
 
 }
 
@@ -122,6 +175,7 @@ h2.section-title {
 .selector select {
 
     font-family: var(--fonte-corpo);
+    white-space: normal;
     font-size: .8rem;
     height: 2rem;
     width: 100%;

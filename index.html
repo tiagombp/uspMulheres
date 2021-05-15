@@ -48,69 +48,114 @@
                     </div>
                     
                 </div>
+
+                <div class="container-perguntas">
+
+                    <nav>
+                        <a href="#facetas">Facetas</a>
+                        <a href="#trabalho_estudo">Trabalho e Estudo</a>
+                        <a href="#renda">Renda</a>
+                        <a href="#saude">Saúde</a>
+                        <a href="#lar">Interações no Lar</a>
+                    </nav>
+
+                    <div class="slide" id="facetas">
     
-                <div class="slide">
-    
-                    <div class="inner-container-selector">
-                        <div class="selector">
-                            <h3>Facetas</h3>
-                            <select name="perguntas-facetas" class="seletor-perguntas" id="facetas" data-bloco="facetas">
-                                <option value="nenhum">--Escolha a pergunta--</option>
-                                <option value="vinculo">Seu vínculo atual com a USP é como ...</option>
-                                <option value="genero">Gênero</option>
-                                <option value="cor">Cor (IBGE)</option>
-                            </select>
+                        <div class="inner-container-selector">
+                            <div class="selector">
+                                <select name="perguntas-facetas" class="seletor-perguntas" data-bloco="facetas">
+                                    <option value="nenhum">--Escolha a pergunta--</option>
+                                    <option value="vinculo">Seu vínculo atual com a USP é como ...</option>
+                                    <option value="genero">Gênero</option>
+                                    <option value="cor">Cor (IBGE)</option>
+                                </select>
+                            </div>
+                            <div class="selector subquestao escondido">
+                                <select name="subquestoes-facetas" class="seletor-subquestoes" data-bloco="facetas" >
+                                    <option value="nenhum">--Escolha a opção--</option>
+                                </select>
+                            </div>
+                        </div>
         
-                        </div>
                     </div>
-    
-                </div>
-    
-                <div class="slide">
-                    <div class="inner-container-selector">
-    
-                        <div class="selector">
-                            <h3>Trabalho e Estudo</h3>
-                            <select name="perguntas-trabalho" class="seletor-perguntas" id="trabalho_estudo" data-bloco="trabalho_estudo">
-                            </select>
         
-                        </div>
-                    </div>
-    
-                </div>
+                    <div class="slide" id="trabalho_estudo">
+                        <div class="inner-container-selector">
+        
+                            <div class="selector">
+                                <select name="perguntas-trabalho" class="seletor-perguntas" data-bloco="trabalho_estudo">
+                                    <option value="nenhum">--Escolha a pergunta--</option>
+                                </select>
+                            </div>
 
-                <div class="slide">
-                    <div class="inner-container-selector">
-    
-                        <div class="selector">
-                            <h3>Renda</h3>
-                            <select name="perguntas-renda" class="seletor-perguntas" id="renda" data-bloco="renda">
-                            </select>
-                        </div>
-                    </div>
-                </div>
+                            <div class="selector subquestao escondido">
+                                <select name="subquestoes-trabalho_estudo" class="seletor-subquestoes" data-bloco="trabalho_estudo" >
+                                    <option value="nenhum">--Escolha a opção--</option>
+                                </select>
+                            </div>
 
-                <div class="slide">
-                    <div class="inner-container-selector">
-    
-                        <div class="selector">
-                            <h3>Saúde</h3>
-                            <select name="perguntas-saude" class="seletor-perguntas" id="saude" data-bloco="saude">
-                            </select>
                         </div>
+        
                     </div>
-                </div>
+    
+                    <div class="slide" id="renda">
+                        <div class="inner-container-selector">
+        
+                            <div class="selector">
+                                <select name="perguntas-renda" class="seletor-perguntas" data-bloco="renda">
+                                    <option value="nenhum">--Escolha a pergunta--</option>
+                                </select>
+                            </div>
 
-                <div class="slide">
-                    <div class="inner-container-selector">
-    
-                        <div class="selector">
-                            <h3>Interações no lar</h3>
-                            <select name="perguntas-lar" class="seletor-perguntas" id="interacoes_lar" data-bloco="interacoes_lar">
-                            </select>
+                            <div class="selector subquestao escondido">
+                                <select name="subquestoes-renda" class="seletor-subquestoes" data-bloco="renda" >
+                                    <option value="nenhum">--Escolha a opção--</option>
+                                </select>
+                            </div>
+
                         </div>
                     </div>
+    
+                    <div class="slide" id="saude">
+                        <div class="inner-container-selector">
+        
+                            <div class="selector">
+                                <select name="perguntas-saude" class="seletor-perguntas" data-bloco="saude">
+                                    <option value="nenhum">--Escolha a pergunta--</option>
+                                </select>
+                            </div>
+
+                            <div class="selector subquestao escondido">
+                                <select name="subquestoes-saude" class="seletor-subquestoes" data-bloco="saude" >
+                                    <option value="nenhum">--Escolha a opção--</option>
+                                </select>
+                            </div>
+
+
+                        </div>
+                    </div>
+    
+                    <div class="slide" id="interacoes_lar">
+                        <div class="inner-container-selector">
+        
+                            <div class="selector">
+                                <select name="perguntas-lar" class="seletor-perguntas" data-bloco="interacoes_lar">
+                                    <option value="nenhum">--Escolha a pergunta--</option>
+                                </select>
+                            </div>
+
+                            <div class="selector subquestao escondido">
+                                <select name="subquestoes-interacoes_lar" class="seletor-subquestoes" data-bloco="interacoes_lar" >
+                                    <option value="nenhum">--Escolha a opção--</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
+    
+
 
             </article>
 
