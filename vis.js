@@ -108,7 +108,9 @@ const vis = {
         raw : null,
         sumario : null,
         maximos_valores_variaveis_detalhamento : null,
-        posicoes_iniciais_det : null
+        posicoes_iniciais_det : null,
+
+        tipos_perguntas : {}
 
     },
 
@@ -939,7 +941,10 @@ const vis = {
                     const new_option = document.createElement('option');
 
                     new_option.value = questao;
-                    new_option.dataset.tipoPergunta = tipo_pergunta;
+
+                    // cria um dicionario questao : tipo
+                    vis.data.tipos_perguntas[questao] = tipo_pergunta;
+                    //new_option.dataset.tipoPergunta = tipo_pergunta;
                     new_option.text = nome_completo + ' (' + questao + ')';
 
                     seletor.append(new_option);
@@ -961,9 +966,9 @@ const vis = {
                 seletor.addEventListener('change', function(e) {
 
                     const opcao = e.target.value;
-                    const tipo = e.target.dataset.tipoPergunta;
+                    const tipo = vis.data.tipos_perguntas[opcao]
 
-                    const bloco = e.target.parentNode.dataset.bloco;
+                    const bloco = e.target.dataset.bloco;
 
                     console.log("Usuário escolheu a opção ", opcao, ", é uma pergunta do tipo ", tipo);
                     console.log(e);
