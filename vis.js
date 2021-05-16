@@ -1012,8 +1012,19 @@ const vis = {
             const seletor = document.querySelector(this.ref_subquestoes + '[data-bloco = "' + bloco + '"]');
 
             while (seletor.firstChild) {
-                seletor.removeChild(seletor.firstChild);
+        
+                // preserva a opção default
+                if (seletor.firstChild.value != 'nenhum') seletor.removeChild(seletor.firstChild);
+                else break;
+
             }
+            
+            // // readiciona a opção padrão
+            
+            // const default_option = document.createElement('option');
+            // default_option.value = 'nenhum';
+            // default_option.text = '--Escolha a opção--';
+            // seletor.append(default_option);
 
         },
 
@@ -1090,6 +1101,7 @@ const vis = {
 
                     if (tipo == 'multiplas com escala') {
 
+                        vis.control.state.current_questao = questao;
                         vis.selectors.popula_subquestoes(bloco, questao);
                         // aciona flag (para o cálculo do tamanho do svg)
                         vis.control.state.tem_subquestao = true;
@@ -1100,6 +1112,7 @@ const vis = {
                         vis.selectors.toggle_seletor_subquestoes(bloco, 'esconde');
 
                         vis.control.state.tem_subquestao = false;
+                        vis.control.state.current_subquestao = null
 
 
                         // render
@@ -1142,6 +1155,35 @@ const vis = {
 
         },
 
+        monitor_subquestoes : function() {
+
+            const seletores = document.querySelectorAll(this.ref_subquestoes);
+
+            seletores.forEach(function(seletor) {
+
+                console.log('monitoring seletor subquestao ', seletor.dataset.bloco);
+
+                seletor.addEventListener('change', function(e) {
+
+                    const index_subquestao = e.target.value;
+                    const questao = vis.control.state.current_questao;
+                    const bloco = seletor.dataset.bloco;
+
+                    const subquestao = Object.keys(vis.data.raw[bloco][questao].dados)[index_subquestao];
+
+                    vis.control.state.tem_subquestao = true;
+                    vis.control.state.current_subquestao = subquestao;
+
+                    console.log('vamos renderizar essa sub ', subquestao);
+
+                    vis.control.draw_state(bloco, questao, subquestao);
+
+                })
+
+            });
+
+        }
+
     },
 
     nav : {
@@ -1179,6 +1221,7 @@ const vis = {
             first_transition : true,
             first_delhamento : true,
             current_questao : null,
+            current_subquestao : null,
             current_bloco: null,
             current_variable : null,
             current_detalhamento: "nenhum",
@@ -1307,7 +1350,7 @@ const vis = {
 
         },
 
-        draw_state : function(bloco, questao) {
+        draw_state : function(bloco, questao, subquestao = null) {
 
             console.log('renderizar...', bloco, questao);
 
@@ -1329,7 +1372,16 @@ const vis = {
 
             console.log(opcao, questao);
 
-            vis.data.selected = vis.data.raw[bloco][questao].dados;
+            if (subquestao) {
+
+                vis.data.selected = vis.data.raw[bloco][questao].dados[subquestao];
+                console.log('Tem subquestao!');
+
+            } else {
+
+                vis.data.selected = vis.data.raw[bloco][questao].dados;
+
+            }
 
             if (vis.control.state.first_transition) {
                 vis.control.state.first_transition = false;
@@ -1441,6 +1493,7 @@ const vis = {
             vis.nav.monitor_clicks();
             vis.control.desabilita_botao("todos");
             vis.selectors.monitor_selector();
+            vis.selectors.monitor_subquestoes();
             vis.control.initialize_styles();
             vis.utils.sizings.get_vsizes();
             vis.utils.sizings.set_vsize_svg();

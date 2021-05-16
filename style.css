@@ -207,6 +207,14 @@ h2.section-title {
 
 }
 
+.selector option {
+
+    font-size: .8rem;
+    min-height: 1em;
+    color: #333;
+
+}
+
 /* div.vis p {
    
     margin: 0;
