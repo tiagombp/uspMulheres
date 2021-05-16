@@ -70,6 +70,8 @@ const vis = {
             qde_fileira_ajustada   : null,
             largura_grupo          : null,
             margem_minima_ajustada : null,
+            n_w : null,
+            espacamento : null,
 
             dominio_var_detalhamento : {
 
@@ -765,6 +767,9 @@ const vis = {
             const n_w = Math.ceil(svg_net_width / espacamento);
             const n_h = Math.floor(svg_net_height / espacamento);
 
+            vis.params.from_data.n_w = n_w;
+            vis.params.from_data.espacamento = espacamento;
+
             vis.sels.rects = vis.sels.svg
               .selectAll("rect.pessoas")
               .data(vis.data.selected)
@@ -775,6 +780,21 @@ const vis = {
               .attr("fill", "#70424E")
               .attr("x", (d,i) => vis.dims.svg.margins.left + ( (i % n_w) * espacamento ) )
               .attr("y", (d,i) => vis.dims.svg.margins.top + ( (Math.floor(i/n_w)) * espacamento) );
+
+        },
+
+        move_rects_background : function() {
+
+            const n_w = vis.params.from_data.n_w;
+            const espacamento = vis.params.from_data.espacamento;
+
+            vis.sels.rects
+              .transition()
+              .duration(500)
+              .attr("fill", "#70424E")
+              .attr("x", (d,i) => vis.dims.svg.margins.left + ( (i % n_w) * espacamento ) )
+              .attr("y", (d,i) => vis.dims.svg.margins.top + ( (Math.floor(i/n_w)) * espacamento) )
+            ;
 
         },
 
@@ -965,20 +985,25 @@ const vis = {
                     const tipo_pergunta = bloco[questao].tipo[0];
 
                     const new_option = document.createElement('option');
-
                     new_option.value = questao; //== vis.params.pergunta_dados_basicos ? 'resposta' : questao; //1
-                    //1 - gambiarra para os dados básicos, que estão no bloco facetas, nessa pergunta que foi guardadada em vis.params.pergunta_dados_basicos...
+                    new_option.text = nome_completo + ' (' + questao + ')';
+                    seletor.append(new_option);
+
+                    //seletor[questao] = new Option(nome_completo + ' (' + questao + ')', questao);
 
                     // cria um dicionario questao : tipo
                     vis.data.tipos_perguntas[questao] = tipo_pergunta;
-                    //new_option.dataset.tipoPergunta = tipo_pergunta;
-                    new_option.text = nome_completo + ' (' + questao + ')';
 
-                    seletor.append(new_option);
                     
                 });
 
             })
+
+        },
+
+        limpa_seletor : function(bloco) {
+
+            document.querySelector(this.ref_principal + '[data-bloco="' + bloco + '"]').selectedIndex = 0;
 
         },
 
@@ -1058,6 +1083,9 @@ const vis = {
                     console.log(e);
                     console.log(e.target, e.target.dataset.bloco);
 
+                    // armazena ultima seleção para o caso de o usuário voltar ao bloco
+                    vis.control.state.ultima_selecao_grupo[bloco] = questao;
+
                     if (tipo == 'multiplas com escala') {
 
                         vis.selectors.popula_subquestoes(bloco, questao);
@@ -1112,6 +1140,34 @@ const vis = {
 
     },
 
+    nav : {
+
+        ref : () => vis.refs.nav,
+
+        monitor_clicks : function() {
+
+            const ref = this.ref();
+
+            const nav = document.querySelector(ref);
+
+            nav.addEventListener('click', function(e) {
+
+                const bloco = e.target.getAttribute('href').slice(1);
+
+                console.log('opacao cliada', bloco);
+
+                vis.selectors.limpa_seletor(bloco);
+                vis.control.remove_labels();
+                vis.control.remove_labels_detalhamento();
+                vis.render.move_rects_background();
+
+            })
+
+
+        }
+
+    },
+
     control : {
 
         state : {
@@ -1122,7 +1178,16 @@ const vis = {
             current_bloco: null,
             current_variable : null,
             current_detalhamento: "nenhum",
-            tem_subquestao : false
+            tem_subquestao : false,
+            ultima_selecao_grupo : {
+
+                facetas : null,
+                trabalho_estudo : null,
+                renda : null,
+                saude : null,
+                interacoes_lar : null
+
+            }
 
         },
 
@@ -1181,7 +1246,22 @@ const vis = {
 
         remove_labels_detalhamento : function() {
 
-            if (vis.sels.labels_secundarios) vis.sels.labels_secundarios.remove();
+            if (vis.sels.labels_secundarios) {
+                
+                vis.sels.labels_secundarios.transition().duration(500).style('opacity', 0);
+                vis.sels.labels_secundarios.remove();
+
+            }
+
+        },
+
+        remove_labels : function() {
+
+            if (vis.sels.labels) {
+                
+                vis.sels.labels.transition().duration(500).style('opacity', 0);
+                vis.sels.labels.remove();
+            }
 
         },
 
@@ -1351,6 +1431,7 @@ const vis = {
 
             vis.control.initialize_selections();
             vis.control.monitor_buttons();
+            vis.nav.monitor_clicks();
             vis.control.desabilita_botao("todos");
             vis.selectors.monitor_selector();
             vis.control.initialize_styles();
