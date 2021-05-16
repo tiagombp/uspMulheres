@@ -49,8 +49,8 @@ const vis = {
 
         dots : {
 
-            largura : 5,
-            altura : 5,
+            largura : 4,
+            altura : 4,
             espacamento : 2,
             margem_entre_barras : 30,
             margem_minima_entre_grupos_det : 30
@@ -811,6 +811,23 @@ const vis = {
 
         },
 
+        update_data_join : function() {
+
+            vis.sels.rects = vis.sels.svg
+              .selectAll("rect.pessoas")
+              .data(vis.data.selected)
+              .join("rect")
+              .classed("pessoas", true)
+              .attr("height", vis.params.dots.altura)
+              .attr("width", vis.params.dots.largura);
+
+            console.log('exit selection', vis.sels.rects.exit());
+
+            vis.sels.rects.exit().remove();
+
+
+        },
+
         update_colors : function(delay) {
 
             const variavel = vis.control.state.current_variable;
@@ -1248,6 +1265,9 @@ const vis = {
             );
 
             vis.utils.sizings.recalcula_altura_svg();
+
+            // update data
+            vis.render.update_data_join();
 
             vis.render.update_colors(delay = 1000);
 
