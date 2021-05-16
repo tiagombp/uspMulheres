@@ -299,7 +299,7 @@ const vis = {
             sumariza_dados : function(criterio, ordena = false, vetor_ordem) {
 
                 const sumario = [];
-                const dados = vis.data.raw;
+                const dados = vis.data.selected;
                 let categorias_unicas;
     
                 // gera array com os valores únicos dessa variável categórica
@@ -394,7 +394,7 @@ const vis = {
 
             prepara_dados : function(criterio, ordena = false, vetor_ordem) {
 
-                const dados = vis.data.raw;
+                const dados = vis.data.selected;
 
                 // determina valores únicos
                 let dados_sumarizados = this.sumariza_dados(criterio, ordena, vetor_ordem);
@@ -765,7 +765,7 @@ const vis = {
 
             vis.sels.rects = vis.sels.svg
               .selectAll("rect.pessoas")
-              .data(vis.data.raw)
+              .data(vis.data.selected)
               .join("rect")
               .classed("pessoas", true)
               .attr("height", vis.params.dots.altura)
@@ -947,7 +947,8 @@ const vis = {
 
                     const new_option = document.createElement('option');
 
-                    new_option.value = questao;
+                    new_option.value = questao; //== vis.params.pergunta_dados_basicos ? 'resposta' : questao; //1
+                    //1 - gambiarra para os dados básicos, que estão no bloco facetas, nessa pergunta que foi guardadada em vis.params.pergunta_dados_basicos...
 
                     // cria um dicionario questao : tipo
                     vis.data.tipos_perguntas[questao] = tipo_pergunta;
@@ -1053,6 +1054,7 @@ const vis = {
 
 
                         // render
+                        vis.control.draw_state(bloco, questao);
 
                     }
 
@@ -1097,6 +1099,8 @@ const vis = {
 
             first_transition : true,
             first_delhamento : true,
+            current_questao : null,
+            current_bloco: null,
             current_variable : null,
             current_detalhamento: "nenhum",
             tem_subquestao : false
@@ -1197,7 +1201,29 @@ const vis = {
 
         },
 
-        draw_state : function(opcao) {
+        draw_state : function(bloco, questao) {
+
+            console.log('renderizar...', bloco, questao);
+
+            // a opcao agora a ser selecionada é sempre o campo 'resposta'. Só é preciso passar o dataset correto, conforme a seleção do bloco e questão.
+            // a não ser que sejam as facetas, aí a opção vai ser a "questão" (que na verdade traz o valor da opção selecionada, que, no caso do bloco facetas, são os nomes das variáveis de detalhamento)
+
+            let opcao;
+
+            if ( vis.params.variaveis_detalhamento.includes(questao) ) {
+
+                opcao = questao;
+                questao = vis.params.pergunta_dados_basicos;
+
+            } else {
+
+                opcao = 'resposta';
+
+            }
+
+            console.log(opcao, questao);
+
+            vis.data.selected = vis.data.raw[bloco][questao].dados;
 
             if (vis.control.state.first_transition) {
                 vis.control.state.first_transition = false;
@@ -1207,6 +1233,8 @@ const vis = {
 
             console.log("Desenhar estado ", opcao, vis.control.state.current_variable);
 
+            vis.control.state.current_bloco = bloco;
+            vis.control.state.current_questao = questao;
             vis.control.state.current_variable = opcao;
             vis.control.state.current_detalhamento = "nenhum";
             vis.control.remove_labels_detalhamento();
@@ -1284,9 +1312,12 @@ const vis = {
 
             vis.selectors.popula_perguntas();
 
-            vis.params.from_data.qde_pontos = vis.data.raw.length;
+            // inicializa data selected
+            vis.data.selected = vis.data.raw.facetas[vis.params.pergunta_dados_basicos].dados;
 
-            //vis.utils.data_processing.gera_dominio_ordenado_variaveis_detalhamento();
+            vis.params.from_data.qde_pontos = vis.data.selected.length;
+
+            vis.utils.data_processing.gera_dominio_ordenado_variaveis_detalhamento();
 
             vis.utils.sizings.evaluate_bar_widths();
 
