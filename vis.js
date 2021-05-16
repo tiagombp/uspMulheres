@@ -519,7 +519,8 @@ const vis = {
 
                         const qde_fileiras_longitudinais_grupo = Math.ceil(qde_maxima / qde_linhas_grid);
 
-                        const tamanho_atual = qde_fileiras_longitudinais_grupo * (vis.params.dots.largura + vis.params.dots.espacamento) + vis.params.dots.margem_minima_entre_grupos_det;
+                        const tamanho_atual = qde_fileiras_longitudinais_grupo * (vis.params.dots.largura + vis.params.dots.espacamento) + vis.params.dots.margem_minima_entre_grupos_det * (qde_fileiras_longitudinais_grupo>0);
+                        // incluí esse último termo porque às vezes o grupo pode ficar sem nenhuma observação, mas ele acabava deslocando pelo valor da margem_minima.
 
                         posicao_acumulada += tamanho_atual;
 
