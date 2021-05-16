@@ -135,6 +135,7 @@ article {
     scroll-snap-type: block mandatory;
     overflow-y: scroll;
     height: 100vh;
+    /*scroll-behavior: smooth;*/
 }
 
 .slide.first {
