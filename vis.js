@@ -53,7 +53,7 @@ const vis = {
             altura : 4,
             espacamento : 2,
             margem_entre_barras : 25,
-            margem_minima_entre_grupos_det : 30
+            margem_minima_entre_grupos_det : 35
 
         },
 
@@ -163,7 +163,7 @@ const vis = {
                 vis.sels.container_svg.style("height", svg_height + "px");
 
                 //vis.sels.outer_container_svg.style("top", vis.dims.seletor + "px");
-                vis.sels.outer_container_svg.style("padding-top", vis.dims.seletor + vis.dims.nav + "px");
+                //vis.sels.outer_container_svg.style("padding-top", vis.dims.seletor + vis.dims.nav + "px");
 
             },
 
@@ -1122,6 +1122,8 @@ const vis = {
 
                     vis.control.habilita_botoes();
 
+                    if (vis.params.variaveis_detalhamento.includes(questao)) vis.control.desabilita_botao(questao);
+
                 })
 
             })
@@ -1182,6 +1184,21 @@ const vis = {
 
             });
 
+        },
+
+        update_selectors : function(bloco) {
+
+            console.log("Vamos mostrar o seletor de ", bloco);
+
+            const seletores = document.querySelectorAll(this.ref_principal);
+
+            seletores.forEach(seletor => {
+
+                if (seletor.dataset.bloco == bloco) seletor.parentElement.classList.add('visivel');
+                else (seletor.parentElement.classList.remove('visivel'))
+
+            })
+
         }
 
     },
@@ -1198,10 +1215,11 @@ const vis = {
 
             nav.addEventListener('click', function(e) {
 
-                const bloco = e.target.getAttribute('href').slice(1);
+                const bloco = e.target.dataset.navOption;
 
                 console.log('opacao cliada', bloco);
 
+                vis.selectors.update_selectors(bloco);
                 vis.selectors.limpa_seletor(bloco);
                 vis.control.remove_labels();
                 vis.control.remove_labels_detalhamento();
@@ -1334,7 +1352,8 @@ const vis = {
                         vis.control.state.current_detalhamento = "nenhum";
                         vis.control.draw_state(
                             vis.control.state.current_bloco,
-                            vis.control.state.current_questao
+                            vis.control.state.current_questao,
+                            vis.control.current_subquestao
                         );
                         
 
@@ -1352,8 +1371,6 @@ const vis = {
 
         draw_state : function(bloco, questao, subquestao = null) {
 
-            console.log('renderizar...', bloco, questao);
-
             // a opcao agora a ser selecionada é sempre o campo 'resposta'. Só é preciso passar o dataset correto, conforme a seleção do bloco e questão.
             // a não ser que sejam as facetas, aí a opção vai ser a "questão" (que na verdade traz o valor da opção selecionada, que, no caso do bloco facetas, são os nomes das variáveis de detalhamento)
 
@@ -1370,7 +1387,7 @@ const vis = {
 
             }
 
-            console.log(opcao, questao);
+            console.log('renderizar... \n Bloco: ', bloco, '\n Questao: ', questao, '\nOpcao: ', opcao, '\nSubquestao:', subquestao);
 
             if (subquestao) {
 

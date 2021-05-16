@@ -37,13 +37,14 @@ html {
 }
 
 body {
-    overflow: hidden;
+
 }
 
 /* navegação */
 
 .container-perguntas {
     position: relative;
+    height: 100vh;
 }
 
 nav {
@@ -83,6 +84,18 @@ nav a {
 
 /* seletor subquestao */
 
+.selector.pergunta {
+
+    display: none;
+
+}
+
+.selector.pergunta.visivel {
+
+    display: block;
+
+}
+
 .selector.escondido {
 
     pointer-events: none;
@@ -116,7 +129,7 @@ div.intro {
 
 }
 
-div.inner-container p {
+.inner-container p {
     color: var(--cor-texto);
     font-family: var(--fonte-corpo);
     font-weight: 100;
@@ -162,14 +175,12 @@ h2.section-title {
     height: 100vh;
     width: 100%; /* eventualmente limitar para o caso de telas muito grandes*/
     background-color: transparent;
-    scroll-snap-align: start;
 
 }
 
 /*div.vis > div.selector*/
 .inner-container-selector {
 
-    padding-top: var(--nav-height);
     background-color: var(--cor-fundo-seletor);
 
 }
@@ -222,12 +233,12 @@ h2.section-title {
 
 } */
 
-div.vis > div.selector > p {
+div.selector > p {
     padding: 0;
     display: inline;
 }
 
-div.vis div.buttons {
+div.buttons {
 
     display: flex;
     justify-content: center;
@@ -288,12 +299,8 @@ div.vis div.buttons {
 div.outer-container-svg {
 
     background-color: var(--cor-fundo-vis);
-    position: sticky;
-    width: 100vw;
-    height: 100vh; 
-    top: 0;
-    z-index: -1;
-
+    width: 100%;
+    height: calc(100vh - 2 * var(--nav-height) ); 
 
 }
 
