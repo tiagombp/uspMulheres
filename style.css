@@ -57,27 +57,45 @@ nav {
     top: 0;
     left: 0;
     right: 0;
-    padding: .5rem;
+    padding: 0 .5rem;
     height: var(--nav-height);
-    background-color: black;
+    background-color: white;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
 
 }
 
 nav a {
 
     text-decoration: none;
-    color: yellow;
+    color: var(--cor-fundo);
+    font-family: var(--fonte-corpo);
+    margin: .5rem 0;
+    text-transform: uppercase;
+    letter-spacing: .1px;
     /*height: 2rem;*/
     flex: 0 0 10vw;
     text-align: center;
     /*border: 1px solid white;*/
     font-size: .8rem;
     /*padding: .2rem .4rem;*/
-    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
 
+}
+
+nav a:hover {
+    background-color: var(--cor-fundo-seletor);
+    color: white;
+}
+
+nav a.selected {
+    font-weight: bold;
+    text-shadow: 0 0 5px var(--cor-fundo-seletor);
+    /*
+    border-top: 2px solid var(--cor-fundo);
+    border-bottom: 2px solid var(--cor-fundo);*/
 }
 
 /* fim navegacao */
@@ -110,8 +128,14 @@ nav a {
 .selector.subquestao {
 
     transition: opacity .5s, transform .5s, height .5s;
+    padding-top: 0;
 
 }
+
+.selector.subquestao select {
+    font-size: .7rem;
+}
+
 
 div.intro {
 
@@ -207,7 +231,7 @@ h2.section-title {
 /*div.vis > div.selector*/
 .inner-container-selector {
 
-    background-color: var(--cor-fundo-seletor);
+    background-color: var(--cor-fundo);
 
 }
 
