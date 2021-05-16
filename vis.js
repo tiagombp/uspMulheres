@@ -956,7 +956,8 @@ const vis = {
                 .transition()
                 .delay(delay)
                 .duration(1000)
-                .style("opacity", 1);
+                .style("opacity", d => vis.data.maximos_valores_variaveis_detalhamento[detalhamento][d.label] == 0 ? 0 : 1);
+                // testa se a quantidade máxima do subgrupo é 0, se for, não posiciona o label, para evitar sobreposição.
 
         }
 
