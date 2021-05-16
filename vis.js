@@ -52,7 +52,7 @@ const vis = {
             largura : 5,
             altura : 5,
             espacamento : 2,
-            margem_entre_barras : 40,
+            margem_entre_barras : 30,
             margem_minima_entre_grupos_det : 30
 
         },
