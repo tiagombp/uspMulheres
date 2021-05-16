@@ -6,6 +6,7 @@ const vis = {
         container_svg : "div.container-svg",
         outer_container_svg : ".outer-container-svg",
         vis_slide : ".slide",
+        nav : 'nav',
         seletor : ".selector",
         caixa_selecao : ".seletor-perguntas",
         buttons : ".buttons"
@@ -60,6 +61,8 @@ const vis = {
 
         variaveis_detalhamento : ["vinculo", "genero", "cor"],
 
+        pergunta_dados_basicos : 'G3Q00006',
+
         from_data : {
 
             qde_pontos             : null,
@@ -85,6 +88,7 @@ const vis = {
 
         vis_slide : null,
         seletor : null,
+        nav : null,
         svg : {
 
             height : null,
@@ -106,6 +110,7 @@ const vis = {
     data : {
 
         raw : null,
+        selected : null,
         sumario : null,
         maximos_valores_variaveis_detalhamento : null,
         posicoes_iniciais_det : null,
@@ -120,7 +125,7 @@ const vis = {
 
             get_vsizes : function() {
 
-                const sizes = ["vis_slide", "seletor", "buttons"];
+                const sizes = ["vis_slide", "nav", "seletor", "buttons"];
 
                 sizes.forEach(size => {
 
@@ -148,7 +153,7 @@ const vis = {
 
             set_vsize_svg : function() {
 
-                const svg_height = vis.dims.vis_slide - vis.dims.seletor - vis.dims.buttons;
+                const svg_height = vis.dims.vis_slide - vis.dims.nav - vis.dims.seletor - vis.dims.buttons;
 
                 vis.dims.svg.height = svg_height;
 
@@ -156,7 +161,7 @@ const vis = {
                 vis.sels.container_svg.style("height", svg_height + "px");
 
                 //vis.sels.outer_container_svg.style("top", vis.dims.seletor + "px");
-                vis.sels.outer_container_svg.style("padding-top", vis.dims.seletor + "px");
+                vis.sels.outer_container_svg.style("padding-top", vis.dims.seletor + vis.dims.nav + "px");
 
             },
 
