@@ -1223,6 +1223,8 @@ const vis = {
 
                 const bloco = e.target.dataset.navOption;
 
+                vis.nav.update_selected(bloco);
+
                 console.log('opacao cliada', bloco);
 
                 if (vis.control.state.current_bloco) vis.selectors.toggle_seletor_subquestoes(vis.control.state.current_bloco, 'esconde');
@@ -1233,7 +1235,31 @@ const vis = {
                 vis.control.remove_labels_detalhamento();
                 vis.render.move_rects_background();
 
+
             })
+
+        },
+
+        update_selected : function(bloco) {
+
+            const ref = this.ref();
+
+            const nav = document.querySelector(ref);
+
+            Array.from(nav.children).forEach(a => {
+
+                if (a.dataset.navOption != bloco) {
+
+                    a.classList.remove('selected');
+
+                } else {
+
+                    a.classList.add('selected')
+
+                }
+
+            });
+
 
 
         }
