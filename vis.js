@@ -1112,7 +1112,8 @@ const vis = {
                         vis.selectors.toggle_seletor_subquestoes(bloco, 'esconde');
 
                         vis.control.state.tem_subquestao = false;
-                        vis.control.state.current_subquestao = null
+                        vis.control.state.current_subquestao = null;
+                        console.log('current subquestao ficou null');
 
 
                         // render
@@ -1167,6 +1168,8 @@ const vis = {
 
                 seletor.addEventListener('change', function(e) {
 
+                    vis.control.deactivates_buttons();
+
                     const index_subquestao = e.target.value;
                     const questao = vis.control.state.current_questao;
                     const bloco = seletor.dataset.bloco;
@@ -1175,6 +1178,7 @@ const vis = {
 
                     vis.control.state.tem_subquestao = true;
                     vis.control.state.current_subquestao = subquestao;
+                    console.log('subquestao virou ', subquestao);
 
                     console.log('vamos renderizar essa sub ', subquestao);
 
@@ -1380,10 +1384,12 @@ const vis = {
 
                 opcao = questao;
                 questao = vis.params.pergunta_dados_basicos;
+                vis.control.state.current_variable = opcao;
 
             } else {
 
                 opcao = 'resposta';
+                vis.control.state.current_variable = questao;
 
             }
 
@@ -1410,7 +1416,7 @@ const vis = {
 
             vis.control.state.current_bloco = bloco;
             vis.control.state.current_questao = questao;
-            vis.control.state.current_variable = opcao;
+            
             vis.control.state.current_detalhamento = "nenhum";
             vis.control.remove_labels_detalhamento();
             vis.control.state.first_detalhamento = true;
