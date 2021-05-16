@@ -36,7 +36,7 @@ renda <- c("G04Q240", "G04Q241","G4Q00003","G4Q00011","G4Q00006","G4Q00014","G04
 # tire "G05Q246", que não está na base
 saude <- c("G5Q00005","G05Q247","G5Q00006","G5Q00007","G500082","G05Q00083","G05Q245","G5Q00008","G05Q248","G5Q00009","G5Q00017","G5Q00018","G5Q00014","G5Q00015","G5Q00016","G5Q00046","G5Q00045","G5Q00051","G5Q00052","G05Q252","G5Q00053","G05Q227","G05Q229","G05Q231","G05Q233","G5Q00057","G5Q00058","G5Q00060","G5Q00061")
 
-interacoes_lar <- c("G6Q00006", "G6Q00009", "G6Q00018", "G6Q00020", "G6Q00022", "G6Q00042", "G6Q00017", "G6Q00019", "G6Q00021")
+interacoes_lar <- c("G6Q00006", "G6Q00009", "G6Q00017", "G6Q00018", "G6Q00019", "G6Q00020", "G6Q00021", "G6Q00022", "G6Q00042")
 
 nomes_questoes <- questoes$questao
 names(nomes_questoes) <- questoes$titulo
@@ -149,3 +149,12 @@ nomes_questoes[["G7Q00002"]]
 tsa<-base[["G3Q00019"]] %>% filter(pergunta == "Rotina de ensino a distância")
 
 base[["G05Q246"]]
+
+
+for (df in multiplas_escala) {
+  
+  niveis <- unique(base[[df]]$resposta) 
+  
+  print(paste(df, niveis))
+  
+}
