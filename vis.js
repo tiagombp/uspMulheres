@@ -52,7 +52,7 @@ const vis = {
             largura : 5,
             altura : 5,
             espacamento : 2,
-            margem_entre_barras : 50,
+            margem_entre_barras : 40,
             margem_minima_entre_grupos_det : 30
 
         },
@@ -282,6 +282,8 @@ const vis = {
                     ajuste = 0
 
                 };
+
+                console.log('resizing svg', area_transversal_grafico, altura_liquida_svg, altura_svg, ajuste);
 
                 vis.sels.svg.attr("height", altura_svg + ajuste);
                 vis.sels.container_svg.style("height", altura_svg + ajuste + "px");
