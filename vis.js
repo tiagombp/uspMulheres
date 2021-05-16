@@ -896,7 +896,7 @@ const vis = {
                 " <strong>" + 
                 d.contagem + 
                 "</strong> (" + 
-                d3.format(".000%")(d.contagem / vis.params.from_data.qde_pontos) + 
+                d3.format(".000%")(d.contagem / vis.data.selected.length) + 
                 ")")
               .style("opacity", 0);
 
