@@ -83,17 +83,21 @@ nav a {
 
 /* seletor subquestao */
 
-.escondido {
+.selector.escondido {
 
-    display: none;
+    pointer-events: none;
     opacity: 0;
+    padding: 0;
     transform: translateY(-100%);
+    transition: opacity .5s, transform .5s, height .5s;
+    height: 0;
 
 }
 
 .selector.subquestao {
 
-    transition: opacity .5s, transform .5s;
+    transition: opacity .5s, transform .5s, height .5s;
+
 }
 
 div.intro {

@@ -921,6 +921,8 @@ const vis = {
 
         ref_principal : '.seletor-perguntas',
 
+        ref_subquestoes : '.seletor-subquestoes',
+
         popula_perguntas : function() {
 
             const seletores = document.querySelectorAll(this.ref_principal);
@@ -955,6 +957,59 @@ const vis = {
 
         },
 
+        limpa_subquestoes : function(bloco) {
+
+            const seletor = document.querySelector(this.ref_subquestoes + '[data-bloco = "' + bloco + '"]');
+
+            while (seletor.firstChild) {
+                seletor.removeChild(seletor.firstChild);
+            }
+
+        },
+
+        toggle_seletor_subquestoes : function(bloco, toggle = 'esconde') {
+
+            // esconde / mostra
+
+            const seletor = document.querySelector(this.ref_subquestoes + '[data-bloco = "' + bloco + '"]');
+
+            const container = seletor.parentElement;
+
+            const method = toggle == 'esconde' ? 'add' : 'remove';
+
+            container.classList[method]('escondido');
+
+
+        },
+
+        popula_subquestoes : function(bloco, questao) {
+
+            const seletor = document.querySelector(this.ref_subquestoes + '[data-bloco = "' + bloco + '"]');
+
+            console.log('seletor: ', seletor);
+
+            console.log('opa, populando subquestoes...', questao);
+
+            const subquestoes = Object.keys(vis.data.raw[bloco][questao].dados);
+
+            this.toggle_seletor_subquestoes(bloco, 'mostra');
+
+            // popula com novos
+
+            subquestoes.forEach( (subquestao, i) => {
+
+                const new_option = document.createElement('option');
+
+                new_option.value = i;
+
+                new_option.text = subquestao;
+
+                seletor.append(new_option);
+
+            });
+
+        },
+
         monitor_selector : function() {
 
             const seletores = document.querySelectorAll(this.ref_principal);
@@ -965,14 +1020,36 @@ const vis = {
 
                 seletor.addEventListener('change', function(e) {
 
-                    const opcao = e.target.value;
-                    const tipo = vis.data.tipos_perguntas[opcao]
+                    const questao = e.target.value;
+                    const tipo = vis.data.tipos_perguntas[questao]
 
                     const bloco = e.target.dataset.bloco;
 
-                    console.log("Usuário escolheu a opção ", opcao, ", é uma pergunta do tipo ", tipo);
+                    // limpa subquestoes
+
+                    vis.selectors.limpa_subquestoes(bloco);
+
+                    console.log("Usuário escolheu a opção ", questao, ", é uma pergunta do tipo ", tipo);
                     console.log(e);
                     console.log(e.target, e.target.dataset.bloco);
+
+                    if (tipo == 'multiplas com escala') {
+
+                        vis.selectors.popula_subquestoes(bloco, questao);
+                        // aciona flag (para o cálculo do tamanho do svg)
+                        vis.control.state.tem_subquestao = true;
+
+                    } else {
+
+                        // hide subquestoes
+                        vis.selectors.toggle_seletor_subquestoes(bloco, 'esconde');
+
+                        vis.control.state.tem_subquestao = false;
+
+
+                        // render
+
+                    }
 
                 })
 
@@ -1016,7 +1093,8 @@ const vis = {
             first_transition : true,
             first_delhamento : true,
             current_variable : null,
-            current_detalhamento: "nenhum"
+            current_detalhamento: "nenhum",
+            tem_subquestao : false
 
         },
 
