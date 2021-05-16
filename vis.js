@@ -1223,6 +1223,8 @@ const vis = {
 
                 console.log('opacao cliada', bloco);
 
+                if (vis.control.state.current_bloco) vis.selectors.toggle_seletor_subquestoes(vis.control.state.current_bloco, 'esconde');
+
                 vis.selectors.update_selectors(bloco);
                 vis.selectors.limpa_seletor(bloco);
                 vis.control.remove_labels();
