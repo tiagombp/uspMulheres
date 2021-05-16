@@ -170,7 +170,7 @@ h2.section-title {
 
 .slide {
 
-    margin-top: 2rem;
+    /*margin-top: 2rem;*/
 
     height: 100vh;
     width: 100%; /* eventualmente limitar para o caso de telas muito grandes*/
