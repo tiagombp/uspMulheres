@@ -1352,7 +1352,7 @@ const vis = {
                         vis.control.state.current_detalhamento = "nenhum";
                         vis.control.draw_state(
                             vis.control.state.current_bloco,
-                            vis.control.state.current_questao,
+                            vis.control.state.current_variable,
                             vis.control.current_subquestao
                         );
                         
