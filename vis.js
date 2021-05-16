@@ -52,7 +52,7 @@ const vis = {
             largura : 4,
             altura : 4,
             espacamento : 2,
-            margem_entre_barras : 30,
+            margem_entre_barras : 25,
             margem_minima_entre_grupos_det : 30
 
         },
@@ -1071,9 +1071,11 @@ const vis = {
                 seletor.addEventListener('change', function(e) {
 
                     const questao = e.target.value;
-                    const tipo = vis.data.tipos_perguntas[questao]
-
+                    const tipo = vis.data.tipos_perguntas[questao];
                     const bloco = e.target.dataset.bloco;
+
+                    // se tiver um botao selecionado, tira a seleção
+                    vis.control.deactivates_buttons();
 
                     // limpa subquestoes
 
@@ -1104,6 +1106,8 @@ const vis = {
                         vis.control.draw_state(bloco, questao);
 
                     }
+
+                    vis.control.habilita_botoes();
 
                 })
 
@@ -1285,7 +1289,10 @@ const vis = {
                         console.log("Variavel atual", vis.control.state.current_variable);
 
                         vis.control.state.current_detalhamento = "nenhum";
-                        vis.control.draw_state(vis.control.state.current_variable);
+                        vis.control.draw_state(
+                            vis.control.state.current_bloco,
+                            vis.control.state.current_questao
+                        );
                         
 
                     } else {
