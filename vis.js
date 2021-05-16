@@ -1357,7 +1357,7 @@ const vis = {
                         vis.control.draw_state(
                             vis.control.state.current_bloco,
                             vis.control.state.current_variable,
-                            vis.control.current_subquestao
+                            vis.control.state.current_subquestao
                         );
                         
 
