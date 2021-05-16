@@ -17,7 +17,7 @@
 
     --width : 620px;
 
-    --size-label-secundario : 12px;
+    --size-label-secundario : 10px;
     --padding-bottom-label  : 5px;
 
     --nav-height: 3rem;
@@ -337,8 +337,8 @@ svg rect {
 
 }
 
-.container-svg p.main-label, 
-.container-svg p.sec-label {
+p.main-label, 
+p.sec-label {
 
     position: absolute;
     transform: translateY(-100%);
