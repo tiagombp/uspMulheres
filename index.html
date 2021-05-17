@@ -13,77 +13,120 @@
 </head>
 <body>
     <div class="container">
-        <div class="inner-container">
-            <div class="slide intro">
 
-                <h1> Impactos da Covid-19 entre as mulheres e os homens da USP </h1>
+        <section class="slide first">
 
-                <p> A premissa norteadora deste levantamento é que as diferenças de gênero, cor/etnia, somadas às diferenças socioeconômicas e
-                do tipo de vínculo mantido com a Universidade de São Paulo produzem relações diferenciadas
-                com esta pandemia. </p> 
+            <div class="intro">
 
-            </div>
+                <h1>Impactos da Covid-19 entre as mulheres e os homens da USP </h1>
+
+                <p>Principais resultados da pesquisa que buscou investigar como os membros da comunidade universitária estão vivenciando os múltiplos desafios trazidos pela Covid-19. </p> 
 
 
-            <div class="slide" data-pergunta="G7Q00002">
 
-                <h2 class="sticky">Facetas</h2>
 
             </div>
 
-            <div class="slide" data-pergunta="G7Q00003">
-
-                <h3>7.3.Cor (IBGE)</h3>
-
-            </div>
-
-            <div class="slide" data-pergunta="G2Q00001">
-
-                <h3>1.1.Seu vínculo atual com a USP é como</h3>
-
-            </div>
-
-            <div class="slide" data-pergunta="G3Q00006">
-
-                <h3>2.20.É responsável por criança ou adolescente?</h3>
-
-            </div>
+            <a class="arrow-start" href="#vis">v</a> 
+            
+        </section>
 
 
+        <section class="inner-container container-perguntas" id="vis">
 
-            <div class="vis">
+            <nav>
+                <a href="#vis" data-nav-option="facetas" class="selected">Facetas</a>
+                <a href="#vis" data-nav-option="trabalho_estudo">Trabalho e Estudo</a>
+                <a href="#vis" data-nav-option="renda">Renda</a>
+                <a href="#vis" data-nav-option="saude">Saúde</a>
+                <a href="#vis" data-nav-option="interacoes_lar">Interações no Lar</a>
+            </nav>
 
-                <div class="selector">
-                    <select name="perguntas" id="seletor-perguntas">
+            <div class="inner-container-selector">
+
+                <div class="selector pergunta visivel">
+                    <select name="perguntas-facetas" class="seletor-perguntas" data-bloco="facetas">
                         <option value="nenhum">--Escolha a pergunta--</option>
                         <option value="vinculo">Seu vínculo atual com a USP é como ...</option>
                         <option value="genero">Gênero</option>
                         <option value="cor">Cor (IBGE)</option>
                     </select>
-
+                </div>
+                <div class="selector subquestao escondido">
+                    <select name="subquestoes-facetas" class="seletor-subquestoes" data-bloco="facetas" >
+                        <option value="nenhum">--Escolha a opção--</option>
+                    </select>
                 </div>
 
-                <div class="outer-container-svg">
-
-                    <div class="buttons">
-                        <button data-opcao="nenhum" class="selected">Nenhum</button>
-                        <button data-opcao="vinculo">Vínculo</button>
-                        <button data-opcao="genero">Gênero</button>
-                        <button data-opcao="cor">Cor / Etnia</button>
-                    </div>
-
-                    <div class="container-svg">
-
-                        <svg></svg>
-    
-                    </div>
-
+                <div class="selector pergunta">
+                    <select name="perguntas-trabalho" class="seletor-perguntas" data-bloco="trabalho_estudo">
+                        <option value="nenhum">--Escolha a pergunta--</option>
+                    </select>
                 </div>
+                <div class="selector subquestao escondido">
+                    <select name="subquestoes-trabalho_estudo" class="seletor-subquestoes" data-bloco="trabalho_estudo" >
+                        <option value="nenhum">--Escolha a opção--</option>
+                    </select>
+                </div>
+
+                <div class="selector pergunta">
+                    <select name="perguntas-renda" class="seletor-perguntas" data-bloco="renda">
+                        <option value="nenhum">--Escolha a pergunta--</option>
+                    </select>
+                </div>
+                <div class="selector subquestao escondido">
+                    <select name="subquestoes-renda" class="seletor-subquestoes" data-bloco="renda" >
+                        <option value="nenhum">--Escolha a opção--</option>
+                    </select>
+                </div>
+
+                <div class="selector pergunta">
+                    <select name="perguntas-saude" class="seletor-perguntas" data-bloco="saude">
+                        <option value="nenhum">--Escolha a pergunta--</option>
+                    </select>
+                </div>
+                <div class="selector subquestao escondido">
+                    <select name="subquestoes-saude" class="seletor-subquestoes" data-bloco="saude" >
+                        <option value="nenhum">--Escolha a opção--</option>
+                    </select>
+                </div>
+
+                <div class="selector pergunta">
+                    <select name="perguntas-lar" class="seletor-perguntas" data-bloco="interacoes_lar">
+                        <option value="nenhum">--Escolha a pergunta--</option>
+                    </select>
+                </div>
+
+                <div class="selector subquestao escondido">
+                    <select name="subquestoes-interacoes_lar" class="seletor-subquestoes" data-bloco="interacoes_lar" >
+                        <option value="nenhum">--Escolha a opção--</option>
+                    </select>
+                </div>
+
+
+
 
 
             </div>
 
-        </div>
+            <div class="outer-container-svg">
+
+                <div class="buttons">
+                    <button data-opcao="nenhum" class="selected">Nenhum</button>
+                    <button data-opcao="vinculo">Vínculo</button>
+                    <button data-opcao="genero">Gênero</button>
+                    <button data-opcao="cor">Cor / Etnia</button>
+                </div>
+
+                <div class="container-svg">
+
+                    <svg></svg>
+
+                </div>
+
+            </div>
+
+        </section>
 
     </div>
 

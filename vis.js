@@ -4,9 +4,11 @@ const vis = {
 
         svg : "svg",
         container_svg : "div.container-svg",
-        vis : "div.vis",
-        seletor : "div.selector",
-        caixa_selecao : "#seletor-perguntas",
+        outer_container_svg : ".outer-container-svg",
+        vis_slide : ".slide",
+        nav : 'nav',
+        seletor : ".selector",
+        caixa_selecao : ".seletor-perguntas",
         buttons : ".buttons"
 
     },
@@ -32,6 +34,7 @@ const vis = {
 
         svg : null,
         container_svg : null,
+        outer_container_svg : null,
         vis : null,
         seletor : null,
         caixa_selecao : null,
@@ -46,17 +49,19 @@ const vis = {
 
         dots : {
 
-            largura : 5,
-            altura : 5,
+            largura : 4,
+            altura : 4,
             espacamento : 2,
-            margem_entre_barras : 50,
-            margem_minima_entre_grupos_det : 30
+            margem_entre_barras : 25,
+            margem_minima_entre_grupos_det : 35
 
         },
 
         palette : ["#ea7393", "#f495ab", "#a8596f", "#ccccc4", "khaki"],
 
         variaveis_detalhamento : ["vinculo", "genero", "cor"],
+
+        pergunta_dados_basicos : 'G3Q00006',
 
         from_data : {
 
@@ -65,6 +70,8 @@ const vis = {
             qde_fileira_ajustada   : null,
             largura_grupo          : null,
             margem_minima_ajustada : null,
+            n_w : null,
+            espacamento : null,
 
             dominio_var_detalhamento : {
 
@@ -75,14 +82,15 @@ const vis = {
                 "cor"     : null
             }
 
-        }
+        },
 
     },
 
     dims : {
 
-        vis : null,
+        vis_slide : null,
         seletor : null,
+        nav : null,
         svg : {
 
             height : null,
@@ -104,9 +112,12 @@ const vis = {
     data : {
 
         raw : null,
+        selected : null,
         sumario : null,
         maximos_valores_variaveis_detalhamento : null,
-        posicoes_iniciais_det : null
+        posicoes_iniciais_det : null,
+
+        tipos_perguntas : {}
 
     },
 
@@ -116,7 +127,7 @@ const vis = {
 
             get_vsizes : function() {
 
-                const sizes = ["vis", "seletor", "buttons"];
+                const sizes = ["vis_slide", "nav", "seletor", "buttons"];
 
                 sizes.forEach(size => {
 
@@ -144,12 +155,18 @@ const vis = {
 
             set_vsize_svg : function() {
 
-                const svg_height = vis.dims.vis - vis.dims.seletor - vis.dims.buttons;
+                const svg_height = vis.dims.vis_slide - vis.dims.nav - vis.dims.seletor - vis.dims.buttons;
 
                 vis.dims.svg.height = svg_height;
 
                 vis.sels.svg.attr("height", svg_height);
                 vis.sels.container_svg.style("height", svg_height + "px");
+                //vis.sels.outer_container_svg.style('height', (svg_height + vis.dims.buttons) + 'px');
+
+                //console.log('Dimensionando svg. outer container: ', svg_height + vis.dims.buttons, vis.sels.outer_container_svg.style('height'))
+
+                //vis.sels.outer_container_svg.style("top", vis.dims.seletor + "px");
+                //vis.sels.outer_container_svg.style("padding-top", vis.dims.seletor + vis.dims.nav + "px");
 
             },
 
@@ -271,8 +288,11 @@ const vis = {
 
                 };
 
+                console.log('resizing svg', area_transversal_grafico, altura_liquida_svg, altura_svg, ajuste);
+
                 vis.sels.svg.attr("height", altura_svg + ajuste);
                 vis.sels.container_svg.style("height", altura_svg + ajuste + "px");
+                //vis.sels.outer_container_svg.style('height', (altura_svg + ajuste + vis.dims.buttons) + 'px');
 
             },
 
@@ -287,7 +307,7 @@ const vis = {
             sumariza_dados : function(criterio, ordena = false, vetor_ordem) {
 
                 const sumario = [];
-                const dados = vis.data.raw;
+                const dados = vis.data.selected;
                 let categorias_unicas;
     
                 // gera array com os valores únicos dessa variável categórica
@@ -382,7 +402,7 @@ const vis = {
 
             prepara_dados : function(criterio, ordena = false, vetor_ordem) {
 
-                const dados = vis.data.raw;
+                const dados = vis.data.selected;
 
                 // determina valores únicos
                 let dados_sumarizados = this.sumariza_dados(criterio, ordena, vetor_ordem);
@@ -503,7 +523,8 @@ const vis = {
 
                         const qde_fileiras_longitudinais_grupo = Math.ceil(qde_maxima / qde_linhas_grid);
 
-                        const tamanho_atual = qde_fileiras_longitudinais_grupo * (vis.params.dots.largura + vis.params.dots.espacamento) + vis.params.dots.margem_minima_entre_grupos_det;
+                        const tamanho_atual = qde_fileiras_longitudinais_grupo * (vis.params.dots.largura + vis.params.dots.espacamento) + vis.params.dots.margem_minima_entre_grupos_det * (qde_fileiras_longitudinais_grupo>0);
+                        // incluí esse último termo porque às vezes o grupo pode ficar sem nenhuma observação, mas ele acabava deslocando pelo valor da margem_minima.
 
                         posicao_acumulada += tamanho_atual;
 
@@ -726,7 +747,7 @@ const vis = {
 
         read_data : function() {
 
-            d3.csv("./dados.csv").then(function(data) {
+            d3.json("./output.json").then(function(data) {
 
                 vis.data.raw = data;
                 vis.control.begin();
@@ -751,9 +772,12 @@ const vis = {
             const n_w = Math.ceil(svg_net_width / espacamento);
             const n_h = Math.floor(svg_net_height / espacamento);
 
+            vis.params.from_data.n_w = n_w;
+            vis.params.from_data.espacamento = espacamento;
+
             vis.sels.rects = vis.sels.svg
               .selectAll("rect.pessoas")
-              .data(vis.data.raw)
+              .data(vis.data.selected)
               .join("rect")
               .classed("pessoas", true)
               .attr("height", vis.params.dots.altura)
@@ -761,6 +785,21 @@ const vis = {
               .attr("fill", "#70424E")
               .attr("x", (d,i) => vis.dims.svg.margins.left + ( (i % n_w) * espacamento ) )
               .attr("y", (d,i) => vis.dims.svg.margins.top + ( (Math.floor(i/n_w)) * espacamento) );
+
+        },
+
+        move_rects_background : function() {
+
+            const n_w = vis.params.from_data.n_w;
+            const espacamento = vis.params.from_data.espacamento;
+
+            vis.sels.rects
+              .transition()
+              .duration(500)
+              .attr("fill", "#70424E")
+              .attr("x", (d,i) => vis.dims.svg.margins.left + ( (i % n_w) * espacamento ) )
+              .attr("y", (d,i) => vis.dims.svg.margins.top + ( (Math.floor(i/n_w)) * espacamento) )
+            ;
 
         },
 
@@ -797,9 +836,26 @@ const vis = {
 
         },
 
+        update_data_join : function() {
+
+            vis.sels.rects = vis.sels.svg
+              .selectAll("rect.pessoas")
+              .data(vis.data.selected)
+              .join("rect")
+              .classed("pessoas", true)
+              .attr("height", vis.params.dots.altura)
+              .attr("width", vis.params.dots.largura);
+
+            console.log('exit selection', vis.sels.rects.exit());
+
+            vis.sels.rects.exit().remove();
+
+
+        },
+
         update_colors : function(delay) {
 
-            const variavel = vis.control.state.current_variable;
+            const variavel = vis.control.state.current_opcao;
             const vetor_categorias = vis.data.sumario.map(d => d.categoria);
 
             console.log("Variavel atual", vis.control.state.current_variable);
@@ -845,7 +901,7 @@ const vis = {
                 " <strong>" + 
                 d.contagem + 
                 "</strong> (" + 
-                d3.format(".000%")(d.contagem / vis.params.from_data.qde_pontos) + 
+                d3.format(".000%")(d.contagem / vis.data.selected.length) + 
                 ")")
               .style("opacity", 0);
 
@@ -904,7 +960,331 @@ const vis = {
                 .transition()
                 .delay(delay)
                 .duration(1000)
-                .style("opacity", 1);
+                .style("opacity", d => vis.data.maximos_valores_variaveis_detalhamento[detalhamento][d.label] == 0 ? 0 : 1);
+                // testa se a quantidade máxima do subgrupo é 0, se for, não posiciona o label, para evitar sobreposição.
+
+            vis.sels.labels_secundarios
+              .classed('overflow', function(d) {
+
+                const sel = d3.select(this);
+
+                const pos_final = (+sel.style('left').slice(0,-2)) + (+sel.style('width').slice(0,-2));
+
+                //console.log("checa overflow", sel.style('left'), sel.style('width'), pos_final, window.innerWidth);
+
+                return(pos_final >= window.innerWidth);
+
+            })
+
+        }
+
+    },
+
+    selectors : {
+
+        ref_principal : '.seletor-perguntas',
+
+        ref_subquestoes : '.seletor-subquestoes',
+
+        popula_perguntas : function() {
+
+            const seletores = document.querySelectorAll(this.ref_principal);
+
+            seletores.forEach(seletor => {
+
+                const nome_bloco = seletor.dataset.bloco;
+
+                const bloco = vis.data.raw[nome_bloco]
+
+                const cod_questoes = Object.keys(bloco);
+
+                cod_questoes.forEach(questao => {
+                    
+                    const nome_completo = bloco[questao].nome_completo[0];
+                    const tipo_pergunta = bloco[questao].tipo[0];
+
+                    const new_option = document.createElement('option');
+                    new_option.value = questao; //== vis.params.pergunta_dados_basicos ? 'resposta' : questao; //1
+                    new_option.text = nome_completo + ' (' + questao + ')';
+                    seletor.append(new_option);
+
+                    //seletor[questao] = new Option(nome_completo + ' (' + questao + ')', questao);
+
+                    // cria um dicionario questao : tipo
+                    vis.data.tipos_perguntas[questao] = tipo_pergunta;
+
+                    
+                });
+
+            })
+
+        },
+
+        limpa_seletor : function(bloco) {
+
+            document.querySelector(this.ref_principal + '[data-bloco="' + bloco + '"]').selectedIndex = 0;
+
+        },
+
+        limpa_subquestoes : function(bloco) {
+
+            console.log('limpando subquestoes')
+
+            const seletor = document.querySelector(this.ref_subquestoes + '[data-bloco = "' + bloco + '"]');
+
+            while (seletor.lastChild) {
+        
+                // preserva a opção default
+                if (seletor.lastChild.value != 'nenhum') seletor.removeChild(seletor.lastChild);
+                else break;
+
+            }
+
+            document.querySelector(this.ref_subquestoes + '[data-bloco="' + bloco + '"]').selectedIndex = 0;
+            
+            // // readiciona a opção padrão
+            
+            // const default_option = document.createElement('option');
+            // default_option.value = 'nenhum';
+            // default_option.text = '--Escolha a opção--';
+            // seletor.append(default_option);
+
+        },
+
+        toggle_seletor_subquestoes : function(bloco, toggle = 'esconde') {
+
+            // esconde / mostra
+
+            const seletor = document.querySelector(this.ref_subquestoes + '[data-bloco = "' + bloco + '"]');
+
+            const container = seletor.parentElement;
+
+            const method = toggle == 'esconde' ? 'add' : 'remove';
+
+            container.classList[method]('escondido');
+
+
+        },
+
+        popula_subquestoes : function(bloco, questao) {
+
+            const seletor = document.querySelector(this.ref_subquestoes + '[data-bloco = "' + bloco + '"]');
+
+            console.log('seletor: ', seletor);
+
+            console.log('opa, populando subquestoes...', questao);
+
+            const subquestoes = Object.keys(vis.data.raw[bloco][questao].dados);
+
+            this.toggle_seletor_subquestoes(bloco, 'mostra');
+
+            // popula com novos
+
+            subquestoes.forEach( (subquestao, i) => {
+
+                const new_option = document.createElement('option');
+
+                new_option.value = i;
+
+                new_option.text = subquestao;
+
+                seletor.append(new_option);
+
+            });
+
+        },
+
+        monitor_selector : function() {
+
+            const seletores = document.querySelectorAll(this.ref_principal);
+
+            seletores.forEach(function(seletor) {
+
+                console.log('monitoring seletor ', seletor.dataset.bloco);
+
+                seletor.addEventListener('change', function(e) {
+
+                    const questao = e.target.value;
+                    const tipo = vis.data.tipos_perguntas[questao];
+                    const bloco = e.target.dataset.bloco;
+
+                    // se tiver um botao selecionado, tira a seleção
+                    vis.control.deactivates_buttons();
+
+                    // limpa subquestoes
+
+                    vis.selectors.limpa_subquestoes(bloco);
+
+                    console.log("Usuário escolheu a opção ", questao, ", é uma pergunta do tipo ", tipo);
+                    console.log(e);
+                    console.log(e.target, e.target.dataset.bloco);
+
+                    // armazena ultima seleção para o caso de o usuário voltar ao bloco
+                    vis.control.state.ultima_selecao_grupo[bloco] = questao;
+
+                    if (tipo == 'multiplas com escala') {
+
+                        vis.control.state.current_questao = questao;
+                        vis.selectors.popula_subquestoes(bloco, questao);
+                        // aciona flag (para o cálculo do tamanho do svg)
+                        vis.control.state.tem_subquestao = true;
+
+                    } else {
+
+                        // hide subquestoes
+                        vis.selectors.toggle_seletor_subquestoes(bloco, 'esconde');
+
+                        vis.control.state.tem_subquestao = false;
+                        vis.control.state.current_subquestao = null;
+                        console.log('current subquestao ficou null');
+
+
+                        // render
+                        vis.control.draw_state(bloco, questao);
+
+                    }
+
+                    vis.control.habilita_botoes();
+
+                    if (vis.params.variaveis_detalhamento.includes(questao)) vis.control.desabilita_botao(questao);
+
+                })
+
+            })
+
+            // vis.sels.caixa_selecao.on("change", function(e) {
+
+            //     // se tiver um botao selecionado, tira a seleção
+            //     vis.control.deactivates_buttons();
+
+            //     const opcao = e.target.value;
+
+            //     const tipo = e.target.dataset.tipoPergunta;
+
+            //     console.log("Usuário escolheu a opção ", opcao, ", é uma pergunta do tipo ", tipo);
+
+            //     if (opcao != "nenhum") {
+
+            //         //vis.control.draw_state(opcao);
+
+            //     }
+
+            //     // testa se a opcão escolhida no seletor é uma das variáveis de detalhamento, e desabilita o botão respectivo, se for
+
+            //     vis.control.habilita_botoes();
+
+            //     if (vis.params.variaveis_detalhamento.includes(opcao)) {
+            //         vis.control.desabilita_botao(opcao);
+            //     } 
+
+            // })
+
+        },
+
+        monitor_subquestoes : function() {
+
+            const seletores = document.querySelectorAll(this.ref_subquestoes);
+
+            seletores.forEach(function(seletor) {
+
+                console.log('monitoring seletor subquestao ', seletor.dataset.bloco);
+
+                seletor.addEventListener('change', function(e) {
+
+                    vis.control.deactivates_buttons();
+
+                    const index_subquestao = e.target.value;
+                    const questao = vis.control.state.current_questao;
+                    const bloco = seletor.dataset.bloco;
+
+                    const subquestao = Object.keys(vis.data.raw[bloco][questao].dados)[index_subquestao];
+
+                    vis.control.state.tem_subquestao = true;
+                    vis.control.state.current_subquestao = subquestao;
+                    console.log('subquestao virou ', subquestao);
+
+                    console.log('vamos renderizar essa sub ', subquestao);
+
+                    vis.control.draw_state(bloco, questao, subquestao);
+
+                })
+
+            });
+
+        },
+
+        update_selectors : function(bloco) {
+
+            console.log("Vamos mostrar o seletor de ", bloco);
+
+            const seletores = document.querySelectorAll(this.ref_principal);
+
+            seletores.forEach(seletor => {
+
+                if (seletor.dataset.bloco == bloco) seletor.parentElement.classList.add('visivel');
+                else (seletor.parentElement.classList.remove('visivel'))
+
+            })
+
+        }
+
+    },
+
+    nav : {
+
+        ref : () => vis.refs.nav,
+
+        monitor_clicks : function() {
+
+            const ref = this.ref();
+
+            const nav = document.querySelector(ref);
+
+            nav.addEventListener('click', function(e) {
+
+                const bloco = e.target.dataset.navOption;
+
+                vis.control.deactivates_buttons();
+                vis.control.desabilita_botao('todos');
+
+                vis.nav.update_selected(bloco);
+
+                console.log('opacao cliada', bloco);
+
+                if (vis.control.state.current_bloco) vis.selectors.toggle_seletor_subquestoes(vis.control.state.current_bloco, 'esconde');
+
+                vis.selectors.update_selectors(bloco);
+                vis.selectors.limpa_seletor(bloco);
+                vis.control.remove_labels();
+                vis.control.remove_labels_detalhamento();
+                vis.render.move_rects_background();
+
+
+            })
+
+        },
+
+        update_selected : function(bloco) {
+
+            const ref = this.ref();
+
+            const nav = document.querySelector(ref);
+
+            Array.from(nav.children).forEach(a => {
+
+                if (a.dataset.navOption != bloco) {
+
+                    a.classList.remove('selected');
+
+                } else {
+
+                    a.classList.add('selected')
+
+                }
+
+            });
+
+
 
         }
 
@@ -916,8 +1296,22 @@ const vis = {
 
             first_transition : true,
             first_delhamento : true,
+            current_questao : null,
+            current_subquestao : null,
+            current_bloco: null,
             current_variable : null,
-            current_detalhamento: "nenhum"
+            current_opcao : null,
+            current_detalhamento: "nenhum",
+            tem_subquestao : false,
+            ultima_selecao_grupo : {
+
+                facetas : null,
+                trabalho_estudo : null,
+                renda : null,
+                saude : null,
+                interacoes_lar : null
+
+            }
 
         },
 
@@ -976,36 +1370,22 @@ const vis = {
 
         remove_labels_detalhamento : function() {
 
-            if (vis.sels.labels_secundarios) vis.sels.labels_secundarios.remove();
+            if (vis.sels.labels_secundarios) {
+                
+                vis.sels.labels_secundarios.transition().duration(500).style('opacity', 0);
+                vis.sels.labels_secundarios.remove();
+
+            }
 
         },
 
-        monitor_selector : function() {
+        remove_labels : function() {
 
-            vis.sels.caixa_selecao.on("change", function(e) {
-
-                // se tiver um botao selecionado, tira a seleção
-                vis.control.deactivates_buttons();
-
-                const opcao = e.target.value;
-
-                console.log("Usuário escolheu a opção ", opcao);
-
-                if (opcao != "nenhum") {
-
-                    vis.control.draw_state(opcao);
-
-                }
-
-                // testa se a opcão escolhida no seletor é uma das variáveis de detalhamento, e desabilita o botão respectivo, se for
-
-                vis.control.habilita_botoes();
-
-                if (vis.params.variaveis_detalhamento.includes(opcao)) {
-                    vis.control.desabilita_botao(opcao);
-                } 
-
-            })
+            if (vis.sels.labels) {
+                
+                vis.sels.labels.transition().duration(500).style('opacity', 0);
+                vis.sels.labels.remove();
+            }
 
         },
 
@@ -1029,7 +1409,11 @@ const vis = {
                         console.log("Variavel atual", vis.control.state.current_variable);
 
                         vis.control.state.current_detalhamento = "nenhum";
-                        vis.control.draw_state(vis.control.state.current_variable);
+                        vis.control.draw_state(
+                            vis.control.state.current_bloco,
+                            vis.control.state.current_variable,
+                            vis.control.state.current_subquestao
+                        );
                         
 
                     } else {
@@ -1044,7 +1428,40 @@ const vis = {
 
         },
 
-        draw_state : function(opcao) {
+        draw_state : function(bloco, questao, subquestao = null) {
+
+            // a opcao agora a ser selecionada é sempre o campo 'resposta'. Só é preciso passar o dataset correto, conforme a seleção do bloco e questão.
+            // a não ser que sejam as facetas, aí a opção vai ser a "questão" (que na verdade traz o valor da opção selecionada, que, no caso do bloco facetas, são os nomes das variáveis de detalhamento)
+
+            let opcao;
+
+            if ( vis.params.variaveis_detalhamento.includes(questao) ) {
+
+                opcao = questao;
+                questao = vis.params.pergunta_dados_basicos;
+                vis.control.state.current_variable = opcao;
+
+            } else {
+
+                opcao = 'resposta';
+                vis.control.state.current_variable = questao;
+
+            }
+
+            vis.control.state.current_opcao = opcao;
+
+            console.log('renderizar... \n Bloco: ', bloco, '\n Questao: ', questao, '\nOpcao: ', opcao, '\nSubquestao:', subquestao);
+
+            if (subquestao) {
+
+                vis.data.selected = vis.data.raw[bloco][questao].dados[subquestao];
+                console.log('Tem subquestao!');
+
+            } else {
+
+                vis.data.selected = vis.data.raw[bloco][questao].dados;
+
+            }
 
             if (vis.control.state.first_transition) {
                 vis.control.state.first_transition = false;
@@ -1054,7 +1471,9 @@ const vis = {
 
             console.log("Desenhar estado ", opcao, vis.control.state.current_variable);
 
-            vis.control.state.current_variable = opcao;
+            vis.control.state.current_bloco = bloco;
+            vis.control.state.current_questao = questao;
+            
             vis.control.state.current_detalhamento = "nenhum";
             vis.control.remove_labels_detalhamento();
             vis.control.state.first_detalhamento = true;
@@ -1065,6 +1484,9 @@ const vis = {
             );
 
             vis.utils.sizings.recalcula_altura_svg();
+
+            // update data
+            vis.render.update_data_join();
 
             vis.render.update_colors(delay = 1000);
 
@@ -1129,7 +1551,12 @@ const vis = {
 
             // tudo que depende dos dados vai aqui.
 
-            vis.params.from_data.qde_pontos = vis.data.raw.length;
+            vis.selectors.popula_perguntas();
+
+            // inicializa data selected
+            vis.data.selected = vis.data.raw.facetas[vis.params.pergunta_dados_basicos].dados;
+
+            vis.params.from_data.qde_pontos = vis.data.selected.length;
 
             vis.utils.data_processing.gera_dominio_ordenado_variaveis_detalhamento();
 
@@ -1143,8 +1570,10 @@ const vis = {
 
             vis.control.initialize_selections();
             vis.control.monitor_buttons();
+            vis.nav.monitor_clicks();
             vis.control.desabilita_botao("todos");
-            vis.control.monitor_selector();
+            vis.selectors.monitor_selector();
+            vis.selectors.monitor_subquestoes();
             vis.control.initialize_styles();
             vis.utils.sizings.get_vsizes();
             vis.utils.sizings.set_vsize_svg();

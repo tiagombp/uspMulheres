@@ -17,8 +17,10 @@
 
     --width : 620px;
 
-    --size-label-secundario : 12px;
+    --size-label-secundario : 10px;
     --padding-bottom-label  : 5px;
+
+    --nav-height: 3rem;
 
 }
 
@@ -28,11 +30,132 @@
     box-sizing: border-box;
 }
 
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+body {
+
+}
+
+.container {
+    overflow-x: hidden;
+}
+
+/* navegação */
+
+.container-perguntas {
+    position: relative;
+    height: 100vh;
+}
+
+nav {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    /*align-items: center;*/
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0;
+    height: var(--nav-height);
+    background-color: white;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+
+}
+
+nav a {
+
+    text-decoration: none;
+    color: var(--cor-fundo);
+    font-family: var(--fonte-corpo);
+    /*margin: .5rem 0;*/
+    text-transform: uppercase;
+    letter-spacing: .1px;
+    /*height: 2rem;*/
+    flex: 1; /*0 0 10vw;*/
+    text-align: center;
+    /*border: 1px solid white;*/
+    font-size: .8rem;
+    /*padding: .2rem .4rem;*/
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    transition: border-width .8s, font-weight .8s;
+
+}
+
+nav a:hover {
+    background-color: var(--cor-fundo-seletor);
+    color: white;
+}
+
+nav a.selected {
+    font-weight: bold;
+    /*text-shadow: 0 0 3px var(--cor-fundo-seletor);*/
+    background-color: white;
+    color: var(--cor-fundo);
+    border: 1em solid white;
+    border-bottom: 1em solid var(--cor-fundo);
+    transition: border-width .8s, font-weight .8s;
+
+    /*
+    border-top: 2px solid var(--cor-fundo);
+    border-bottom: 2px solid var(--cor-fundo);*/
+}
+
+/* fim navegacao */
+
+/* seletor subquestao */
+
+.selector.pergunta {
+
+    display: none;
+
+}
+
+.selector.pergunta.visivel {
+
+    display: block;
+
+}
+
+.selector.escondido {
+
+    pointer-events: none;
+    opacity: 0;
+    padding: 0;
+    transform: translateY(-100%);
+    transition: opacity .5s, transform .5s, height .5s;
+    height: 0;
+
+}
+
+.selector.subquestao {
+
+    transition: opacity .5s, transform .5s, height .5s;
+    padding-top: 0;
+
+}
+
+.selector.subquestao select {
+    font-size: .7rem;
+}
+
+
 div.intro {
 
     max-width: 620px;
     margin: 0 auto;
     padding: 0 1rem;
+
+    margin-top: 50vh;
+    transform: translateY(-50%);
 
     font-family: var(--fonte-titulo);
     color: var(--cor-titulo);
@@ -41,53 +164,142 @@ div.intro {
 
 }
 
-div.inner-container p {
+.inner-container p {
     color: var(--cor-texto);
     font-family: var(--fonte-corpo);
     font-weight: 100;
 }
 
-div.vis {
+/*div.vis {*/
 
-    height: 100vh;
-    width: 100%; /* eventualmente limitar para o caso de telas muito grandes*/
-    background-color: var(--cor-fundo-seletor);
+.inner-container.vis {
+
+    position: relative;
 
 }
 
-div.vis > div.selector {
+article {
+    transform: translateY(-100vh);
+    scroll-snap-type: block mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+    /*scroll-behavior: smooth;*/
+}
+
+.slide.first {
+    background-color: var(--cor-fundo);
+    border: 1px solid var(--cor-fundo); /* para evitar margin-collapsing */
+}
+
+/* poderia usar uma utility class para marcar todos em que quero usar o double container pattern*/
+h2.section-title {
 
     max-width: var(--width);
     margin: 0 auto;
     padding: 1rem;
+    color: var(--cor-texto);
+    font-size: 2rem;
+
+
+}
+.arrow-start {
+
+    margin-top: 5rem;
+    display: block;
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: lighter;
+    font-size: 3rem;
+    transform: scale(1.5, 0.75);
+    /*text-shadow: 0 -1rem white;*/
+    animation: bounce 2s infinite;
+    text-decoration: none;
+    color: var(--cor-texto);
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: scale(1.5, 0.75) translateY(0);
+    }
+    40% {
+      transform: scale(1.5, 0.75) translateY(-30px);
+    }
+    60% {
+      transform: scale(1.5, 0.75) translateY(-15px);
+    }
+}
+
+.slide {
+
+    /*margin-top: 2rem;*/
+
+    height: 100vh;
+    width: 100%; /* eventualmente limitar para o caso de telas muito grandes*/
+    background-color: transparent;
+
+}
+
+/*div.vis > div.selector*/
+.inner-container-selector {
+
+    background-color: var(--cor-fundo);
+
+}
+
+.selector {
+
+    max-width: var(--width);
+    margin: 0 auto;
+    padding: .5rem 1rem;
+
+}
+
+.selector h3 {
+
+    margin-top: 0;
+    margin-bottom: .5rem;
+    color: var(--cor-texto);
+    font-size: 1.5rem;
 
 }
 
 .selector select {
 
     font-family: var(--fonte-corpo);
-    font-size: 1rem;
+    white-space: normal;
+    font-size: .8rem;
+    height: 2rem;
+    width: 100%;
     display: block;
     background: transparent;
     outline: none;
     border: none;
     color: var(--cor-texto);
+    text-overflow: ellipsis;
 
 }
 
-div.vis p {
+.selector option {
+
+    font-size: .8rem;
+    min-height: 1em;
+    color: #333;
+
+}
+
+/* div.vis p {
    
     margin: 0;
     padding: 1rem;
 
-}
+} */
 
-div.vis > div.selector > p {
+div.selector > p {
     padding: 0;
     display: inline;
 }
 
-div.vis div.buttons {
+div.buttons {
 
     display: flex;
     justify-content: center;
@@ -148,6 +360,8 @@ div.vis div.buttons {
 div.outer-container-svg {
 
     background-color: var(--cor-fundo-vis);
+    width: 100%;
+    /*height: calc(100vh - 2 * var(--nav-height) ); */
 
 }
 
@@ -184,13 +398,15 @@ svg rect {
 
 }
 
-.container-svg p.main-label, 
-.container-svg p.sec-label {
+p.main-label, 
+p.sec-label {
 
     position: absolute;
     transform: translateY(-100%);
     padding: 0;
     padding-bottom: var(--padding-bottom-label);
+    margin: 0;
+    font-size: .8rem;
 
 }
 
@@ -200,55 +416,10 @@ p.sec-label {
 
 }
 
-/* vamos tentar */
 
-html {
-    scroll-snap-type: block mandatory;
-    overflow-y: scroll;
-}
+p.sec-label.overflow {
 
-.sticky {
+    transform-origin: left top;
+    transform: rotate(-90deg) translate(20%, -20%);
 
-    position: sticky;
-    top: .5rem
-
-}
-
-.inner-container {
-    background-color: transparent;
-}
-
-.resultados {
-
-    max-width: 620px;
-    margin: 0 auto;
-    padding: 0 1rem;
-
-    font-family: var(--fonte-titulo);
-    color: var(--cor-titulo);
-    font-size: var(--tamanho);
-
-}
-
-.slide {
-
-    padding-top: 1rem;
-    max-width: 620px;
-    margin: 0 auto;
-    width: 100vw;
-    height: 100vh;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-    position: relative;
-
-    font-family: var(--fonte-titulo);
-    color: var(--cor-titulo);
-    font-size: var(--tamanho);
-
-}
-
-.slide > h2 {
-
-    /*font-family: "Esteban";*/
-    /*font-size: 1.5rem;*/
 }
