@@ -959,6 +959,19 @@ const vis = {
                 .style("opacity", d => vis.data.maximos_valores_variaveis_detalhamento[detalhamento][d.label] == 0 ? 0 : 1);
                 // testa se a quantidade máxima do subgrupo é 0, se for, não posiciona o label, para evitar sobreposição.
 
+            vis.sels.labels_secundarios
+              .classed('overflow', function(d) {
+
+                const sel = d3.select(this);
+
+                const pos_final = (+sel.style('left').slice(0,-2)) + (+sel.style('width').slice(0,-2));
+
+                //console.log("checa overflow", sel.style('left'), sel.style('width'), pos_final, window.innerWidth);
+
+                return(pos_final >= window.innerWidth);
+
+            })
+
         }
 
     },
