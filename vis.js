@@ -1024,15 +1024,19 @@ const vis = {
 
         limpa_subquestoes : function(bloco) {
 
+            console.log('limpando subquestoes')
+
             const seletor = document.querySelector(this.ref_subquestoes + '[data-bloco = "' + bloco + '"]');
 
-            while (seletor.firstChild) {
+            while (seletor.lastChild) {
         
                 // preserva a opção default
-                if (seletor.firstChild.value != 'nenhum') seletor.removeChild(seletor.firstChild);
+                if (seletor.lastChild.value != 'nenhum') seletor.removeChild(seletor.lastChild);
                 else break;
 
             }
+
+            document.querySelector(this.ref_subquestoes + '[data-bloco="' + bloco + '"]').selectedIndex = 0;
             
             // // readiciona a opção padrão
             
