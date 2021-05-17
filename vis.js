@@ -1240,6 +1240,9 @@ const vis = {
 
                 const bloco = e.target.dataset.navOption;
 
+                vis.control.deactivates_buttons();
+                vis.control.desabilita_botao('todos');
+
                 vis.nav.update_selected(bloco);
 
                 console.log('opacao cliada', bloco);
