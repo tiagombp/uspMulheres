@@ -223,7 +223,7 @@ h2.section-title {
 }
 .arrow-start {
 
-    margin-bottom: 1rem;
+    margin-top: 4rem;
     display: block;
     text-align: center;
     font-family: sans-serif;
@@ -233,7 +233,7 @@ h2.section-title {
     /*text-shadow: 0 -1rem white;*/
     animation: bounce 2s infinite;
     text-decoration: none;
-    color: var(--cor-texto);
+    color: white;
 }
 
 @keyframes bounce {
