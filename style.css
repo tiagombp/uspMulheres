@@ -51,6 +51,25 @@ body {
     height: 100vh;
 }
 
+.kicker {
+
+    font-size: 1rem;
+    display: block;
+    text-transform: uppercase;
+    font-family: var(--fonte-corpo);
+    font-weight: normal;
+    margin-bottom: 1rem;
+    color: var(--cor-texto);
+    letter-spacing: .1rem;
+
+}
+
+div.intro p {
+
+    color: var(--cor-texto);
+
+}
+
 nav {
 
     display: flex;
@@ -204,7 +223,7 @@ h2.section-title {
 }
 .arrow-start {
 
-    margin-top: 5rem;
+    margin-bottom: 1rem;
     display: block;
     text-align: center;
     font-family: sans-serif;
