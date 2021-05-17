@@ -361,7 +361,7 @@ div.outer-container-svg {
 
     background-color: var(--cor-fundo-vis);
     width: 100%;
-    height: calc(100vh - 2 * var(--nav-height) ); 
+    /*height: calc(100vh - 2 * var(--nav-height) ); */
 
 }
 

@@ -161,7 +161,7 @@ const vis = {
 
                 vis.sels.svg.attr("height", svg_height);
                 vis.sels.container_svg.style("height", svg_height + "px");
-                vis.sels.outer_container_svg.style('height', (svg_height + vis.dims.buttons) + 'px');
+                //vis.sels.outer_container_svg.style('height', (svg_height + vis.dims.buttons) + 'px');
 
                 //console.log('Dimensionando svg. outer container: ', svg_height + vis.dims.buttons, vis.sels.outer_container_svg.style('height'))
 
@@ -292,7 +292,7 @@ const vis = {
 
                 vis.sels.svg.attr("height", altura_svg + ajuste);
                 vis.sels.container_svg.style("height", altura_svg + ajuste + "px");
-                vis.sels.outer_container_svg.style('height', (altura_svg + ajuste + vis.dims.buttons) + 'px');
+                //vis.sels.outer_container_svg.style('height', (altura_svg + ajuste + vis.dims.buttons) + 'px');
 
             },
 
