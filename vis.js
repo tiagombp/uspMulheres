@@ -851,7 +851,7 @@ const vis = {
 
         update_colors : function(delay) {
 
-            const variavel = vis.control.state.current_variable;
+            const variavel = vis.control.state.current_opcao;
             const vetor_categorias = vis.data.sumario.map(d => d.categoria);
 
             console.log("Variavel atual", vis.control.state.current_variable);
@@ -1296,6 +1296,7 @@ const vis = {
             current_subquestao : null,
             current_bloco: null,
             current_variable : null,
+            current_opcao : null,
             current_detalhamento: "nenhum",
             tem_subquestao : false,
             ultima_selecao_grupo : {
@@ -1442,6 +1443,8 @@ const vis = {
                 vis.control.state.current_variable = questao;
 
             }
+
+            vis.control.state.current_opcao = opcao;
 
             console.log('renderizar... \n Bloco: ', bloco, '\n Questao: ', questao, '\nOpcao: ', opcao, '\nSubquestao:', subquestao);
 
