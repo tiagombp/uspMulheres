@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa Covid</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Yatra+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ovo&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+
+        <section class="slide first">
+
+            <div class="intro">
+
+                <h1>
+                    <span class="kicker">USP Mulheres</span>
+                    
+                    Impactos da Covid-19 entre as mulheres e os homens da USP </h1>
+
+                <p>Principais resultados da pesquisa que buscou investigar como os membros da comunidade universitária estão vivenciando os múltiplos desafios trazidos pela Covid-19. </p> 
+
+                <a class="arrow-start" href="#vis">v</a> 
+
+            </div>
+
+        </section>
+
+        <section class="inner-container container-perguntas" id="vis">
+
+            <nav>
+                <a href="#vis" data-nav-option="facetas" class="selected">Facetas</a>
+                <a href="#vis" data-nav-option="trabalho_estudo">Trabalho e Estudo</a>
+                <a href="#vis" data-nav-option="renda">Renda</a>
+                <a href="#vis" data-nav-option="saude">Saúde</a>
+                <a href="#vis" data-nav-option="interacoes_lar">Interações no Lar</a>
+            </nav>
+
+            <div role="tablist" aria-label="Seleção do grupo">
+
+                <button role="tab" aria-selected="true" aria-controls="trabalho-estudo" id="tab-trabalho-estudo" tabindex="0">
+                    Trabalho e Estudo
+                    </button>
+
+                <button role="tab" aria-selected="false" aria-controls="resto-cordoba" id="tab-resto-cordoba" tabindex="-1">
+                    Resto de Córdoba
+                    </button>
+
+            </div>
+
+
+            <div class="outer-container-svg">
+
+                <div class="buttons">
+                    <button data-opcao="nenhum" class="selected">Nenhum</button>
+                    <button data-opcao="vinculo">Vínculo</button>
+                    <button data-opcao="genero">Gênero</button>
+                    <button data-opcao="cor">Cor / Etnia</button>
+                </div>
+
+                <div class="container-svg">
+
+                    <svg></svg>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <script src="./d3.v6.min.js"></script>
+
+    <script src="./landing.js"></script>
+    
+</body>
+</html>
