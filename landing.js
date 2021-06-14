@@ -99,6 +99,120 @@ const vis = {
 
     },
 
+    structure : {
+
+        init : function() {
+
+            const data = vis.data.raw;
+            const grupos = Object.keys(data);
+
+
+            function build_grupo(grupo) {
+
+                if (grupo == "facetas") return;
+
+                console.log("Montando grupo: ", grupo);
+
+                const grupo_element = document.querySelector("article[data-grupo='" + grupo + "']");
+
+                const codigos_perguntas = Object.keys(data[grupo]);
+    
+                codigos_perguntas.forEach(codigo_pergunta => {
+    
+                    grupo_element.appendChild(vis.structure.build.common(grupo, codigo_pergunta));
+    
+                })
+
+            }
+
+            grupos.forEach(grupo => build_grupo(grupo));
+
+        },
+
+        build : {
+
+            // comun para todas as perguntas
+
+            "common" : function(grupo, codigo_pergunta) {
+
+                const data = vis.data.raw[grupo][codigo_pergunta];
+
+                const pergunta = data.nome_completo;
+
+                const section = document.createElement("section");
+                section.dataset.pergunta = pergunta;
+
+                const h2 = document.createElement("h2");
+                h2.innerText = pergunta + " (" + codigo_pergunta + ")";
+
+                section.appendChild(h2);
+
+                const tipo_pergunta = data.tipo[0];
+
+                section.appendChild(vis.structure.build[tipo_pergunta](data));
+
+                return section;
+
+            },
+
+            // especificidades de cada tipo de pergunta
+
+            "simples" : function(data) {
+
+                const container = document.createElement("div");
+                container.classList.add("svg-container");
+
+                const svg = document.createElement("svg");
+
+                container.appendChild(svg);
+
+                return container;
+            },
+
+            "multiplas com escala" : function(data) {
+
+                function build_sub_pergunta(sub_pergunta) {
+
+                    const section = document.createElement("section");
+                    section.dataset.sub_pergunta = sub_pergunta;
+
+                    const h3 = document.createElement("h3");
+                    h3.innerText = sub_pergunta;
+
+                    section.appendChild(h3);
+
+                    const container = document.createElement("div");
+                    container.classList.add("svg-container");
+    
+                    const svg = document.createElement("svg");
+                    container.appendChild(svg);
+
+                    section.appendChild(container);
+
+                    return section;
+
+                }
+
+                const container_sub_perguntas = document.createElement("div");
+
+                const sub_perguntas = Object.keys(data.dados);
+
+                sub_perguntas.forEach(sub_pergunta => {
+
+                    container_sub_perguntas.appendChild(
+                        build_sub_pergunta(sub_pergunta)
+                    )
+
+                })
+
+                return container_sub_perguntas;
+
+            }
+
+        }
+
+    },
+
     ctrl : {
 
         monitors : () => {

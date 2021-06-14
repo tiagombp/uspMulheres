@@ -48,7 +48,7 @@ body {
 
 .container-perguntas {
     position: relative;
-    height: 100vh;
+    /*height: 100vh;*/
 }
 
 .kicker {
@@ -216,16 +216,6 @@ article {
 }
 
 /* poderia usar uma utility class para marcar todos em que quero usar o double container pattern*/
-h2.section-title {
-
-    max-width: var(--width);
-    margin: 0 auto;
-    padding: 1rem;
-    color: var(--cor-texto);
-    font-size: 2rem;
-
-
-}
 .arrow-start {
 
     margin-top: 4rem;
@@ -265,12 +255,36 @@ h2.section-title {
 
 /* G R U P O */
 
-.grupo-outer-container {
+section[data-pergunta] {
 
-    max-width: 620px;
+    max-width: 630px;
     margin: 0 auto;
-    
+    padding: 0 10px;
+
 }
+
+section[data-pergunta] h2 {
+
+    color: var(--cor-texto);
+    font-size: 1.2rem;
+    /*font-family: var(--fonte-corpo);*/
+    font-family: var(--fonte-titulo);
+    font-weight: normal;
+
+}
+
+section[data-pergunta] h3 {
+
+    color: var(--cor-texto);
+    font-size: 1rem;
+    /*font-family: var(--fonte-corpo);*/
+    font-family: var(--fonte-titulo);
+    font-weight: normal;
+
+}
+
+
+/* F I M    G R U P O */
 
 
 
