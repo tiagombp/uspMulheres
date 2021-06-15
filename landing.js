@@ -6,7 +6,7 @@ const vis = {
 
         summarised : {},
 
-        filtered : null,
+        filtered : {},
 
         load : function() {
 
@@ -17,30 +17,53 @@ const vis = {
 
         },
 
-        summarise : function() {
+        summarise : function(filter = null) {
+
+            // filter tem que vir na forma de objeto, e.g.: {genero : "Masculino"}
 
             const data = vis.data.raw;
             const grupos = Object.keys(data);
 
-            function sumariza_grupo(grupo) {
+            function sumariza_grupo(grupo, filter) {
 
                 console.log("Grupo", grupo);
 
-                vis.data.summarised[grupo] = {};
+                const key = filter ? "filtered" : "summarised";
 
-                const summary = vis.data.summarised[grupo];
+                console.log(filter, key);
+
+                vis.data[key][grupo] = {};
+                const summary = vis.data[key][grupo];
 
                 const perguntas = Object.keys(data[grupo]);
 
                 perguntas.forEach(pergunta => {
 
-                    const tipo = data[grupo][pergunta].tipo;
+                    const tipo = data[grupo][pergunta].tipo[0];
 
                     console.log("Pergunta", pergunta, " Tipo: ", tipo);
 
                     if (tipo == "simples") {
 
-                        summary[pergunta] = vis.utils.group_and_sum(data[grupo][pergunta].dados, coluna_categoria = "resposta", coluna_valor = "n", ordena_decrescente = true)
+                        let sub_data = data[grupo][pergunta].dados;
+
+                        if (filter) {
+
+                            console.log("Aplicando filtros")
+
+                            const colunas_a_filtrar = Object.keys(filter);
+
+                            colunas_a_filtrar.forEach(coluna => {
+
+                                sub_data = sub_data.filter(d => d[coluna] == filter[coluna]);
+
+                            })
+
+                            console.log("sub data depois", sub_data);
+
+                        }
+
+                        summary[pergunta] = vis.utils.group_and_sum(sub_data, coluna_categoria = "resposta", coluna_valor = "n", ordena_decrescente = true)
 
                     } else {
 
@@ -50,9 +73,23 @@ const vis = {
 
                         sub_perguntas.forEach(sub_pergunta => {
 
+                            let sub_data = data[grupo][pergunta].dados[sub_pergunta];
+
+                            if (filter) {
+
+                                const colunas_a_filtrar = Object.keys(filter);
+    
+                                colunas_a_filtrar.forEach(coluna => {
+    
+                                    sub_data = sub_data.filter(d => d[coluna] == filter[coluna]);
+    
+                                })
+    
+                            }
+
                             console.log("Subpergunta: ", sub_pergunta);
 
-                            summary[pergunta][sub_pergunta] = vis.utils.group_and_sum(data[grupo][pergunta].dados[sub_pergunta], coluna_categoria = "resposta", coluna_valor = "n", ordena_decrescente = true)
+                            summary[pergunta][sub_pergunta] = vis.utils.group_and_sum(sub_data, coluna_categoria = "resposta", coluna_valor = "n", ordena_decrescente = true)
 
                         })
 
@@ -64,7 +101,7 @@ const vis = {
 
             // grupos
 
-            grupos.forEach(grupo => sumariza_grupo(grupo));
+            grupos.forEach(grupo => sumariza_grupo(grupo, filter));
 
             // parecido com a lógica para gerar a estrutura.
 
