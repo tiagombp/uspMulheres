@@ -4,7 +4,7 @@ const vis = {
 
         raw : null,
 
-        summarised : null,
+        summarised : {},
 
         filtered : null,
 
@@ -19,15 +19,56 @@ const vis = {
 
         summarise : function() {
 
+            const data = vis.data.raw;
+            const grupos = Object.keys(data);
+
+            function sumariza_grupo(grupo) {
+
+                console.log("Grupo", grupo);
+
+                vis.data.summarised[grupo] = {};
+
+                const summary = vis.data.summarised[grupo];
+
+                const perguntas = Object.keys(data[grupo]);
+
+                perguntas.forEach(pergunta => {
+
+                    const tipo = data[grupo][pergunta].tipo;
+
+                    console.log("Pergunta", pergunta, " Tipo: ", tipo);
+
+                    if (tipo == "simples") {
+
+                        summary[pergunta] = vis.utils.group_and_sum(data[grupo][pergunta].dados, coluna_categoria = "resposta", coluna_valor = "n", ordena_decrescente = true)
+
+                    } else {
+
+                        summary[pergunta] = {};
+
+                        const sub_perguntas = Object.keys(data[grupo][pergunta].dados);
+
+                        sub_perguntas.forEach(sub_pergunta => {
+
+                            console.log("Subpergunta: ", sub_pergunta);
+
+                            summary[pergunta][sub_pergunta] = vis.utils.group_and_sum(data[grupo][pergunta].dados[sub_pergunta], coluna_categoria = "resposta", coluna_valor = "n", ordena_decrescente = true)
+
+                        })
+
+                    }
+
+                })
+
+            }
+
             // grupos
+
+            grupos.forEach(grupo => sumariza_grupo(grupo));
 
             // parecido com a lógica para gerar a estrutura.
 
-
-
         }
-
-
 
     },
 
