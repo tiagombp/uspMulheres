@@ -4,6 +4,10 @@ const vis = {
 
         raw : null,
 
+        summarised : null,
+
+        filtered : null,
+
         load : function() {
 
             fetch("./output2.json", {mode: 'cors'})
@@ -11,7 +15,18 @@ const vis = {
               .then( data => vis.ctrl.begin(data))
               .catch( error => console.log( error ) );
 
+        },
+
+        summarise : function() {
+
+            // grupos
+
+            // parecido com a lógica para gerar a estrutura.
+
+
+
         }
+
 
 
     },
