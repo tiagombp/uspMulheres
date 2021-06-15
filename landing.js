@@ -6,13 +6,51 @@ const vis = {
 
         load : function() {
 
-            fetch("./output.json", {mode: 'cors'})
+            fetch("./output2.json", {mode: 'cors'})
               .then( response => response.json())
               .then( data => vis.ctrl.begin(data))
               .catch( error => console.log( error ) );
 
         }
 
+
+    },
+
+    utils : {
+
+        unique : function(data, col) {
+
+            return data
+              .map(d => d[col])
+              .filter((v, i, a) => a.indexOf(v) === i);
+        
+        },
+
+        group_and_sum : function(objeto, coluna_categoria, coluna_valor, ordena_decrescente = false) {
+
+            const resultado = []; 
+
+            const categorias_unicas = objeto
+                                        .map(d => d[coluna_categoria])
+                                        .filter((v, i, a) => a.indexOf(v) === i);
+
+            for (cat of categorias_unicas) {
+
+              const soma = objeto
+                              .filter(d => d[coluna_categoria] === cat)
+                              .map(d => +d[coluna_valor])
+                              .reduce((valor_acum, valor_atual) => valor_acum + valor_atual);
+
+              resultado.push({"categoria" : cat,
+                              "subtotal"  : soma});  
+
+            }
+
+            if (ordena_decrescente) resultado.sort((a,b) => b.subtotal - a.subtotal)
+
+            return resultado;
+
+        },
 
     },
 
