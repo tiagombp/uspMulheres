@@ -174,21 +174,96 @@ const vis = {
 
         ref: ".svg-container",
 
-        get : function() {
+        get_width : function() {
 
             const div = document.querySelector(this.ref);
 
             this.width = div.getBoundingClientRect().width;
 
+        },
+
+        set : function(height, grupo, pergunta, subpergunta) {
+
+            let selector = `[data-grupo="${grupo}"]` + ` [data-pergunta="${pergunta}"]`;
+
+            if (subpergunta) selector += ` [data-sub_pergunta="${subpergunta}"]`
+
+            console.log(selector);
+
+            d3.select(selector + ' svg')
+              .attr("width", this.width)
+              .attr("height", height);
+
         }
+
+
 
     },
 
     barcharts : {
 
-        range : {},
+        margins : {
 
-        scales : {},
+            top : 20, right: 20, bottom: 20, left: 0
+
+        },
+
+        height: 20,
+
+        scales : {
+
+            x : null,
+
+            y : d3.scaleBand(), // varia para cada pergunta/sub-pergunta
+
+            w : d3.scaleLinear(), // o mesmo para o grupo inteiro
+
+            set : {
+                
+                w : function(grupo) {
+
+                    const bar = vis.barcharts;
+
+                    bar.scales.w
+                      .range(
+                          [ 0, vis.sizings.width - bar.margins.right - bar.margins.left ]
+                          )
+                      .domain(
+                          [ 0, vis.data.maximos[grupo] ]
+                      )
+
+                },
+
+                y : function(grupo, pergunta, subpergunta) {
+
+                    const bar = vis.barcharts;
+
+                    let sumario = vis.data.summarised[grupo][pergunta];
+
+                    if (subpergunta) sumario = sumario[subpergunta];
+
+                    const domain = sumario.map(d => d.categoria);
+                    const range = domain.length * bar.height;
+
+                    bar.scales.y
+                      .domain(domain)
+                      .range(range)
+                      .paddingInner(0.5) // edit the inner padding value in [0,1]
+                      .paddingOuter(0.25) // edit the outer padding value in [0,1]
+                      .align(1); // edit the align: 0 is aligned left, 0.5 centered, 1 aligned right.
+
+                    // com isso espero barras e espaçamentos de mesma largura.
+
+
+
+
+                }
+
+
+
+            }
+
+        },
 
         marks : {}
 
@@ -319,7 +394,7 @@ const vis = {
                 const pergunta = data.nome_completo;
 
                 const section = document.createElement("section");
-                section.dataset.pergunta = pergunta;
+                section.dataset.pergunta = codigo_pergunta;
 
                 const h2 = document.createElement("h2");
                 h2.innerText = pergunta + " (" + codigo_pergunta + ")";
@@ -414,7 +489,7 @@ const vis = {
 
             vis.structure.init();
 
-            vis.sizings.get();
+            vis.sizings.get_width();
 
             vis.data.summarise();
 

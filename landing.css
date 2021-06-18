@@ -426,7 +426,7 @@ div.container-svg {
 
     width: 100%;
     /* height determinado pelo JS */
-    /*outline: 1px solid red;*/
+    outline: 1px solid red;
 
 }
 
