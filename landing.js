@@ -147,6 +147,22 @@ const vis = {
 
     },
 
+    sizings : {
+
+        width: null,
+
+        ref: ".svg-container",
+
+        get : function() {
+
+            const div = document.querySelector(this.ref);
+
+            this.width = div.getBoundingClientRect().width;
+
+        }
+
+    },
+
     tabs : {
 
         refs : {
@@ -363,6 +379,12 @@ const vis = {
         begin: (data) => {
 
             vis.data.raw = data;
+
+            vis.structure.init();
+
+            vis.sizings.get();
+
+            vis.data.summarise();
 
         }
 
