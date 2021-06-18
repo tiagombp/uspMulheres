@@ -8,6 +8,8 @@ const vis = {
 
         filtered : {},
 
+        maximos : {},
+
         load : function() {
 
             fetch("./output2.json", {mode: 'cors'})
@@ -25,6 +27,8 @@ const vis = {
             const grupos = Object.keys(data);
 
             function sumariza_grupo(grupo, filter) {
+
+                let maximo = 0;
 
                 console.log("Grupo", grupo);
 
@@ -49,7 +53,7 @@ const vis = {
 
                         if (filter) {
 
-                            console.log("Aplicando filtros")
+                            //console.log("Aplicando filtros")
 
                             const colunas_a_filtrar = Object.keys(filter);
 
@@ -63,7 +67,13 @@ const vis = {
 
                         }
 
-                        summary[pergunta] = vis.utils.group_and_sum(sub_data, coluna_categoria = "resposta", coluna_valor = "n", ordena_decrescente = true)
+                        summary[pergunta] = vis.utils.group_and_sum(sub_data, coluna_categoria = "resposta", coluna_valor = "n", ordena_decrescente = true);
+
+                        // para apurar os máximos por grupo, que serão usados para definir a escala
+                        if (!filter) {
+                            const maior_valor_pergunta = summary[pergunta][0].subtotal;
+                            maximo = Math.max(maximo, maior_valor_pergunta);
+                        }
 
                     } else {
 
@@ -91,11 +101,22 @@ const vis = {
 
                             summary[pergunta][sub_pergunta] = vis.utils.group_and_sum(sub_data, coluna_categoria = "resposta", coluna_valor = "n", ordena_decrescente = true)
 
+                            // para apurar os máximos por grupo, que serão usados para definir a escala
+                            if (!filter) {
+
+                                const maior_valor_pergunta = summary[pergunta][sub_pergunta][0].subtotal;
+                                maximo = Math.max(maximo, maior_valor_pergunta);
+
+                            }
+
+
                         })
 
                     }
 
                 })
+
+                vis.data.maximos[grupo] = maximo;
 
             }
 
@@ -160,6 +181,17 @@ const vis = {
             this.width = div.getBoundingClientRect().width;
 
         }
+
+    },
+
+    barcharts : {
+
+        range : {},
+
+        scales : {},
+
+        marks : {}
+
 
     },
 
