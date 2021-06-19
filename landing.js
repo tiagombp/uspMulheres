@@ -210,6 +210,10 @@ const vis = {
 
     barcharts : {
 
+        data : null,
+
+        selector : null,
+
         margins : {
 
             top : 20, right: 20, bottom: 20, left: 0
@@ -304,35 +308,75 @@ const vis = {
 
         },
 
-        marks : function(type, grupo, pergunta, subpergunta) {
-
-            // type: main / filtered
+        get_data_and_selector : function(type, grupo, pergunta, subpergunta) {
 
             let data_ref = type == "main" ? "summarised" : "filtered";
             let data = vis.data[data_ref][grupo][pergunta];
             if (subpergunta) data = data[subpergunta];
 
             let selector = vis.utils.get_selector(grupo, pergunta, subpergunta);
-            selector += " " + "svg";
 
-            const svg = d3.select(selector);
+            this.selector = selector;
+            this.data = data;
 
-            svg
-              .selectAll("rect")
-              .data(data)
-              .join("rect")
-              .classed(type, true)
-              .attr("x", vis.barcharts.margins.left)
-              .attr("y", d => vis.barcharts.scales.y(d.categoria))
-              .attr("height", vis.barcharts.height)
-              .attr("width", 0)
-              .transition()
-              .duration(500)
-              .attr("width", d => vis.barcharts.scales.w(d.subtotal))
-            ;
+        },
+
+        components : {
+
+            marks : function(type, selector, data) {
+
+                const svg = d3.select(selector + " svg");
+
+                svg
+                  .selectAll("rect." + type)
+                  .data(data)
+                  .join("rect")
+                  .classed(type, true)
+                  .attr("x", vis.barcharts.margins.left)
+                  .attr("y", d => vis.barcharts.scales.y(d.categoria))
+                  .attr("height", vis.barcharts.height)
+                  .attr("width", 0)
+                  .transition()
+                  .duration(500)
+                  .attr("width", d => vis.barcharts.scales.w(d.subtotal))
+                ;
+            },
+
+            value_labels : function(type, selector, data) {
+
+                const cont = d3.select(selector + " .svg-container");
+
+                const total = d3.sum(data, d => d.subtotal);
+
+                function formata_pct(value) {
+
+                    return ( (100 * value).toFixed(1) + "%" ).replace(".", ",");
+
+                }
+
+                cont
+                  .selectAll("p." + type)
+                  .data(data)
+                  .join("p")
+                  .classed(type, true)
+                  .classed('labels', true)
+                  .classed('value-labels', true)
+                  .style("left", 0)
+                  .style("top", d => vis.barcharts.scales.y(d.categoria) + "px")
+                  .style("line-height", vis.barcharts.height + "px")
+                  .html(d => "<strong>" + d.subtotal + `</strong> (${formata_pct(d.subtotal/total)})`)
+                  .transition()
+                  .duration(500)
+                  .style("left", d => vis.barcharts.scales.w(d.subtotal) + "px")
+                ;
+
+            }
+
 
 
         },
+
+
 
         render : function(type, grupo, pergunta, subpergunta) {
 
@@ -340,7 +384,9 @@ const vis = {
 
             bar.scales.set.y(grupo, pergunta, subpergunta);
             bar.svg.build(grupo, pergunta, subpergunta);
-            bar.marks(type, grupo, pergunta, subpergunta);
+            bar.get_data_and_selector(type, grupo, pergunta, subpergunta);
+            bar.components.marks(type, bar.selector, bar.data);
+            bar.components.value_labels(type, bar.selector, bar.data);
 
         }
 

@@ -447,6 +447,26 @@ svg rect {
 
 }
 
+.svg-container {
+
+    position: relative;
+
+}
+
+p.labels {
+
+    position: absolute;
+    margin: 0;
+    font-size: 14px;
+
+}
+
+p.value-labels {
+    
+padding-left: .5em;
+
+}
+
 p.main-label, 
 p.sec-label {
 
