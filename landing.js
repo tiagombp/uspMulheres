@@ -166,6 +166,16 @@ const vis = {
 
         },
 
+        get_selector : function(grupo, pergunta, subpergunta) {
+
+            let selector = `[data-grupo="${grupo}"]` + ` [data-pergunta="${pergunta}"]`;
+
+            if (subpergunta) selector += ` [data-sub_pergunta="${subpergunta}"]`
+
+            return selector;
+
+        }
+
     },
 
     sizings : {
@@ -184,9 +194,7 @@ const vis = {
 
         set : function(height, grupo, pergunta, subpergunta) {
 
-            let selector = `[data-grupo="${grupo}"]` + ` [data-pergunta="${pergunta}"]`;
-
-            if (subpergunta) selector += ` [data-sub_pergunta="${subpergunta}"]`
+            let selector = vis.utils.get_selector(grupo, pergunta, subpergunta);
 
             console.log(selector);
 
@@ -209,6 +217,33 @@ const vis = {
         },
 
         height: 20,
+
+        svg : {
+
+            container : ".svg-container",
+
+            height : null,
+
+            build : function(grupo, pergunta, subpergunta) {
+
+                let selector = vis.utils.get_selector(grupo, pergunta, subpergunta);
+
+                selector += " " + this.container;
+
+                // isso não funciona.. pq?
+                // const container = document.querySelector(selector);
+                // const svg = document.createElement("svg");
+                // container.appendChild(svg);
+
+                const container = d3.select(selector);
+                container
+                  .append("svg")
+                  .attr("width", vis.sizings.width)
+                  .attr("height", this.height);
+
+            }
+
+        },
 
         scales : {
 
@@ -240,22 +275,26 @@ const vis = {
 
                     let sumario = vis.data.summarised[grupo][pergunta];
 
+                    console.log("Sumario para esta escala Y", sumario);
+
                     if (subpergunta) sumario = sumario[subpergunta];
 
                     const domain = sumario.map(d => d.categoria);
-                    const range = domain.length * bar.height;
+                    const range = domain.length * bar.height * 2;
+
+                    console.log(domain, range);
 
                     bar.scales.y
                       .domain(domain)
-                      .range(range)
+                      .range([0, range])
                       .paddingInner(0.5) // edit the inner padding value in [0,1]
                       .paddingOuter(0.25) // edit the outer padding value in [0,1]
                       .align(1); // edit the align: 0 is aligned left, 0.5 centered, 1 aligned right.
 
                     // com isso espero barras e espaçamentos de mesma largura.
 
-
-
+                    // para construir o svg atual
+                    bar.svg.height = range;
 
                 }
 
@@ -265,7 +304,45 @@ const vis = {
 
         },
 
-        marks : {}
+        marks : function(type, grupo, pergunta, subpergunta) {
+
+            // type: main / filtered
+
+            let data_ref = type == "main" ? "summarised" : "filtered";
+            let data = vis.data[data_ref][grupo][pergunta];
+            if (subpergunta) data = data[subpergunta];
+
+            let selector = vis.utils.get_selector(grupo, pergunta, subpergunta);
+            selector += " " + "svg";
+
+            const svg = d3.select(selector);
+
+            svg
+              .selectAll("rect")
+              .data(data)
+              .join("rect")
+              .classed(type, true)
+              .attr("x", vis.barcharts.margins.left)
+              .attr("y", d => vis.barcharts.scales.y(d.categoria))
+              .attr("height", vis.barcharts.height)
+              .attr("width", 0)
+              .transition()
+              .duration(500)
+              .attr("width", d => vis.barcharts.scales.w(d.subtotal))
+            ;
+
+
+        },
+
+        render : function(type, grupo, pergunta, subpergunta) {
+
+            const bar = vis.barcharts;
+
+            bar.scales.set.y(grupo, pergunta, subpergunta);
+            bar.svg.build(grupo, pergunta, subpergunta);
+            bar.marks(type, grupo, pergunta, subpergunta);
+
+        }
 
 
     },
@@ -416,9 +493,8 @@ const vis = {
                 const container = document.createElement("div");
                 container.classList.add("svg-container");
 
-                const svg = document.createElement("svg");
-
-                container.appendChild(svg);
+                //const svg = document.createElement("svg");
+                //container.appendChild(svg);
 
                 return container;
             },
@@ -438,8 +514,8 @@ const vis = {
                     const container = document.createElement("div");
                     container.classList.add("svg-container");
     
-                    const svg = document.createElement("svg");
-                    container.appendChild(svg);
+                    //const svg = document.createElement("svg");
+                    //container.appendChild(svg);
 
                     section.appendChild(container);
 
@@ -469,6 +545,12 @@ const vis = {
 
     ctrl : {
 
+        state : {
+
+            svgs_are_drawn : {} // um boolean por grupo
+
+        },
+
         monitors : () => {
 
             vis.tabs.monitor();
@@ -492,6 +574,11 @@ const vis = {
             vis.sizings.get_width();
 
             vis.data.summarise();
+
+            vis.barcharts.scales.set.w("renda");
+
+            vis.barcharts.render("main", "renda", "G04Q235");
+
 
         }
 
