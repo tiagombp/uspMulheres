@@ -4,6 +4,7 @@
 :root {
 
     --cor-texto : #d1d1d1;
+    --cor-texto-dark : #212121;
     --cor-titulo : white;
     --cor-fundo : #731c34; 
     --cor-fundo-vis : #643b45;
@@ -46,10 +47,14 @@ body {
 
 /* navegação */
 
+
+
 .container-perguntas {
+
     position: relative;
-    background-color: var(--cor-fundo-vis);
-    /*height: 100vh;*/
+    background-color: white;
+    color: var(--cor-fundo);
+
 }
 
 .kicker {
@@ -266,7 +271,7 @@ section[data-pergunta] {
 
 section[data-pergunta] h2 {
 
-    color: var(--cor-texto);
+    color: var(--cor-fundo);
     font-size: 1.2rem;
     /*font-family: var(--fonte-corpo);*/
     font-family: var(--fonte-titulo);
@@ -277,11 +282,12 @@ section[data-pergunta] h2 {
 
 section[data-pergunta] h3 {
 
-    color: var(--cor-texto);
+    color: var(--cor-texto-dark);
     font-size: 1rem;
     /*font-family: var(--fonte-corpo);*/
     font-family: var(--fonte-titulo);
     font-weight: normal;
+    margin-top: 2rem;
 
 }
 
@@ -445,7 +451,7 @@ body {
 
 rect.main {
 
-    fill: var(--cor-rect);
+    fill: var(--cor-fundo);
 
 }
 
@@ -460,6 +466,7 @@ p.labels {
     position: absolute;
     margin: 0;
     font-size: 14px;
+    color: var(--cor-texto-dark);
 
 }
 
