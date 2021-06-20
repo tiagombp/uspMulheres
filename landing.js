@@ -216,7 +216,7 @@ const vis = {
 
         margins : {
 
-            top : 20, right: 20, bottom: 20, left: 0
+            top : 20, right: 40, bottom: 20, left: 0
 
         },
 
@@ -292,7 +292,7 @@ const vis = {
                       .domain(domain)
                       .range([0, range])
                       .paddingInner(0.6) // edit the inner padding value in [0,1]
-                      .paddingOuter(0.4) // edit the outer padding value in [0,1]
+                      .paddingOuter(0.2) // edit the outer padding value in [0,1]
                       .align(1); // edit the align: 0 is aligned left, 0.5 centered, 1 aligned right.
 
                     // com isso espero barras e espaçamentos de mesma largura.
