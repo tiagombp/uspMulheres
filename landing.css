@@ -48,6 +48,7 @@ body {
 
 .container-perguntas {
     position: relative;
+    background-color: var(--cor-fundo-vis);
     /*height: 100vh;*/
 }
 
@@ -270,6 +271,7 @@ section[data-pergunta] h2 {
     /*font-family: var(--fonte-corpo);*/
     font-family: var(--fonte-titulo);
     font-weight: normal;
+    margin-bottom: 0;
 
 }
 
@@ -441,9 +443,9 @@ body {
 
 /*vis*/
 
-svg rect {
+rect.main {
 
-    /*fill: var(--cor-rect);*/
+    fill: var(--cor-rect);
 
 }
 
