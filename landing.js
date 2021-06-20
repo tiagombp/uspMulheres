@@ -220,7 +220,7 @@ const vis = {
 
         },
 
-        height: 20,
+        height: 30,
 
         svg : {
 
@@ -291,8 +291,8 @@ const vis = {
                     bar.scales.y
                       .domain(domain)
                       .range([0, range])
-                      .paddingInner(0.5) // edit the inner padding value in [0,1]
-                      .paddingOuter(0.25) // edit the outer padding value in [0,1]
+                      .paddingInner(0.6) // edit the inner padding value in [0,1]
+                      .paddingOuter(0.4) // edit the outer padding value in [0,1]
                       .align(1); // edit the align: 0 is aligned left, 0.5 centered, 1 aligned right.
 
                     // com isso espero barras e espaçamentos de mesma largura.
@@ -334,7 +334,7 @@ const vis = {
                   .classed(type, true)
                   .attr("x", vis.barcharts.margins.left)
                   .attr("y", d => vis.barcharts.scales.y(d.categoria))
-                  .attr("height", vis.barcharts.height)
+                  .attr("height", vis.barcharts.scales.y.bandwidth())
                   .attr("width", 0)
                   .transition()
                   .duration(500)
@@ -363,7 +363,7 @@ const vis = {
                   .classed('value-labels', true)
                   .style("left", 0)
                   .style("top", d => vis.barcharts.scales.y(d.categoria) + "px")
-                  .style("line-height", vis.barcharts.height + "px")
+                  .style("line-height", vis.barcharts.scales.y.bandwidth() + "px")
                   .html(d => "<strong>" + d.subtotal + `</strong> (${formata_pct(d.subtotal/total)})`)
                   .transition()
                   .duration(500)
