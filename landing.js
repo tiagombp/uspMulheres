@@ -310,6 +310,8 @@ const vis = {
 
         get_data_and_selector : function(type, grupo, pergunta, subpergunta) {
 
+            console.log('getting data and selector', type, grupo, pergunta, subpergunta);
+
             let data_ref = type == "main" ? "summarised" : "filtered";
             let data = vis.data[data_ref][grupo][pergunta];
             if (subpergunta) data = data[subpergunta];
@@ -355,7 +357,7 @@ const vis = {
                 }
 
                 cont
-                  .selectAll("p." + type)
+                  .selectAll("p.value-labels." + type)
                   .data(data)
                   .join("p")
                   .classed(type, true)
@@ -370,13 +372,30 @@ const vis = {
                   .style("left", d => vis.barcharts.scales.w(d.subtotal) + "px")
                 ;
 
+            },
+
+            categories_labels : function(type, selector, data) {
+
+                const cont = d3.select(selector + " .svg-container");
+
+                cont
+                  .selectAll("p.cat-labels." + type)
+                  .data(data)
+                  .join("p")
+                  .classed(type, true)
+                  .classed('labels', true)
+                  .classed('cat-labels', true)
+                  .style("left", 0)
+                  .style("top", d => vis.barcharts.scales.y(d.categoria) + "px")
+                  .text(d => d.categoria)
+                ;
+
+
             }
 
 
 
         },
-
-
 
         render : function(type, grupo, pergunta, subpergunta) {
 
@@ -387,6 +406,47 @@ const vis = {
             bar.get_data_and_selector(type, grupo, pergunta, subpergunta);
             bar.components.marks(type, bar.selector, bar.data);
             bar.components.value_labels(type, bar.selector, bar.data);
+            bar.components.categories_labels(type, bar.selector, bar.data);
+
+        },
+
+        render_all : function(type) {
+
+            const data = vis.data.raw;
+            const grupos = Object.keys(data);
+
+            function build_grupo(grupo) {
+
+                console.log("Montando gráficos grupo: ", grupo);
+
+                vis.barcharts.scales.set.w(grupo);
+
+                const codigos_perguntas = Object.keys(data[grupo]);
+    
+                codigos_perguntas.forEach(pergunta => {
+    
+                    if (data[grupo][pergunta].tipo[0] == "simples") {
+
+                        vis.barcharts.render(type, grupo, pergunta);
+
+                    } else {
+
+                        const sub_perguntas = Object.keys(data[grupo][pergunta].dados);
+
+                        sub_perguntas.forEach(sub_pergunta => {
+
+                            vis.barcharts.render(type, grupo, pergunta, sub_pergunta);
+
+                        })
+
+                    }
+    
+                })
+
+            }
+
+            grupos.forEach(grupo => build_grupo(grupo));
+
 
         }
 
@@ -621,9 +681,11 @@ const vis = {
 
             vis.data.summarise();
 
-            vis.barcharts.scales.set.w("renda");
+            //vis.barcharts.scales.set.w("renda");
 
-            vis.barcharts.render("main", "renda", "G04Q235");
+            //vis.barcharts.render("main", "renda", "G04Q235");
+
+            vis.barcharts.render_all("main");
 
 
         }

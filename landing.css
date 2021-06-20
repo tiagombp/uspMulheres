@@ -469,14 +469,11 @@ padding-left: .5em;
 
 }
 
-p.main-label, 
-p.sec-label {
+p.cat-labels {
 
-    position: absolute;
     transform: translateY(-100%);
     padding: 0;
     padding-bottom: var(--padding-bottom-label);
-    margin: 0;
     font-size: .8rem;
 
 }
