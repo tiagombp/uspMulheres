@@ -216,7 +216,7 @@ const vis = {
 
         margins : {
 
-            top : 20, right: 40, bottom: 20, left: 0
+            top : 20, right: 50, bottom: 20, left: 0
 
         },
 

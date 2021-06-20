@@ -276,7 +276,8 @@ section[data-pergunta] h2 {
     /*font-family: var(--fonte-corpo);*/
     font-family: var(--fonte-titulo);
     font-weight: normal;
-    margin-bottom: 0;
+    margin-top: 2rem;
+    margin-bottom: .5rem;
 
 }
 
