@@ -680,12 +680,15 @@ const vis = {
             vis.sizings.get_width();
 
             vis.data.summarise();
+            //vis.data.summarise(filter = "");
+
 
             //vis.barcharts.scales.set.w("renda");
 
             //vis.barcharts.render("main", "renda", "G04Q235");
 
             vis.barcharts.render_all("main");
+            //vis.barcharts.render_all("filtered");
 
 
         }
