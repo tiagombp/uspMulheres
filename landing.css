@@ -127,9 +127,9 @@ nav button:hover {
 nav button[aria-selected="true"] {
     font-weight: bold;
     /*text-shadow: 0 0 3px var(--cor-fundo-seletor);*/
-    background-color: white;
-    color: var(--cor-fundo);
-    border-bottom: .3em solid var(--cor-fundo);
+    background-color: var(--cor-fundo);
+    color: white;
+    /*border-bottom: .3em solid var(--cor-fundo);*/
     transition: border-width .4s, font-weight .4s;
 
     /*
@@ -142,11 +142,51 @@ nav button[aria-selected="true"] {
     font-family: var(--fonte-corpo);
     font-size: .8rem;
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     padding: .5rem 0;
+    border-bottom: 1px solid grey;
+    background-color: white;
     height: var(--nav-height);
+    color: #333;
+
+}
+
+.filtros-controles label {
+
+    padding-right: .3rem;
+
+}
+
+.filtros-controles div {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+
+}
+
+@media (max-width: 620px) {
+
+    .filtros-controles {
+        height: unset;
+    }
+
+    .filtros-controles div {
+
+        flex-direction: column;
+    
+    }
+
+    .filtros-controles label {
+
+        padding-right: 0;
+        padding-bottom: .3rem;
+    
+    }
+
 
 }
 
