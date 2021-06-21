@@ -72,18 +72,23 @@ div.intro p {
 
 }
 
-nav {
+.controls {
 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    /*align-items: center;*/
     position: sticky;
     z-index: 1;
     top: 0;
     left: 0;
     right: 0;
     padding: 0;
+
+}
+
+nav {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    /*align-items: center;*/
     height: var(--nav-height);
     background-color: white;
     border-top: 1px solid grey;
@@ -131,6 +136,29 @@ nav button[aria-selected="true"] {
     border-top: 2px solid var(--cor-fundo);
     border-bottom: 2px solid var(--cor-fundo);*/
 }
+
+.filtros-controles {
+
+    font-family: var(--fonte-corpo);
+    font-size: .8rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem 0;
+    height: var(--nav-height);
+
+}
+
+select, select option {
+
+    font-size: .8rem;
+    /*min-height: 1em;*/
+    color: #333;
+
+}
+
+
 
 a.go-back {
 
@@ -357,7 +385,7 @@ section[data-pergunta] h3 {
 
 }
 
-.selector select {
+/*select {
 
     font-family: var(--fonte-corpo);
     white-space: normal;
@@ -371,15 +399,7 @@ section[data-pergunta] h3 {
     color: var(--cor-texto);
     text-overflow: ellipsis;
 
-}
-
-.selector option {
-
-    font-size: .8rem;
-    min-height: 1em;
-    color: #333;
-
-}
+}*/
 
 /* div.vis p {
    

@@ -4,6 +4,8 @@ const vis = {
 
         raw : null,
 
+        filtros : null,
+
         summarised : {},
 
         filtered : {},
@@ -666,6 +668,39 @@ const vis = {
 
     },
 
+    filter : {
+
+        criterios : ['cor', 'genero', 'vinculo', 'filhos'],
+
+        populate : function() {
+
+            const crit = this.criterios;
+
+            crit.forEach(criterio => {
+
+                const seletor = document.querySelector('#filtro-' + criterio);
+
+                const opcoes = vis.data.filtros[criterio];
+
+                console.log("Opcoes", opcoes);
+
+                opcoes.forEach(opcao => {
+
+                    const new_option = document.createElement('option');
+
+                    new_option.value = opcao;
+                    new_option.text = opcao == "Servidor(a) técnico(a)/ administrativo(a)" ? "Servidor" : opcao;
+
+                    seletor.append(new_option);
+
+                })
+
+            })
+
+        }
+
+    },
+
     ctrl : {
 
         state : {
@@ -690,7 +725,10 @@ const vis = {
 
         begin: (data) => {
 
-            vis.data.raw = data;
+            vis.data.raw = data.dados;
+            vis.data.filtros = data.filtros;
+
+            vis.filter.populate();
 
             vis.structure.init();
 
