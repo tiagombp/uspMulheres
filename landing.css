@@ -187,6 +187,12 @@ nav button[aria-selected="true"] {
     
     }
 
+    .filtros-controles select {
+
+        height: calc(var(--nav-height) / 2);
+
+    }
+
 
 }
 
