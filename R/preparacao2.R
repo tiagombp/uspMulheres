@@ -122,9 +122,28 @@ for (bloco in blocos) {
 }
 
 
+
+# filtros -----------------------------------------------------------------
+
+filtros <- list(
+  
+  genero  = base[["G04Q240"]]$G7Q00002 %>% levels(),
+  vinculo = base[["G04Q240"]]$G2Q00001 %>% levels(),
+  cor     = base[["G04Q240"]]$G7Q00003 %>% levels(),
+  filhos  = base[["G04Q240"]]$G7Q00006 %>% levels()
+  
+)
+
+
+
 # export ------------------------------------------------------------------
 
-jsonlite::write_json(output, "output2.json", )
+output_completo <- list(
+  dados = output,
+  filtros = filtros
+)
+
+jsonlite::write_json(output_completo, "output2.json", )
 
 
 
