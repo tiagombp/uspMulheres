@@ -340,8 +340,8 @@ const vis = {
                   .attr("width", 0)
                   .transition()
                   .duration(500)
-                  .attr("width", d => vis.barcharts.scales.w(d.subtotal))
-                ;
+                  .attr("width", type == "main" ? d => vis.barcharts.scales.w(d.subtotal) : 0)
+                ; // quando criar inicialmente as barras dos valores filtrados, deixá-las sem tamanho
             },
 
             value_labels : function(type, selector, data) {
@@ -401,12 +401,25 @@ const vis = {
 
             const bar = vis.barcharts;
 
-            bar.scales.set.y(grupo, pergunta, subpergunta);
-            bar.svg.build(grupo, pergunta, subpergunta);
-            bar.get_data_and_selector(type, grupo, pergunta, subpergunta);
-            bar.components.marks(type, bar.selector, bar.data);
-            bar.components.value_labels(type, bar.selector, bar.data);
-            bar.components.categories_labels(type, bar.selector, bar.data);
+            if (type == "main") {
+
+                bar.scales.set.y(grupo, pergunta, subpergunta);
+                bar.svg.build(grupo, pergunta, subpergunta);
+                bar.get_data_and_selector(type, grupo, pergunta, subpergunta);
+                bar.components.marks(type, bar.selector, bar.data);
+                bar.components.value_labels(type, bar.selector, bar.data);
+                bar.components.categories_labels(type, bar.selector, bar.data);
+
+            } else {
+
+                bar.scales.set.y(grupo, pergunta, subpergunta);
+                bar.get_data_and_selector(type, grupo, pergunta, subpergunta);
+                bar.components.marks(type, bar.selector, bar.data);
+                bar.components.value_labels(type, bar.selector, bar.data);
+
+            }
+
+
 
         },
 
@@ -419,7 +432,11 @@ const vis = {
 
                 console.log("Montando gráficos grupo: ", grupo);
 
-                vis.barcharts.scales.set.w(grupo);
+                if (type == "main") {
+                    vis.barcharts.scales.set.w(grupo);
+                } 
+                // evita fazer nova escaça w para as barras filtradas
+                
 
                 const codigos_perguntas = Object.keys(data[grupo]);
     
@@ -687,8 +704,10 @@ const vis = {
 
             //vis.barcharts.render("main", "renda", "G04Q235");
 
+            vis.data.filtered = vis.data.summarised;
+
             vis.barcharts.render_all("main");
-            //vis.barcharts.render_all("filtered");
+            vis.barcharts.render_all("filtered");
 
 
         }

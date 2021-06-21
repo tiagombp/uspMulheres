@@ -492,6 +492,22 @@ rect.main {
 
 }
 
+rect.filter {
+
+    fill: var(--cor-fundo-seletor);
+
+}
+
+[data-filtered="true"] rect.main {
+
+    fill: transparent;
+    stroke: var(--cor-fundo);
+    stroke-width: 2px;
+
+}
+
+
+
 .svg-container {
 
     position: relative;
