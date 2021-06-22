@@ -118,7 +118,14 @@ const vis = {
 
                 })
 
-                vis.data.maximos[grupo] = maximo;
+                if (!filter) {
+
+                    // maximos não vão ser alterados, então só atualiza uma vez.
+                    vis.data.maximos[grupo] = maximo;
+
+                }
+
+                
 
             }
 
@@ -357,7 +364,7 @@ const vis = {
 
                 svg
                   .selectAll("rect." + type)
-                  .data(data)
+                  .data(data, d => d.categoria)
                   .join("rect")
                   .classed(type, true)
                   .attr("x", vis.barcharts.margins.left)
@@ -384,7 +391,7 @@ const vis = {
 
                 cont
                   .selectAll("p.value-labels." + type)
-                  .data(data)
+                  .data(data, d => d.categoria)
                   .join("p")
                   .classed(type, true)
                   .classed('labels', true)
@@ -406,7 +413,7 @@ const vis = {
 
                 cont
                   .selectAll("p.cat-labels." + type)
-                  .data(data)
+                  .data(data, d => d.categoria)
                   .join("p")
                   .classed(type, true)
                   .classed('labels', true)
@@ -490,8 +497,73 @@ const vis = {
 
             grupos.forEach(grupo => build_grupo(grupo));
 
+        },
+
+        update_filtered_rects : function(tem_filtro) {
+
+            const data = vis.data.filtered;
+            const grupos = Object.keys(vis.data.raw);
+            const type = "filtered";
+            const bar = vis.barcharts;
+
+            function update_width(grupo, pergunta, subpergunta) {
+
+                bar.get_data_and_selector(type, grupo, pergunta, subpergunta);
+
+                //console.log("ATUALIZANDO", grupo, pergunta, subpergunta, bar.data, bar.data.map(d => vis.barcharts.scales.w(d.subtotal)));
+
+                const selector = bar.selector;
+
+                const svg = d3.select(selector + " svg");
+
+                svg
+                  .selectAll("rect." + type)
+                  .data(bar.data, d => d.categoria)
+                  .transition()
+                  .duration(500)
+                  .attr("width", d => tem_filtro ? vis.barcharts.scales.w(d.subtotal) : 0)
+                ; // quando criar inicialmente as barras dos valores filtrados, deixá-las sem tamanho
+            }
+
+            function atualiza_grupo(grupo) {
+
+                console.log("Atualizando gráficos grupo: ", grupo);
+
+                vis.barcharts.scales.set.w(grupo);
+
+                const codigos_perguntas = Object.keys(data[grupo]);
+    
+                codigos_perguntas.forEach(pergunta => {
+
+                    console.log("to aqui", data[grupo][pergunta], pergunta);
+
+                    const tipo = vis.data.raw[grupo][pergunta].tipo[0];
+    
+                    if (tipo == "simples") {
+
+                        update_width(grupo, pergunta);
+
+                    } else {
+
+                        const sub_perguntas = Object.keys(data[grupo][pergunta]);
+
+                        sub_perguntas.forEach(sub_pergunta => {
+
+                            update_width(grupo, pergunta, sub_pergunta);
+
+                        })
+
+                    }
+    
+                })
+
+            }
+
+            grupos.forEach(grupo => atualiza_grupo(grupo));
 
         }
+
+
 
 
     },
@@ -766,7 +838,14 @@ const vis = {
 
             const tem_filtro = Object.keys(new_filter).length > 0;
 
+            // updates o data attribute que controla o estilo dos rects principais
             document.querySelector('[data-filtered]').dataset.filtered = tem_filtro;
+            
+            // updates filtered data
+            vis.data.summarise(new_filter);
+
+            // updates as barras dos dados filtrados
+            vis.barcharts.update_filtered_rects(tem_filtro);
 
             console.log(vis.ctrl.state.filter);
 

@@ -559,9 +559,10 @@ rect.main {
 
 }
 
-rect.filter {
+rect.filtered {
 
     fill: var(--cor-fundo-seletor);
+    /*transition: all .5s;*/
 
 }
 
