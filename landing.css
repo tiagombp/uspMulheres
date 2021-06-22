@@ -569,14 +569,14 @@ body {
 rect.main {
 
     fill: var(--cor-fundo);
-    transition: all .5s;
+    transition: all .75s;
 
 }
 
 rect.filtered {
 
     fill: var(--cor-fundo-seletor);
-    /*transition: all .5s;*/
+    transition: all .75s;
 
 }
 
@@ -590,6 +590,7 @@ rect.filtered {
 
 [data-filtered="false"] p.value-labels.filtered {
 
+    opacity: 0;
     display: none;
 
 }

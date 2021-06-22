@@ -32,11 +32,11 @@ const vis = {
 
                 let maximo = 0;
 
-                console.log("Grupo", grupo);
+                //console.log("Grupo", grupo);
 
                 const key = filter ? "filtered" : "summarised";
 
-                console.log(filter, key);
+                //console.log(filter, key);
 
                 vis.data[key][grupo] = {};
                 const summary = vis.data[key][grupo];
@@ -84,11 +84,11 @@ const vis = {
                             const original_data = vis.data.summarised[grupo][pergunta];
                             const filtered_data = summary[pergunta];
 
-                            console.log("Tem filtro", pergunta, filtered_data, original_data);
+                            //console.log("Tem filtro", pergunta, filtered_data, original_data);
 
                             if (filtered_data.length != original_data.length) {
 
-                                console.log("Opa, diferença!", pergunta, filtered_data, original_data);
+                                //console.log("Opa, diferença!", pergunta, filtered_data, original_data);
 
                                 const categorias = original_data.map(d => d.categoria);
 
@@ -438,9 +438,6 @@ const vis = {
                   .attr("x", vis.barcharts.margins.left)
                   .attr("y", d => vis.barcharts.scales.y(d.categoria))
                   .attr("height", vis.barcharts.scales.y.bandwidth())
-                  .attr("width", 0)
-                  .transition()
-                  .duration(500)
                   .attr("width", type == "main" ? d => vis.barcharts.scales.w(d.subtotal) : 0)
                 ; // quando criar inicialmente as barras dos valores filtrados, deixá-las sem tamanho
             },
@@ -464,12 +461,9 @@ const vis = {
                   .classed(type, true)
                   .classed('labels', true)
                   .classed('value-labels', true)
-                  .style("left", 0)
                   .style("top", d => vis.barcharts.scales.y(d.categoria) + "px")
                   .style("line-height", vis.barcharts.scales.y.bandwidth() + "px")
                   .html(d => "<strong>" + d.subtotal + `</strong> (${formata_pct(d.subtotal/total)})`)
-                  .transition()
-                  .duration(500)
                   .style("left", d => vis.barcharts.scales.w(d.subtotal) + "px")
                 ;
 
@@ -587,8 +581,6 @@ const vis = {
                 svg
                   .selectAll("rect." + type)
                   .data(bar.data, d => d.categoria)
-                  .transition()
-                  .duration(500)
                   .attr("width", d => tem_filtro ? vis.barcharts.scales.w(d.subtotal) : 0)
                 ; // quando criar inicialmente as barras dos valores filtrados, deixá-las sem tamanho
 
@@ -643,7 +635,7 @@ const vis = {
 
             function atualiza_grupo(grupo) {
 
-                console.log("Atualizando gráficos grupo: ", grupo);
+                //console.log("Atualizando gráficos grupo: ", grupo);
 
                 vis.barcharts.scales.set.w(grupo);
 
@@ -695,7 +687,7 @@ const vis = {
 
         monitor : function() {
 
-            console.log('monitoring...');
+            //console.log('monitoring...');
 
             window.addEventListener("DOMContentLoaded", () => {
 
@@ -745,7 +737,7 @@ const vis = {
             const grandparent = parent.parentNode;
             const greatgrandparent = grandparent.parentNode;
 
-            console.log("CLicked", target);
+            //console.log("CLicked", target);
             
             // Remove all current selected tabs
             parent
@@ -780,7 +772,7 @@ const vis = {
 
                 if (grupo == "facetas") return;
 
-                console.log("Montando grupo: ", grupo);
+                //console.log("Montando grupo: ", grupo);
 
                 const grupo_element = document.querySelector("article[data-grupo='" + grupo + "']");
 
@@ -895,7 +887,7 @@ const vis = {
 
                 const opcoes = vis.data.filtros[criterio];
 
-                console.log("Opcoes", opcoes);
+                //console.log("Opcoes", opcoes);
 
                 opcoes.forEach(opcao => {
 
@@ -965,7 +957,7 @@ const vis = {
             // updates as barras dos dados filtrados
             vis.barcharts.update_filtered_rects(tem_filtro);
 
-            console.log(vis.ctrl.state.filter);
+            //console.log(vis.ctrl.state.filter);
 
             // }
 
