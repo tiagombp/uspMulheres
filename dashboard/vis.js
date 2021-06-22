@@ -747,7 +747,7 @@ const vis = {
 
         read_data : function() {
 
-            d3.json("./output.json").then(function(data) {
+            d3.json("../output.json").then(function(data) {
 
                 vis.data.raw = data;
                 vis.control.begin();

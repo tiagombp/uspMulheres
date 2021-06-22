@@ -1,0 +1,682 @@
+
+/* tema */
+
+:root {
+
+    --cor-texto : #d1d1d1;
+    --cor-texto-dark : #212121;
+    --cor-titulo : white;
+    --cor-fundo : #731c34; 
+    --cor-fundo-vis : #643b45;
+    --cor-fundo-seletor: #a8596f;
+    --cor-rect : #ccccc4;
+
+    --tamanho: 1.2rem;
+
+    --fonte-titulo: "Ovo"; /*"Yatra One"*/
+    --fonte-corpo: "Signika";
+
+    --width : 620px;
+
+    --size-label-secundario : 10px;
+    --padding-bottom-label  : 5px;
+
+    --nav-height: 3rem;
+
+}
+
+
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+body {
+
+}
+
+/* navegação */
+
+
+
+.container-perguntas {
+
+    position: relative;
+    background-color: white;
+    color: var(--cor-fundo);
+
+}
+
+.kicker {
+
+    font-size: 1rem;
+    display: block;
+    text-transform: uppercase;
+    font-family: var(--fonte-corpo);
+    font-weight: normal;
+    margin-bottom: 1rem;
+    color: var(--cor-texto);
+    letter-spacing: .1rem;
+
+}
+
+div.intro p {
+
+    color: var(--cor-texto);
+
+}
+
+.controls {
+
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0;
+
+}
+
+nav {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    /*align-items: center;*/
+    height: var(--nav-height);
+    background-color: white;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+
+}
+
+nav button {
+
+    text-decoration: none;
+    background-color: white;
+    color: var(--cor-fundo);
+    font-family: var(--fonte-corpo);
+    /*margin: .5rem 0;*/
+    text-transform: uppercase;
+    letter-spacing: .1px;
+    /*height: 2rem;*/
+    flex: 1; /*0 0 10vw;*/
+    text-align: center;
+    /*border: 1px solid white;*/
+    font-size: .8rem;
+    /*padding: .2rem .4rem;*/
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border: none;
+    transition: border-width .8s, font-weight .8s;
+
+}
+
+nav button:hover {
+    background-color: var(--cor-fundo-seletor);
+    color: white;
+}
+
+nav button[aria-selected="true"] {
+    font-weight: bold;
+    /*text-shadow: 0 0 3px var(--cor-fundo-seletor);*/
+    background-color: var(--cor-fundo);
+    color: white;
+    /*border-bottom: .3em solid var(--cor-fundo);*/
+    transition: border-width .4s, font-weight .4s;
+
+    /*
+    border-top: 2px solid var(--cor-fundo);
+    border-bottom: 2px solid var(--cor-fundo);*/
+}
+
+.filtros-controles {
+
+    font-family: var(--fonte-corpo);
+    font-size: .8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem 0;
+    border-bottom: 1px solid grey;
+    background-color: white;
+    height: var(--nav-height);
+    color: #333;
+
+}
+
+.filtros-controles label {
+
+    padding-right: .3rem;
+
+}
+
+.filtros-controles label.filtro-ativo {
+
+    color: var(--cor-fundo);
+    font-weight: bold;
+
+}
+
+.filtros-controles select.filtro-ativo {
+
+    background-color: var(--cor-fundo);
+    color: white;
+
+}
+
+.filtros-controles div {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+
+}
+
+@media (max-width: 620px) {
+
+    .filtros-controles {
+        height: unset;
+    }
+
+    .filtros-controles div {
+
+        flex-direction: column;
+    
+    }
+
+    .filtros-controles label {
+
+        padding-right: 0;
+        padding-bottom: .3rem;
+    
+    }
+
+    .filtros-controles select {
+
+        height: calc(var(--nav-height) / 2);
+
+    }
+
+
+}
+
+select, select option {
+
+    font-size: .8rem;
+    /*min-height: 1em;*/
+    color: #333;
+
+}
+
+
+
+a.go-back {
+
+    display: inline-block;
+    position: sticky;
+    top: 85vh;
+    height: 5vh;
+    left: calc(100% - 15vh);
+    width: 5vh;
+    padding: .4em;
+    border: 1px solid var(--cor-fundo);
+    border-radius: 100%;
+    color: var(--cor-fundo);
+    font-size: .8rem;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--fonte-corpo);
+    text-decoration: none;
+    font-weight: lighter;
+
+}
+
+a.go-back:hover {
+
+    background-color: var(--cor-fundo-seletor);
+    color: white;
+
+}
+
+a.go-back:hover svg line {
+
+    stroke: white;
+
+}
+
+a.go-back svg {
+
+    height: .8rem;
+
+}
+
+a.go-back svg line {
+
+    stroke: var(--cor-fundo);
+
+}
+
+
+
+/* fim navegacao */
+
+/* seletor subquestao */
+
+.selector.pergunta {
+
+    display: none;
+
+}
+
+.selector.pergunta.visivel {
+
+    display: block;
+
+}
+
+.selector.escondido {
+
+    pointer-events: none;
+    opacity: 0;
+    padding: 0;
+    transform: translateY(-100%);
+    transition: opacity .5s, transform .5s, height .5s;
+    height: 0;
+
+}
+
+.selector.subquestao {
+
+    transition: opacity .5s, transform .5s, height .5s;
+    padding-top: 0;
+
+}
+
+.selector.subquestao select {
+    font-size: .7rem;
+}
+
+/* Fim seletor */
+
+/* Layout */
+
+
+div.intro {
+
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 0 1rem;
+
+    margin-top: 50vh;
+    transform: translateY(-50%);
+
+    font-family: var(--fonte-titulo);
+    color: var(--cor-titulo);
+    font-size: var(--tamanho);
+
+
+}
+
+.inner-container p {
+    color: var(--cor-texto);
+    font-family: var(--fonte-corpo);
+    font-weight: 100;
+}
+
+/*div.vis {*/
+
+.inner-container.vis {
+
+    position: relative;
+
+}
+
+/*
+article {
+    transform: translateY(-100vh);
+    scroll-snap-type: block mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+} */
+
+.slide.first {
+    background-color: var(--cor-fundo);
+    border: 1px solid var(--cor-fundo); /* para evitar margin-collapsing */
+}
+
+/* poderia usar uma utility class para marcar todos em que quero usar o double container pattern*/
+.arrow-start {
+
+    margin-top: 4rem;
+    display: block;
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: lighter;
+    font-size: 3rem;
+    transform: scale(1.5, 0.75);
+    /*text-shadow: 0 -1rem white;*/
+    animation: bounce 2s infinite;
+    text-decoration: none;
+    color: white;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: scale(1.5, 0.75) translateY(0);
+    }
+    40% {
+      transform: scale(1.5, 0.75) translateY(-30px);
+    }
+    60% {
+      transform: scale(1.5, 0.75) translateY(-15px);
+    }
+}
+
+.slide {
+
+    /*margin-top: 2rem;*/
+
+    height: 100vh;
+    width: 100%; /* eventualmente limitar para o caso de telas muito grandes*/
+    background-color: transparent;
+
+}
+
+/* G R U P O */
+
+section[data-pergunta] {
+
+    max-width: 630px;
+    margin: 0 auto;
+    padding: 0 10px;
+
+}
+
+section[data-pergunta] h2 {
+
+    color: var(--cor-fundo);
+    font-size: 1.2rem;
+    /*font-family: var(--fonte-corpo);*/
+    font-family: var(--fonte-titulo);
+    font-weight: normal;
+    margin-top: 2rem;
+    margin-bottom: .5rem;
+
+}
+
+section[data-pergunta] h3 {
+
+    color: var(--cor-texto-dark);
+    font-size: 1rem;
+    /*font-family: var(--fonte-corpo);*/
+    font-family: var(--fonte-titulo);
+    font-weight: normal;
+    margin-top: 2rem;
+
+}
+
+
+/* F I M    G R U P O */
+
+
+
+/*div.vis > div.selector*/
+.inner-container-selector {
+
+    background-color: var(--cor-fundo);
+
+}
+
+.selector {
+
+    max-width: var(--width);
+    margin: 0 auto;
+    padding: .5rem 1rem;
+
+}
+
+.selector h3 {
+
+    margin-top: 0;
+    margin-bottom: .5rem;
+    color: var(--cor-texto);
+    font-size: 1.5rem;
+
+}
+
+/*select {
+
+    font-family: var(--fonte-corpo);
+    white-space: normal;
+    font-size: .8rem;
+    height: 2rem;
+    width: 100%;
+    display: block;
+    background: transparent;
+    outline: none;
+    border: none;
+    color: var(--cor-texto);
+    text-overflow: ellipsis;
+
+}*/
+
+/* div.vis p {
+   
+    margin: 0;
+    padding: 1rem;
+
+} */
+
+div.selector > p {
+    padding: 0;
+    display: inline;
+}
+
+div.buttons {
+
+    display: flex;
+    justify-content: center;
+    padding: .5rem 0;
+
+}
+
+.buttons button {
+
+    background-color: transparent;
+    border: 2px solid var(--cor-texto);
+    padding: .5em .5em;
+    border-radius: 10em;
+    width: 100px;
+    font-family: var(--fonte-corpo);
+    font-weight: 100;
+    font-size: 0.8rem;
+    color: var(--cor-texto);
+    cursor: pointer;
+
+}
+
+.buttons button + button {
+
+    margin-left: 1rem;
+    
+}
+
+.buttons button:hover, .buttons button.selected {
+
+    background-color: var(--cor-texto);
+    color: var(--cor-fundo-vis);
+
+}
+
+.buttons button.selected {
+
+    font-weight: bold;
+    /*border: 2px solid var(--cor-fundo-vis);*/
+
+}
+
+.buttons button.desabilitado {
+
+    pointer-events: none;
+    opacity: .5;
+
+}
+
+/* fix later */
+.buttons button:focus {
+
+    outline : none;
+
+}
+
+
+div.outer-container-svg {
+
+    background-color: var(--cor-fundo-vis);
+    width: 100%;
+    /*height: calc(100vh - 2 * var(--nav-height) ); */
+
+}
+
+div.container-svg {
+
+    max-width: var(--width);
+    margin: 0 auto;
+    position: relative;
+
+}
+
+.container-svg svg {
+
+    width: 100%;
+    /* height determinado pelo JS */
+    outline: 1px solid red;
+
+}
+
+
+body {
+
+    background-color: var(--cor-fundo);
+    margin: 0;
+
+
+}
+
+/*vis*/
+
+rect.main {
+
+    fill: var(--cor-fundo);
+    transition: all .75s;
+
+}
+
+rect.filtered {
+
+    fill: var(--cor-fundo-seletor);
+    transition: all .75s;
+
+}
+
+[data-filtered="true"] rect.main {
+
+    fill: transparent;
+    stroke: var(--cor-fundo);
+    stroke-width: 2px;
+
+}
+
+[data-filtered="false"] p.value-labels.filtered {
+
+    opacity: 0;
+    display: none;
+
+}
+
+
+
+.svg-container {
+
+    position: relative;
+
+}
+
+p.labels {
+
+    position: absolute;
+    margin: 0;
+    font-size: 14px;
+    color: var(--cor-texto-dark);
+
+}
+
+p.value-labels {
+    
+  padding-left: .5em;
+
+
+}
+
+p.value-labels.filtered {
+
+    transition: all .5s;
+    font-size: 12px;
+    transform: translateX(-100%);
+
+}
+
+p.value-labels.filtered span {
+
+    background: var(--cor-fundo-seletor);
+    color: white;
+
+}
+
+p.cat-labels {
+
+    transform: translateY(-100%);
+    padding: 0;
+    padding-bottom: var(--padding-bottom-label);
+    font-size: .8rem;
+
+}
+
+p.sec-label {
+
+    font-size : var(--size-label-secundario);
+
+}
+
+
+p.sec-label.overflow {
+
+    transform-origin: left top;
+    transform: rotate(-90deg) translate(20%, -20%);
+
+}
+
+.sr-only {  
+    border: 0 !important;  
+    clip: rect(1px, 1px, 1px, 1px) !important;  
+    -webkit-clip-path: inset(50%) !important;  
+    clip-path: inset(50%) !important;  
+    height: 1px !important;  
+    overflow: hidden !important;  
+    padding: 0 !important;  
+    position: absolute !important;  
+    width: 1px !important;  
+    white-space: nowrap !important;  
+}

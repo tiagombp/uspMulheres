@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="og:title"                 content="Pesquisa Covid | Escritório USP Mulheres">
+    <meta property="og:description"           content="Principais resultados da pesquisa que buscou investigar como os membros da comunidade universitária estão vivenciando os múltiplos desafios trazidos pela Covid-19.">
+    <meta property="og:image"                 content="https://github.com/tiagombp/uspMulheres/blob/master/site.png">
+
+    <title>Pesquisa Covid</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Yatra+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ovo&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+
+        <section class="slide first">
+
+            <div class="intro">
+
+                <h1>
+                    <span class="kicker">USP Mulheres</span>
+                    
+                    Impactos da Covid-19 entre as mulheres e os homens da USP </h1>
+
+                <p>Principais resultados da pesquisa que buscou investigar como os membros da comunidade universitária estão vivenciando os múltiplos desafios trazidos pela Covid-19. </p> 
+
+                <a class="arrow-start" href="#vis">v</a> 
+
+            </div>
+
+
+            
+        </section>
+
+
+        <section class="inner-container container-perguntas" id="vis">
+
+            <nav>
+                <a href="#vis" data-nav-option="facetas" class="selected">Facetas</a>
+                <a href="#vis" data-nav-option="trabalho_estudo">Trabalho e Estudo</a>
+                <a href="#vis" data-nav-option="renda">Renda</a>
+                <a href="#vis" data-nav-option="saude">Saúde</a>
+                <a href="#vis" data-nav-option="interacoes_lar">Interações no Lar</a>
+            </nav>
+
+            <div class="inner-container-selector">
+
+                <div class="selector pergunta visivel">
+                    <select name="perguntas-facetas" class="seletor-perguntas" data-bloco="facetas">
+                        <option value="nenhum">--Escolha a pergunta--</option>
+                        <option value="vinculo">Seu vínculo atual com a USP é como ...</option>
+                        <option value="genero">Gênero</option>
+                        <option value="cor">Cor (IBGE)</option>
+                    </select>
+                </div>
+                <div class="selector subquestao escondido">
+                    <select name="subquestoes-facetas" class="seletor-subquestoes" data-bloco="facetas" >
+                        <option value="nenhum">--Escolha a opção--</option>
+                    </select>
+                </div>
+
+                <div class="selector pergunta">
+                    <select name="perguntas-trabalho" class="seletor-perguntas" data-bloco="trabalho_estudo">
+                        <option value="nenhum">--Escolha a pergunta--</option>
+                    </select>
+                </div>
+                <div class="selector subquestao escondido">
+                    <select name="subquestoes-trabalho_estudo" class="seletor-subquestoes" data-bloco="trabalho_estudo" >
+                        <option value="nenhum">--Escolha a opção--</option>
+                    </select>
+                </div>
+
+                <div class="selector pergunta">
+                    <select name="perguntas-renda" class="seletor-perguntas" data-bloco="renda">
+                        <option value="nenhum">--Escolha a pergunta--</option>
+                    </select>
+                </div>
+                <div class="selector subquestao escondido">
+                    <select name="subquestoes-renda" class="seletor-subquestoes" data-bloco="renda" >
+                        <option value="nenhum">--Escolha a opção--</option>
+                    </select>
+                </div>
+
+                <div class="selector pergunta">
+                    <select name="perguntas-saude" class="seletor-perguntas" data-bloco="saude">
+                        <option value="nenhum">--Escolha a pergunta--</option>
+                    </select>
+                </div>
+                <div class="selector subquestao escondido">
+                    <select name="subquestoes-saude" class="seletor-subquestoes" data-bloco="saude" >
+                        <option value="nenhum">--Escolha a opção--</option>
+                    </select>
+                </div>
+
+                <div class="selector pergunta">
+                    <select name="perguntas-lar" class="seletor-perguntas" data-bloco="interacoes_lar">
+                        <option value="nenhum">--Escolha a pergunta--</option>
+                    </select>
+                </div>
+
+                <div class="selector subquestao escondido">
+                    <select name="subquestoes-interacoes_lar" class="seletor-subquestoes" data-bloco="interacoes_lar" >
+                        <option value="nenhum">--Escolha a opção--</option>
+                    </select>
+                </div>
+
+
+
+
+
+            </div>
+
+            <div class="outer-container-svg">
+
+                <div class="buttons">
+                    <button data-opcao="nenhum" class="selected">Nenhum</button>
+                    <button data-opcao="vinculo">Vínculo</button>
+                    <button data-opcao="genero">Gênero</button>
+                    <button data-opcao="cor">Cor / Etnia</button>
+                </div>
+
+                <div class="container-svg">
+
+                    <svg></svg>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <script src="../d3.v6.min.js"></script>
+
+    <script src="./vis.js"></script>
+    
+</body>
+</html>
