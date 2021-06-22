@@ -555,6 +555,7 @@ const vis = {
             const target = e.target;
             const parent = target.parentNode;
             const grandparent = parent.parentNode;
+            const greatgrandparent = grandparent.parentNode;
 
             console.log("CLicked", target);
             
@@ -567,12 +568,12 @@ const vis = {
             target.setAttribute("aria-selected", true);
             
             // Hide all tab panels
-            grandparent
+            greatgrandparent
                 .querySelectorAll('[role="tabpanel"]')
                 .forEach(p => p.setAttribute("hidden", true));
             
             // Show the selected panel
-            grandparent.parentNode
+            greatgrandparent.parentNode
                 .querySelector(`#${target.getAttribute("aria-controls")}`)
                 .removeAttribute("hidden");
         },
