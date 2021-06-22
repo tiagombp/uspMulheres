@@ -84,17 +84,17 @@ const vis = {
                             const original_data = vis.data.summarised[grupo][pergunta];
                             const filtered_data = summary[pergunta];
 
-                            console.log("Tem filtro", filtered_data, original_data);
+                            console.log("Tem filtro", pergunta, filtered_data, original_data);
 
                             if (filtered_data.length != original_data.length) {
 
-                                console.log("Opa, diferença!", filtered_data, original_data);
+                                console.log("Opa, diferença!", pergunta, filtered_data, original_data);
 
                                 const categorias = original_data.map(d => d.categoria);
 
                                 categorias.forEach(categoria => {
 
-                                    const datum = filtered_data.filter(d => d.categoria == categorias);
+                                    const datum = filtered_data.filter(d => d.categoria == categoria);
 
                                     if (datum.length == 0) {
 
@@ -158,7 +158,7 @@ const vis = {
 
                                     categorias.forEach(categoria => {
 
-                                        const datum = filtered_data.filter(d => d.categoria == categorias);
+                                        const datum = filtered_data.filter(d => d.categoria == categoria);
 
                                         if (datum.length == 0) {
 
@@ -412,7 +412,7 @@ const vis = {
                 data_ref = "summarised";
             }
 
-            console.log(type, grupo, pergunta, subpergunta);
+            //console.log(type, grupo, pergunta, subpergunta);
 
             let data = vis.data[data_ref][grupo][pergunta];
             if (subpergunta) data = data[subpergunta];
@@ -604,7 +604,7 @@ const vis = {
                   .classed('labels', true)
                   .classed('value-labels', true)
                   .style("left", d => tem_filtro ? vis.barcharts.scales.w(d.subtotal) + "px" : 0)
-                  .html(d => "<strong>" + d.subtotal + "</strong>")
+                  .html(d => `<span>${d.subtotal}</span>`)
                 ;
 
 

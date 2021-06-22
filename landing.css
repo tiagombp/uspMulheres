@@ -621,8 +621,15 @@ p.value-labels {
 p.value-labels.filtered {
 
     transition: all .5s;
-    color: var(--cor-fundo-vis);
     font-size: 12px;
+    transform: translateX(-100%);
+
+}
+
+p.value-labels.filtered span {
+
+    background: var(--cor-fundo-seletor);
+    color: white;
 
 }
 
