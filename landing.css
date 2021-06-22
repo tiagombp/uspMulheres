@@ -555,6 +555,7 @@ body {
 rect.main {
 
     fill: var(--cor-fundo);
+    transition: all .5s;
 
 }
 
@@ -575,7 +576,7 @@ rect.filter {
 [data-filtered="false"] p.value-labels.filtered {
 
     display: none;
-    
+
 }
 
 

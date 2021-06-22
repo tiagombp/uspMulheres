@@ -241,7 +241,8 @@ const vis = {
 
         margins : {
 
-            top : 20, right: 50, bottom: 20, left: 0
+            top : 20, right: 50, bottom: 20, left: 1
+            //esse +1 no left para caber o stroke de 2px dos rect.main
 
         },
 
@@ -268,7 +269,7 @@ const vis = {
                 container
                   .append("svg")
                   .attr("width", vis.sizings.width)
-                  .attr("height", this.height);
+                  .attr("height", this.height + 1); // esse +1 para caber o stroke de 2px dos rect.main
 
             }
 
@@ -761,6 +762,10 @@ const vis = {
             // } else {
 
             vis.ctrl.state.filter = new_filter;
+
+            const tem_filtro = Object.keys(new_filter).length > 0;
+
+            document.querySelector('[data-filtered]').dataset.filtered = tem_filtro;
 
             console.log(vis.ctrl.state.filter);
 
