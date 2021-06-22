@@ -176,6 +176,29 @@ const vis = {
 
             return selector;
 
+        },
+
+        is_equal : function(obj1, obj2) {
+
+            const keys_1 = Object.keys(obj1);
+            const keys_2 = Object.keys(obj2);
+         
+            if (keys_1.length != keys_2.length) return false;
+         
+            for (key of keys_1) {
+
+                if (obj1[key] != obj2[key]) return false;
+
+            }
+         
+            for (key of keys_2) {
+
+                if (obj1[key] != obj2[key]) return false;
+
+            }
+         
+            return true;
+
         }
 
     },
@@ -697,6 +720,52 @@ const vis = {
 
             })
 
+        },
+
+        ref: '.filtros-controles',
+
+        monitor : function() {
+
+            const seletores = document.querySelector(this.ref);
+
+            seletores.addEventListener('change', vis.filter.handle_change)
+
+        },
+
+        handle_change : function(e) {
+
+            const opcao = e.target.value;
+            const criterio = e.target.id.slice(7); // para tirar o "filtro-""
+            const filter = vis.ctrl.state.filter;
+
+            const new_filter = Object.assign({}, filter);
+
+            if (opcao != "") {
+
+                new_filter[criterio] = opcao;
+
+            } else {
+
+                delete new_filter[criterio];
+                // remove a propriedade do filtro
+
+            }
+
+            // não precisa desse if, pq se a opção continuar igual ele não dispara evento de change.
+
+            // if ( vis.utils.is_equal(filter, new_filter) ) {
+
+            //     // do nothing
+            //     console.log("same filter, do nothing");
+
+            // } else {
+
+            vis.ctrl.state.filter = new_filter;
+
+            console.log(vis.ctrl.state.filter);
+
+            // }
+
         }
 
     },
@@ -705,7 +774,7 @@ const vis = {
 
         state : {
 
-            svgs_are_drawn : {} // um boolean por grupo
+            filter : {}
 
         },
 
@@ -729,6 +798,7 @@ const vis = {
             vis.data.filtros = data.filtros;
 
             vis.filter.populate();
+            vis.filter.monitor();
 
             vis.structure.init();
 
