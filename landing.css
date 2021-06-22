@@ -572,6 +572,12 @@ rect.filter {
 
 }
 
+[data-filtered="false"] p.value-labels.filtered {
+
+    display: none;
+    
+}
+
 
 
 .svg-container {
