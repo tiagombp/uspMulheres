@@ -47,7 +47,7 @@ const vis = {
 
                     const tipo = data[grupo][pergunta].tipo[0];
 
-                    console.log("Pergunta", pergunta, " Tipo: ", tipo);
+                    //console.log("Pergunta", pergunta, " Tipo: ", tipo);
 
                     if (tipo == "simples") {
 
@@ -65,7 +65,7 @@ const vis = {
 
                             })
 
-                            console.log("sub data depois", sub_data);
+                            //console.log("sub data depois", sub_data);
 
                         }
 
@@ -75,6 +75,40 @@ const vis = {
                         if (!filter) {
                             const maior_valor_pergunta = summary[pergunta][0].subtotal;
                             maximo = Math.max(maximo, maior_valor_pergunta);
+                        }
+
+                        // testa se dataset filtrado tem mesma estrutura do original
+
+                        if (filter) {
+
+                            const original_data = vis.data.summarised[grupo][pergunta];
+                            const filtered_data = summary[pergunta];
+
+                            console.log("Tem filtro", filtered_data, original_data);
+
+                            if (filtered_data.length != original_data.length) {
+
+                                console.log("Opa, diferença!", filtered_data, original_data);
+
+                                const categorias = original_data.map(d => d.categoria);
+
+                                categorias.forEach(categoria => {
+
+                                    const datum = filtered_data.filter(d => d.categoria == categorias);
+
+                                    if (datum.length == 0) {
+
+                                        filtered_data.push({
+                                            categoria : categoria,
+                                            subtotal : 0
+                                        })
+
+                                    }
+
+                                })
+
+                            }
+        
                         }
 
                     } else {
@@ -99,7 +133,7 @@ const vis = {
     
                             }
 
-                            console.log("Subpergunta: ", sub_pergunta);
+                            //console.log("Subpergunta: ", sub_pergunta);
 
                             summary[pergunta][sub_pergunta] = vis.utils.group_and_sum(sub_data, coluna_categoria = "resposta", coluna_valor = "n", ordena_decrescente = true)
 
@@ -111,6 +145,35 @@ const vis = {
 
                             }
 
+                                                    // testa se dataset filtrado tem mesma estrutura do original
+
+                            if (filter) {
+
+                                const original_data = vis.data.summarised[grupo][pergunta][sub_pergunta];
+                                const filtered_data = summary[pergunta][sub_pergunta];
+
+                                if (filtered_data.length != original_data.length) {
+
+                                    const categorias = original_data.map(d => d.categoria);
+
+                                    categorias.forEach(categoria => {
+
+                                        const datum = filtered_data.filter(d => d.categoria == categorias);
+
+                                        if (datum.length == 0) {
+
+                                            filtered_data.push({
+                                                categoria : categoria,
+                                                subtotal : 0
+                                            })
+
+                                        }
+
+                                    })
+
+                                }
+            
+                            }
 
                         })
 
@@ -124,8 +187,6 @@ const vis = {
                     vis.data.maximos[grupo] = maximo;
 
                 }
-
-                
 
             }
 
@@ -312,14 +373,14 @@ const vis = {
 
                     let sumario = vis.data.summarised[grupo][pergunta];
 
-                    console.log("Sumario para esta escala Y", sumario);
+                    //console.log("Sumario para esta escala Y", sumario);
 
                     if (subpergunta) sumario = sumario[subpergunta];
 
                     const domain = sumario.map(d => d.categoria);
                     const range = domain.length * bar.height * 2;
 
-                    console.log(domain, range);
+                    //console.log(domain, range);
 
                     bar.scales.y
                       .domain(domain)
@@ -343,9 +404,16 @@ const vis = {
 
         get_data_and_selector : function(type, grupo, pergunta, subpergunta) {
 
-            console.log('getting data and selector', type, grupo, pergunta, subpergunta);
+            //console.log('getting data and selector', type, grupo, pergunta, subpergunta);
 
             let data_ref = type == "main" ? "summarised" : "filtered";
+
+            if (vis.ctrl.primeira_vez_barras_filtros) {
+                data_ref = "summarised";
+            }
+
+            console.log(type, grupo, pergunta, subpergunta);
+
             let data = vis.data[data_ref][grupo][pergunta];
             if (subpergunta) data = data[subpergunta];
 
@@ -535,7 +603,7 @@ const vis = {
     
                 codigos_perguntas.forEach(pergunta => {
 
-                    console.log("to aqui", data[grupo][pergunta], pergunta);
+                    //console.log("to aqui", data[grupo][pergunta], pergunta);
 
                     const tipo = vis.data.raw[grupo][pergunta].tipo[0];
     
@@ -859,7 +927,9 @@ const vis = {
 
         state : {
 
-            filter : {}
+            filter : {},
+
+            primeira_vez_barras_filtros : true
 
         },
 
@@ -897,10 +967,12 @@ const vis = {
 
             //vis.barcharts.render("main", "renda", "G04Q235");
 
-            vis.data.filtered = vis.data.summarised;
+            //vis.data.filtered = vis.data.summarised;
 
             vis.barcharts.render_all("main");
             vis.barcharts.render_all("filtered");
+            
+            vis.ctrl.state.primeira_vez_barras_filtros = false;
 
 
         }
