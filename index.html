@@ -4,15 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pesquisa Covid</title>
+
+    <meta property="og:title"                 content="Pesquisa Covid | Escritório USP Mulheres">
+    <meta property="og:description"           content="Principais resultados da pesquisa que buscou investigar como os membros da comunidade universitária estão vivenciando os múltiplos desafios trazidos pela Covid-19.">
+    <meta property="og:image"                 content="https://github.com/tiagombp/uspMulheres/blob/master/site.png">
+
+    <title>Pesquisa Covid - USP Mulheres</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Yatra+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Ovo&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="landing.css">
 </head>
 <body>
-    <div class="container">
 
         <section class="slide first">
 
@@ -29,89 +32,88 @@
 
             </div>
 
-
-            
         </section>
 
+        <section class="inner-container container-perguntas" id="vis" data-grupo-atual="" data-filtered="false">
 
-        <section class="inner-container container-perguntas" id="vis">
+            <div class="controls">
 
-            <nav>
-                <a href="#vis" data-nav-option="facetas" class="selected">Facetas</a>
-                <a href="#vis" data-nav-option="trabalho_estudo">Trabalho e Estudo</a>
-                <a href="#vis" data-nav-option="renda">Renda</a>
-                <a href="#vis" data-nav-option="saude">Saúde</a>
-                <a href="#vis" data-nav-option="interacoes_lar">Interações no Lar</a>
-            </nav>
+                <nav role="tablist" aria-label="Seleção do grupo">
 
-            <div class="inner-container-selector">
+                    <button role="tab" aria-selected="true" aria-controls="trabalho-estudo" id="tab-trabalho-estudo" tabindex="0">
+                        Trabalho e Estudo
+                    </button>
+    
+                    <button role="tab" aria-selected="false" aria-controls="renda" id="tab-renda" tabindex="-1">
+                        Renda
+                    </button>
+    
+                    <button role="tab" aria-selected="false" aria-controls="saude" id="tab-saude" tabindex="-1">
+                        Saúde
+                    </button>
+    
+                    <button role="tab" aria-selected="false" aria-controls="interacoes-lar" id="tab-interacoes-lar" tabindex="-1">
+                        Interações no Lar
+                    </button>
+    
+                </nav>
+    
+                <div class="filtros-controles">
 
-                <div class="selector pergunta visivel">
-                    <select name="perguntas-facetas" class="seletor-perguntas" data-bloco="facetas">
-                        <option value="nenhum">--Escolha a pergunta--</option>
-                        <option value="vinculo">Seu vínculo atual com a USP é como ...</option>
-                        <option value="genero">Gênero</option>
-                        <option value="cor">Cor (IBGE)</option>
-                    </select>
+                    <div>
+                        <label for="filtro-genero">Gênero</label>
+                        <select name="filtro-genero" id="filtro-genero">
+                            <option value="">--Todos--</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="filtro-vinculo">Vínculo</label>
+                        <select name="filtro-vinculo" id="filtro-vinculo">
+                            <option value="">--Todos--</option>
+                        </select>
+                    </div>
+    
+                    <div>
+                        <label for="filtro-cor">Cor</label>
+                        <select name="filtro-cor" id="filtro-cor">
+                            <option value="">--Todas--</option>
+                        </select>
+                    </div>
+    
+                    <div>
+                        <label for="filtro-filhos">Possui filhos</label>
+                        <select name="filtro-filhos" id="filtro-filhos">
+                            <option value="">--Sem filtro--</option>
+                        </select>
+                    </div>
+    
                 </div>
-                <div class="selector subquestao escondido">
-                    <select name="subquestoes-facetas" class="seletor-subquestoes" data-bloco="facetas" >
-                        <option value="nenhum">--Escolha a opção--</option>
-                    </select>
-                </div>
-
-                <div class="selector pergunta">
-                    <select name="perguntas-trabalho" class="seletor-perguntas" data-bloco="trabalho_estudo">
-                        <option value="nenhum">--Escolha a pergunta--</option>
-                    </select>
-                </div>
-                <div class="selector subquestao escondido">
-                    <select name="subquestoes-trabalho_estudo" class="seletor-subquestoes" data-bloco="trabalho_estudo" >
-                        <option value="nenhum">--Escolha a opção--</option>
-                    </select>
-                </div>
-
-                <div class="selector pergunta">
-                    <select name="perguntas-renda" class="seletor-perguntas" data-bloco="renda">
-                        <option value="nenhum">--Escolha a pergunta--</option>
-                    </select>
-                </div>
-                <div class="selector subquestao escondido">
-                    <select name="subquestoes-renda" class="seletor-subquestoes" data-bloco="renda" >
-                        <option value="nenhum">--Escolha a opção--</option>
-                    </select>
-                </div>
-
-                <div class="selector pergunta">
-                    <select name="perguntas-saude" class="seletor-perguntas" data-bloco="saude">
-                        <option value="nenhum">--Escolha a pergunta--</option>
-                    </select>
-                </div>
-                <div class="selector subquestao escondido">
-                    <select name="subquestoes-saude" class="seletor-subquestoes" data-bloco="saude" >
-                        <option value="nenhum">--Escolha a opção--</option>
-                    </select>
-                </div>
-
-                <div class="selector pergunta">
-                    <select name="perguntas-lar" class="seletor-perguntas" data-bloco="interacoes_lar">
-                        <option value="nenhum">--Escolha a pergunta--</option>
-                    </select>
-                </div>
-
-                <div class="selector subquestao escondido">
-                    <select name="subquestoes-interacoes_lar" class="seletor-subquestoes" data-bloco="interacoes_lar" >
-                        <option value="nenhum">--Escolha a opção--</option>
-                    </select>
-                </div>
-
-
-
-
 
             </div>
 
-            <div class="outer-container-svg">
+            <a href="#vis" class="go-back" title="Voltar ao topo"><span class="sr-only">Voltar ao topo</span>
+                <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="1" y1="4" x2="5" y2="0" stroke="#212121"/>
+                    <line x1="5" y1="0" x2="9" y2="4" stroke="#212121"/>
+                    <line x1="5" y1="0" x2="5" y2="10" stroke="#212121"/>
+                </svg>
+            </a>
+
+            <article id="trabalho-estudo" role="tabpanel" tabindex="0" aria-labelledby="tab-trabalho-estudo" data-grupo="trabalho_estudo">
+            </article>
+
+            <article id="renda" role="tabpanel" tabindex="0" aria-labelledby="tab-renda" data-grupo="renda" hidden="true">
+            </article>
+
+            <article id="saude" role="tabpanel" tabindex="0" aria-labelledby="tab-saude" data-grupo="saude" hidden="true">
+            </article>
+
+            <article id="interacoes-lar" role="tabpanel" tabindex="0" aria-labelledby="tab-interacoes-lar" data-grupo="interacoes_lar" hidden="true">
+            </article>
+
+
+            <!--<div class="outer-container-svg">
 
                 <div class="buttons">
                     <button data-opcao="nenhum" class="selected">Nenhum</button>
@@ -126,15 +128,13 @@
 
                 </div>
 
-            </div>
+            </div>-->
 
         </section>
 
-    </div>
-
     <script src="./d3.v6.min.js"></script>
 
-    <script src="./vis.js"></script>
+    <script src="./landing.js"></script>
     
 </body>
 </html>
