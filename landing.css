@@ -158,6 +158,20 @@ nav button[aria-selected="true"] {
 
 }
 
+.filtros-controles label.filtro-ativo {
+
+    color: var(--cor-fundo);
+    font-weight: bold;
+
+}
+
+.filtros-controles select.filtro-ativo {
+
+    background-color: var(--cor-fundo);
+    color: white;
+
+}
+
 .filtros-controles div {
 
     display: flex;
@@ -599,7 +613,16 @@ p.labels {
 
 p.value-labels {
     
-padding-left: .5em;
+  padding-left: .5em;
+
+
+}
+
+p.value-labels.filtered {
+
+    transition: all .5s;
+    color: var(--cor-fundo-vis);
+    font-size: 12px;
 
 }
 

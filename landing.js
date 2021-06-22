@@ -408,7 +408,7 @@ const vis = {
 
             let data_ref = type == "main" ? "summarised" : "filtered";
 
-            if (vis.ctrl.primeira_vez_barras_filtros) {
+            if (vis.ctrl.state.primeira_vez_barras_filtros) {
                 data_ref = "summarised";
             }
 
@@ -591,6 +591,54 @@ const vis = {
                   .duration(500)
                   .attr("width", d => tem_filtro ? vis.barcharts.scales.w(d.subtotal) : 0)
                 ; // quando criar inicialmente as barras dos valores filtrados, deixá-las sem tamanho
+
+
+                // labels
+                const cont = d3.select(selector + " .svg-container");
+
+                cont
+                  .selectAll("p.value-labels." + type)
+                  .data(bar.data, d => d.categoria)
+                  .join("p")
+                  .classed(type, true)
+                  .classed('labels', true)
+                  .classed('value-labels', true)
+                  .style("left", d => tem_filtro ? vis.barcharts.scales.w(d.subtotal) + "px" : 0)
+                  .html(d => "<strong>" + d.subtotal + "</strong>")
+                ;
+
+
+
+            }
+
+            function update_value_labels(grupo, pergunta, subpergunta) {
+
+                const cont = d3.select(selector + " .svg-container");
+
+                const total = d3.sum(data, d => d.subtotal);
+
+                function formata_pct(value) {
+
+                    return ( (100 * value).toFixed(1) + "%" ).replace(".", ",");
+
+                }
+
+                cont
+                  .selectAll("p.value-labels." + type)
+                  .data(data, d => d.categoria)
+                  .join("p")
+                  .classed(type, true)
+                  .classed('labels', true)
+                  .classed('value-labels', true)
+                  .style("left", 0)
+                  .style("top", d => vis.barcharts.scales.y(d.categoria) + "px")
+                  .style("line-height", vis.barcharts.scales.y.bandwidth() + "px")
+                  .html(d => "<strong>" + d.subtotal + `</strong> (${formata_pct(d.subtotal/total)})`)
+                  .transition()
+                  .duration(500)
+                  .style("left", d => vis.barcharts.scales.w(d.subtotal) + "px")
+                ;
+
             }
 
             function atualiza_grupo(grupo) {
@@ -904,6 +952,8 @@ const vis = {
 
             vis.ctrl.state.filter = new_filter;
 
+            vis.filter.highlight_label();
+
             const tem_filtro = Object.keys(new_filter).length > 0;
 
             // updates o data attribute que controla o estilo dos rects principais
@@ -918,6 +968,28 @@ const vis = {
             console.log(vis.ctrl.state.filter);
 
             // }
+
+        },
+
+        highlight_label : function() {
+
+            const filtros = Object.keys(vis.ctrl.state.filter);
+
+            const criterios = this.criterios;
+
+            // label for="filtro-vinculo
+
+            criterios.forEach(criterio => {
+
+                const filtro_estah_ativo = filtros.includes(criterio);
+
+                const label = d3.select('[for="filtro-' + criterio + '"]');
+                const select = d3.select('#filtro-' + criterio);
+
+                label.classed("filtro-ativo", filtro_estah_ativo);
+                select.classed("filtro-ativo", filtro_estah_ativo);
+
+            });
 
         }
 
