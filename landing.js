@@ -14,7 +14,7 @@ const vis = {
 
         load : function() {
 
-            fetch("./output2.json", {mode: 'cors'})
+            fetch("./output_completo.json", {mode: 'cors'})
               .then( response => response.json())
               .then( data => vis.ctrl.begin(data))
               .catch( error => console.log( error ) );
@@ -47,7 +47,7 @@ const vis = {
 
                     const tipo = data[grupo][pergunta].tipo[0];
 
-                    //console.log("Pergunta", pergunta, " Tipo: ", tipo);
+                    //console.log(grupo, "Pergunta", pergunta, " Tipo: ", tipo);
 
                     if (tipo == "simples") {
 
