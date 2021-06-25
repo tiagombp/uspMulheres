@@ -130,7 +130,7 @@ filtros <- list(
   genero  = base[["G04Q240"]]$G7Q00002 %>% levels(),
   vinculo = base[["G04Q240"]]$G2Q00001 %>% levels(),
   cor     = base[["G04Q240"]]$G7Q00003 %>% levels(),
-  filhos  = base[["G04Q240"]]$G7Q00006 %>% levels()
+  filhos  = base[["G04Q240"]]$G3Q00006 %>% levels()
   
 )
 
