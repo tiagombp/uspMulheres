@@ -29,14 +29,21 @@ multiplas_escala <- c("G3Q00019", "G3Q00020", "G3Q00021", "G3Q00022", "G3Q00024"
 # tirei os criterior.. "G7Q00002",	"G7Q00003",	"G2Q00001",	
 #facetas <- c("G3Q00006")
 
-trabalho_estudo <- c("G3Q00019", "G3Q00020", "G3Q00021", "G3Q00022", "G3Q00024", "G3Q00025","G3Q00026","G3Q00027","G3Q00028","G3Q00029","G3Q00030","G3Q00031","G3Q00032","G3Q00033","G3Q00034","G3Q00035", "G3Q00036", "G3Q00037","G3Q00038", "G3Q00041", "G3Q00042")
+pega_questoes <- function(identificador) {
+  
+  quest <- questoes %>% 
+    filter(grupo == identificador, !str_detect(titulo, "Copy")) %>% 
+    .$titulo %>% 
+    unique()
+  
+  return(quest)
+  
+}
 
-renda <- c("G04Q240", "G04Q241","G4Q00003","G4Q00011","G4Q00006","G4Q00014","G04Q235","G04Q237","G04Q238","G5Q00004")
-
-# tire "G05Q246", que não está na base
-saude <- c("G5Q00005","G05Q247","G5Q00006","G5Q00007","G500082","G05Q00083","G05Q245","G5Q00008","G05Q248","G5Q00009","G5Q00017","G5Q00018","G5Q00014","G5Q00015","G5Q00016","G5Q00046","G5Q00045","G5Q00051","G5Q00052","G05Q252","G5Q00053","G05Q227","G05Q229","G05Q231","G05Q233","G5Q00057","G5Q00058","G5Q00060","G5Q00061")
-
-interacoes_lar <- c("G6Q00006", "G6Q00009", "G6Q00017", "G6Q00018", "G6Q00019", "G6Q00020", "G6Q00021", "G6Q00022", "G6Q00042")
+trabalho_estudo <- pega_questoes("Trabalho")
+renda           <- pega_questoes("Renda") 
+saude           <- pega_questoes("Saúde física e mental")
+interacoes_lar  <- pega_questoes("Interações com outras pessoas e ambientes")
 
 nomes_questoes <- questoes$questao
 names(nomes_questoes) <- questoes$titulo
@@ -65,14 +72,22 @@ for (bloco in blocos) {
 
   for (pergunta in bloco) {
     
-    if (pergunta %in% simples) tipo = 'simples'
-    if (pergunta %in% multiplas_escala) tipo = 'multiplas com escala'
+    dados_pre <- base[[pergunta]]
+    
+    if (is.null(dados_pre) || nrow(dados_pre) == 0) {
+      print(paste(pergunta, 'Base vazia, pulando.'))
+      next
+    }
+    
+    tipo <- ifelse(
+      "pergunta" %in% colnames(dados_pre),
+      'multiplas com escala',
+      'simples'
+      )
     
     print(paste(pergunta, tipo))
     
     nome_completo <- nomes_questoes[pergunta]
-    
-    dados_pre <- base[[pergunta]]
     
     if(tipo == 'multiplas com escala') {
       
@@ -125,6 +140,7 @@ for (bloco in blocos) {
 
 # filtros -----------------------------------------------------------------
 
+
 filtros <- list(
   
   genero  = base[["G04Q240"]]$G7Q00002 %>% levels(),
@@ -143,7 +159,7 @@ output_completo <- list(
   filtros = filtros
 )
 
-jsonlite::write_json(output_completo, "output2.json", )
+jsonlite::write_json(output_completo, "output_completo.json", )
 
 
 
