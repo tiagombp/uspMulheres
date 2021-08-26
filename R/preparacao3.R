@@ -163,7 +163,7 @@ filtros <- list(
   vinculo = base[["G04Q240"]]$vinculo %>% levels(),
   cor     = base[["G04Q240"]]$G7Q00003 %>% levels(),
   filhos  = base[["G04Q240"]]$G3Q00006 %>% levels(),
-  capus   = base[["G04Q240"]]$campus %>% levels()
+  campus   = base[["G04Q240"]]$campus %>% levels()
   
 )
 
