@@ -1,9 +1,17 @@
 #remotes::install_github("pesquisasuspmulheres/covid19USP")
 library(tidyverse)
 library(jsonlite)
+library(weights)
 
-base <- readRDS("./R/base_em_20_05_2021.rds")
+base <- readRDS("./R/base_com_pesos_em_03_008_2021.rds") #readRDS("./R/base_em_20_05_2021.rds")
 load("./R/questoes.rda")
+
+# qG05Q230 <- base[["G05Q230"]]
+# crianca <- qG05Q230 %>% 
+#   filter(pergunta == "Criança ou adolescente sob a sua responsabilidade")
+# wpct(crianca$resposta)
+# wpct(crianca$resposta, crianca$weights)
+
 
 # df <- base[["G3Q00019"]] 
 # 
@@ -97,28 +105,36 @@ for (bloco in blocos) {
       
       for (sub_pergunta in sub_perguntas) {
         
-        dados[[sub_pergunta]] <- dados_pre %>%
-          filter(pergunta == sub_pergunta) %>%
+        sub_data <- dados_pre %>%
+          filter(pergunta == sub_pergunta) 
+        
+        pesos <- sub_data$weights
+        
+        dados[[sub_pergunta]] <- sub_data %>%
           group_by(
-            vinculo = G2Q00001,
-            genero = G7Q00002, 
+            campus,
+            vinculo,
+            genero, 
             cor = G7Q00003,
             filhos = G3Q00006
           ) %>%
-          count(resposta)
+          summarise(n = wpct(resposta, pesos))
         
       }
     
     } else {
       
+      pesos <- dados_pre$weights
+      
       dados <- dados_pre %>%
         group_by(
-          vinculo = G2Q00001,
-          genero = G7Q00002, 
+          campus,
+          vinculo,
+          genero, 
           cor = G7Q00003,
           filhos = G3Q00006
         ) %>%
-        count(resposta)
+        summarise(n = wpct(resposta, pesos))
       
       print("salvou dados")
       
@@ -143,10 +159,11 @@ for (bloco in blocos) {
 
 filtros <- list(
   
-  genero  = base[["G04Q240"]]$G7Q00002 %>% levels(),
-  vinculo = base[["G04Q240"]]$G2Q00001 %>% levels(),
+  genero  = base[["G04Q240"]]$genero %>% levels(),
+  vinculo = base[["G04Q240"]]$vinculo %>% levels(),
   cor     = base[["G04Q240"]]$G7Q00003 %>% levels(),
-  filhos  = base[["G04Q240"]]$G3Q00006 %>% levels()
+  filhos  = base[["G04Q240"]]$G3Q00006 %>% levels(),
+  capus   = base[["G04Q240"]]$campus %>% levels()
   
 )
 
