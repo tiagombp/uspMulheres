@@ -6,6 +6,17 @@ library(weights)
 base <- readRDS("./R/base_com_pesos_em_03_008_2021.rds") #readRDS("./R/base_em_20_05_2021.rds")
 load("./R/questoes.rda")
 
+# exemplo do novo cálculo com pesos
+calc <- base[[1]] %>%
+  count(genero, resposta, weights) %>%
+  mutate(n2 = weights * n) %>%
+  ungroup() %>%
+  group_by(genero, resposta) %>%
+  summarise(soma = sum(n2))
+# %>%
+#   group_by(genero) %>%
+#   mutate(pct = soma/sum(soma))
+
 # qG05Q230 <- base[["G05Q230"]]
 # crianca <- qG05Q230 %>% 
 #   filter(pergunta == "Criança ou adolescente sob a sua responsabilidade")
@@ -111,14 +122,20 @@ for (bloco in blocos) {
         pesos <- sub_data$weights
         
         dados[[sub_pergunta]] <- sub_data %>%
-          group_by(
+          count(
             campus,
             vinculo,
             genero, 
             cor = G7Q00003,
-            filhos = G3Q00006
+            filhos = G3Q00006,
+            resposta,
+            weights
           ) %>%
-          summarise(n = wpct(resposta, pesos))
+          mutate(n2 = weights * n) %>%
+          ungroup() %>%
+          group_by(campus, vinculo, genero, cor, filhos, resposta) %>%
+          summarise(n = sum(n2)) %>% ungroup()
+        
         
       }
     
@@ -127,16 +144,21 @@ for (bloco in blocos) {
       pesos <- dados_pre$weights
       
       dados <- dados_pre %>%
-        group_by(
+        count(
           campus,
           vinculo,
           genero, 
           cor = G7Q00003,
-          filhos = G3Q00006
+          filhos = G3Q00006,
+          resposta,
+          weights
         ) %>%
-        summarise(n = wpct(resposta, pesos))
+        mutate(n2 = weights * n) %>%
+        ungroup() %>%
+        group_by(campus, vinculo, genero, cor, filhos, resposta) %>%
+        summarise(n = sum(n2)) %>% ungroup()
       
-      print("salvou dados")
+      #print("salvou dados")
       
     }
     
@@ -176,7 +198,8 @@ output_completo <- list(
   filtros = filtros
 )
 
-jsonlite::write_json(output_completo, "output_completo.json", )
+jsonlite::write_json(output_completo, "output_completo.json")
+# lembrar de corrigir um \" que aparece no json. Procurar por "pia".
 
 
 
