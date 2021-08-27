@@ -1,9 +1,28 @@
 #remotes::install_github("pesquisasuspmulheres/covid19USP")
 library(tidyverse)
 library(jsonlite)
+library(weights)
 
-base <- readRDS("./R/base_em_20_05_2021.rds")
+base <- readRDS("./R/base_com_pesos_em_03_008_2021.rds") #readRDS("./R/base_em_20_05_2021.rds")
 load("./R/questoes.rda")
+
+# exemplo do novo cálculo com pesos
+calc <- base[[1]] %>%
+  count(genero, resposta, weights) %>%
+  mutate(n2 = weights * n) %>%
+  ungroup() %>%
+  group_by(genero, resposta) %>%
+  summarise(soma = sum(n2))
+# %>%
+#   group_by(genero) %>%
+#   mutate(pct = soma/sum(soma))
+
+# qG05Q230 <- base[["G05Q230"]]
+# crianca <- qG05Q230 %>% 
+#   filter(pergunta == "Criança ou adolescente sob a sua responsabilidade")
+# wpct(crianca$resposta)
+# wpct(crianca$resposta, crianca$weights)
+
 
 # df <- base[["G3Q00019"]] 
 # 
@@ -97,30 +116,49 @@ for (bloco in blocos) {
       
       for (sub_pergunta in sub_perguntas) {
         
-        dados[[sub_pergunta]] <- dados_pre %>%
-          filter(pergunta == sub_pergunta) %>%
-          group_by(
-            vinculo = G2Q00001,
-            genero = G7Q00002, 
+        sub_data <- dados_pre %>%
+          filter(pergunta == sub_pergunta) 
+        
+        pesos <- sub_data$weights
+        
+        dados[[sub_pergunta]] <- sub_data %>%
+          count(
+            campus,
+            vinculo,
+            genero, 
             cor = G7Q00003,
-            filhos = G3Q00006
+            filhos = G3Q00006,
+            resposta,
+            weights
           ) %>%
-          count(resposta)
+          mutate(n2 = weights * n) %>%
+          ungroup() %>%
+          group_by(campus, vinculo, genero, cor, filhos, resposta) %>%
+          summarise(n = sum(n2)) %>% ungroup()
+        
         
       }
     
     } else {
       
-      dados <- dados_pre %>%
-        group_by(
-          vinculo = G2Q00001,
-          genero = G7Q00002, 
-          cor = G7Q00003,
-          filhos = G3Q00006
-        ) %>%
-        count(resposta)
+      pesos <- dados_pre$weights
       
-      print("salvou dados")
+      dados <- dados_pre %>%
+        count(
+          campus,
+          vinculo,
+          genero, 
+          cor = G7Q00003,
+          filhos = G3Q00006,
+          resposta,
+          weights
+        ) %>%
+        mutate(n2 = weights * n) %>%
+        ungroup() %>%
+        group_by(campus, vinculo, genero, cor, filhos, resposta) %>%
+        summarise(n = sum(n2)) %>% ungroup()
+      
+      #print("salvou dados")
       
     }
     
@@ -143,10 +181,11 @@ for (bloco in blocos) {
 
 filtros <- list(
   
-  genero  = base[["G04Q240"]]$G7Q00002 %>% levels(),
-  vinculo = base[["G04Q240"]]$G2Q00001 %>% levels(),
+  genero  = base[["G04Q240"]]$genero %>% levels(),
+  vinculo = base[["G04Q240"]]$vinculo %>% levels(),
   cor     = base[["G04Q240"]]$G7Q00003 %>% levels(),
-  filhos  = base[["G04Q240"]]$G3Q00006 %>% levels()
+  filhos  = base[["G04Q240"]]$G3Q00006 %>% levels(),
+  campus   = base[["G04Q240"]]$campus %>% levels()
   
 )
 
@@ -159,7 +198,8 @@ output_completo <- list(
   filtros = filtros
 )
 
-jsonlite::write_json(output_completo, "output_completo.json", )
+jsonlite::write_json(output_completo, "output_completo.json")
+# lembrar de corrigir um \" que aparece no json. Procurar por "pia".
 
 
 

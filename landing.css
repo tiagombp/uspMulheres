@@ -580,7 +580,7 @@ body {
 rect.main {
 
     fill: var(--cor-fundo);
-    transition: all .75s;
+    /*transition: all .75s;*/
 
 }
 
@@ -591,13 +591,13 @@ rect.filtered {
 
 }
 
-[data-filtered="true"] rect.main {
+/*[data-filtered="true"] rect.main {
 
     fill: transparent;
     stroke: var(--cor-fundo);
     stroke-width: 2px;
 
-}
+}*/
 
 [data-filtered="false"] p.value-labels.filtered {
 
@@ -606,6 +606,37 @@ rect.filtered {
 
 }
 
+[data-filtered="true"] p.value-labels.main {
+
+    transform: translateY(100%);
+    color: grey;
+    font-size: 12px;
+
+}
+
+  /* strips */
+
+div.strip {
+
+    position: absolute;
+    transition: transform .75s;
+    width: 1px;
+    background-color: grey;
+    transform-origin: center top;
+
+}
+
+[data-filtered="false"] div.strip {
+
+    transform: scaleY(0);
+
+}
+
+[data-filtered="true"] div.strip {
+
+    transform: scaleY(1.65);
+
+}
 
 
 .svg-container {
@@ -626,6 +657,7 @@ p.labels {
 p.value-labels {
     
   padding-left: .5em;
+  transition: transform .75s;
 
 
 }
@@ -634,14 +666,14 @@ p.value-labels.filtered {
 
     transition: all .5s;
     font-size: 12px;
-    transform: translateX(-100%);
+    /*transform: translateX(-100%);*/
 
 }
 
 p.value-labels.filtered span {
 
-    background: var(--cor-fundo-seletor);
-    color: white;
+    background: white;/*var(--cor-fundo-seletor);*/
+    color: var(--cor-fundo);
 
 }
 

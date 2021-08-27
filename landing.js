@@ -267,6 +267,12 @@ const vis = {
          
             return true;
 
+        },
+
+        formata_pct : function(value) {
+
+            return ( (100 * value).toFixed(1) + "%" ).replace(".", ",");
+
         }
 
     },
@@ -362,7 +368,7 @@ const vis = {
                           [ 0, vis.sizings.width - bar.margins.right - bar.margins.left ]
                           )
                       .domain(
-                          [ 0, vis.data.maximos[grupo] ]
+                          [ 0, 1 ]//vis.data.maximos[grupo] ]
                       )
 
                 },
@@ -378,7 +384,7 @@ const vis = {
                     if (subpergunta) sumario = sumario[subpergunta];
 
                     const domain = sumario.map(d => d.categoria);
-                    const range = domain.length * bar.height * 2;
+                    const range = domain.length * bar.height * 2.2;
 
                     //console.log(domain, range);
 
@@ -430,6 +436,8 @@ const vis = {
 
                 const svg = d3.select(selector + " svg");
 
+                const total = d3.sum(data, d => d.subtotal);
+
                 svg
                   .selectAll("rect." + type)
                   .data(data, d => d.categoria)
@@ -438,7 +446,8 @@ const vis = {
                   .attr("x", vis.barcharts.margins.left)
                   .attr("y", d => vis.barcharts.scales.y(d.categoria))
                   .attr("height", vis.barcharts.scales.y.bandwidth())
-                  .attr("width", type == "main" ? d => vis.barcharts.scales.w(d.subtotal) : 0)
+                  .attr("width", total == 0 ? 0 : d => vis.barcharts.scales.w(d.subtotal / total))
+                  .attr('data-original-width', total == 0 ? 0 : d => vis.barcharts.scales.w(d.subtotal / total)) //salva
                 ; // quando criar inicialmente as barras dos valores filtrados, deixá-las sem tamanho
             },
 
@@ -448,11 +457,8 @@ const vis = {
 
                 const total = d3.sum(data, d => d.subtotal);
 
-                function formata_pct(value) {
+                const formata_pct = vis.utils.formata_pct;
 
-                    return ( (100 * value).toFixed(1) + "%" ).replace(".", ",");
-
-                }
 
                 cont
                   .selectAll("p.value-labels." + type)
@@ -463,8 +469,8 @@ const vis = {
                   .classed('value-labels', true)
                   .style("top", d => vis.barcharts.scales.y(d.categoria) + "px")
                   .style("line-height", vis.barcharts.scales.y.bandwidth() + "px")
-                  .html(d => "<strong>" + d.subtotal + `</strong> (${formata_pct(d.subtotal/total)})`)
-                  .style("left", d => vis.barcharts.scales.w(d.subtotal) + "px")
+                  .html(d => `<strong>${total == 0 ? 0 : formata_pct(d.subtotal/total)}</strong>`)
+                  .style("left", d => vis.barcharts.scales.w(d.subtotal/total) + "px")
                 ;
 
             },
@@ -485,8 +491,24 @@ const vis = {
                   .text(d => d.categoria)
                 ;
 
+            },
 
-            }
+            strips : function(selector, data) {
+
+                const cont = d3.select(selector + " .svg-container");
+
+                const total = d3.sum(data, d => d.subtotal);
+
+                cont
+                  .selectAll("div.strip")
+                  .data(data, d => d.categoria)
+                  .join("div")
+                  .classed('strip', true)
+                  .style("left", d => vis.barcharts.scales.w(d.subtotal / total) + 'px')
+                  .style("top", d => vis.barcharts.scales.y(d.categoria) + 'px')
+                  .style("height", vis.barcharts.scales.y.bandwidth() + 'px')
+                ; // quando criar inicialmente as strips, deixá-las com scaleY(0) no css;
+            },
 
 
 
@@ -502,6 +524,7 @@ const vis = {
                 bar.svg.build(grupo, pergunta, subpergunta);
                 bar.get_data_and_selector(type, grupo, pergunta, subpergunta);
                 bar.components.marks(type, bar.selector, bar.data);
+                bar.components.strips(bar.selector, bar.data);
                 bar.components.value_labels(type, bar.selector, bar.data);
                 bar.components.categories_labels(type, bar.selector, bar.data);
 
@@ -509,7 +532,7 @@ const vis = {
 
                 bar.scales.set.y(grupo, pergunta, subpergunta);
                 bar.get_data_and_selector(type, grupo, pergunta, subpergunta);
-                bar.components.marks(type, bar.selector, bar.data);
+                //bar.components.marks(type, bar.selector, bar.data);
                 bar.components.value_labels(type, bar.selector, bar.data);
 
             }
@@ -563,12 +586,15 @@ const vis = {
 
         update_filtered_rects : function(tem_filtro) {
 
+            console.log(tem_filtro);
+
             const data = vis.data.filtered;
             const grupos = Object.keys(vis.data.raw);
-            const type = "filtered";
             const bar = vis.barcharts;
 
             function update_width(grupo, pergunta, subpergunta) {
+
+                let type = "filtered";
 
                 bar.get_data_and_selector(type, grupo, pergunta, subpergunta);
 
@@ -578,15 +604,30 @@ const vis = {
 
                 const svg = d3.select(selector + " svg");
 
+                const total = d3.sum(bar.data, d => d.subtotal);
+
                 svg
-                  .selectAll("rect." + type)
+                  .selectAll("rect.main") //+ type)
                   .data(bar.data, d => d.categoria)
-                  .attr("width", d => tem_filtro ? vis.barcharts.scales.w(d.subtotal) : 0)
+                  .transition()
+                  .duration(750)
+                  .attr("width", function(d) {
+                    
+                    const original_width = d3.select(this).attr('data-original-width');
+
+                    if (tem_filtro) return total == 0 ? 0 : vis.barcharts.scales.w(d.subtotal / total);
+                    else return original_width;
+
+                  })
                 ; // quando criar inicialmente as barras dos valores filtrados, deixá-las sem tamanho
 
 
                 // labels
                 const cont = d3.select(selector + " .svg-container");
+
+                const formata_pct = vis.utils.formata_pct;
+
+                //type = "filtered";
 
                 cont
                   .selectAll("p.value-labels." + type)
@@ -595,8 +636,8 @@ const vis = {
                   .classed(type, true)
                   .classed('labels', true)
                   .classed('value-labels', true)
-                  .style("left", d => tem_filtro ? vis.barcharts.scales.w(d.subtotal) + "px" : 0)
-                  .html(d => `<span>${d.subtotal}</span>`)
+                  .style("left", d => tem_filtro ? vis.barcharts.scales.w(d.subtotal/total) + "px" : 0)
+                  .html(d => `<span>${total == 0 ? 0 : formata_pct(d.subtotal/total)}</span>`)
                 ;
 
 
@@ -875,7 +916,7 @@ const vis = {
 
     filter : {
 
-        criterios : ['cor', 'genero', 'vinculo', 'filhos'],
+        criterios : ['campus', 'cor', 'genero', 'vinculo', 'filhos'],
 
         populate : function() {
 
