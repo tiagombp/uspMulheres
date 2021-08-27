@@ -267,6 +267,12 @@ const vis = {
          
             return true;
 
+        },
+
+        formata_pct : function(value) {
+
+            return ( (100 * value).toFixed(1) + "%" ).replace(".", ",");
+
         }
 
     },
@@ -362,7 +368,7 @@ const vis = {
                           [ 0, vis.sizings.width - bar.margins.right - bar.margins.left ]
                           )
                       .domain(
-                          [ 0, vis.data.maximos[grupo] ]
+                          [ 0, 1 ]//vis.data.maximos[grupo] ]
                       )
 
                 },
@@ -430,6 +436,8 @@ const vis = {
 
                 const svg = d3.select(selector + " svg");
 
+                const total = d3.sum(data, d => d.subtotal);
+
                 svg
                   .selectAll("rect." + type)
                   .data(data, d => d.categoria)
@@ -438,7 +446,7 @@ const vis = {
                   .attr("x", vis.barcharts.margins.left)
                   .attr("y", d => vis.barcharts.scales.y(d.categoria))
                   .attr("height", vis.barcharts.scales.y.bandwidth())
-                  .attr("width", type == "main" ? d => vis.barcharts.scales.w(d.subtotal) : 0)
+                  .attr("width", type == "main" ? d => vis.barcharts.scales.w(d.subtotal / total) : 0)
                 ; // quando criar inicialmente as barras dos valores filtrados, deixá-las sem tamanho
             },
 
@@ -448,11 +456,8 @@ const vis = {
 
                 const total = d3.sum(data, d => d.subtotal);
 
-                function formata_pct(value) {
+                const formata_pct = vis.utils.formata_pct;
 
-                    return ( (100 * value).toFixed(1) + "%" ).replace(".", ",");
-
-                }
 
                 cont
                   .selectAll("p.value-labels." + type)
@@ -463,8 +468,8 @@ const vis = {
                   .classed('value-labels', true)
                   .style("top", d => vis.barcharts.scales.y(d.categoria) + "px")
                   .style("line-height", vis.barcharts.scales.y.bandwidth() + "px")
-                  .html(d => "<strong>" + d.subtotal + `</strong> (${formata_pct(d.subtotal/total)})`)
-                  .style("left", d => vis.barcharts.scales.w(d.subtotal) + "px")
+                  .html(d => `<strong>${formata_pct(d.subtotal/total)}</strong>`)
+                  .style("left", d => vis.barcharts.scales.w(d.subtotal/total) + "px")
                 ;
 
             },
@@ -578,15 +583,19 @@ const vis = {
 
                 const svg = d3.select(selector + " svg");
 
+                const total = d3.sum(bar.data, d => d.subtotal);
+
                 svg
                   .selectAll("rect." + type)
                   .data(bar.data, d => d.categoria)
-                  .attr("width", d => tem_filtro ? vis.barcharts.scales.w(d.subtotal) : 0)
+                  .attr("width", d => tem_filtro ? vis.barcharts.scales.w(d.subtotal / total) : 0)
                 ; // quando criar inicialmente as barras dos valores filtrados, deixá-las sem tamanho
 
 
                 // labels
                 const cont = d3.select(selector + " .svg-container");
+
+                const formata_pct = vis.utils.formata_pct;
 
                 cont
                   .selectAll("p.value-labels." + type)
@@ -595,8 +604,8 @@ const vis = {
                   .classed(type, true)
                   .classed('labels', true)
                   .classed('value-labels', true)
-                  .style("left", d => tem_filtro ? vis.barcharts.scales.w(d.subtotal) + "px" : 0)
-                  .html(d => `<span>${d.subtotal}</span>`)
+                  .style("left", d => tem_filtro ? vis.barcharts.scales.w(d.subtotal/total) + "px" : 0)
+                  .html(d => `<span>${formata_pct(d.subtotal/total)}</span>`)
                 ;
 
 
