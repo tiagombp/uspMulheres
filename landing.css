@@ -41,6 +41,20 @@ body {
 
 }
 
+/* accessibility */
+
+.screen-reader {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
 /* navegação */
 
 
@@ -366,10 +380,16 @@ article {
 }
 
 /* poderia usar uma utility class para marcar todos em que quero usar o double container pattern*/
+.arrow-start-wrapper {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+}
+
 .arrow-start {
 
     margin-top: 4rem;
-    display: block;
     text-align: center;
     font-family: sans-serif;
     font-weight: lighter;
@@ -377,8 +397,6 @@ article {
     transform: scale(1.5, 0.75);
     /*text-shadow: 0 -1rem white;*/
     animation: bounce 2s infinite;
-    text-decoration: none;
-    color: white;
 }
 
 @keyframes bounce {
