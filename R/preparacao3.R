@@ -121,7 +121,8 @@ for (bloco in blocos) {
         
         dados[[sub_pergunta]] <- sub_data %>%
           count(
-            campus,
+            #campus,
+            unidade,
             vinculo,
             genero, 
             #cor = G7Q00003,
@@ -133,7 +134,7 @@ for (bloco in blocos) {
           ) %>%
           mutate(n2 = weights * n) %>%
           ungroup() %>%
-          group_by(campus, vinculo, genero, cor, filhos, resposta) %>%
+          group_by(unidade, vinculo, genero, cor, filhos, resposta) %>%
           summarise(n = sum(n2)) %>% ungroup()
         
         
@@ -145,7 +146,8 @@ for (bloco in blocos) {
       
       dados <- dados_pre %>%
         count(
-          campus,
+          #campus,
+          unidade,
           vinculo,
           genero, 
           #cor = G7Q00003,
@@ -157,7 +159,7 @@ for (bloco in blocos) {
         ) %>%
         mutate(n2 = weights * n) %>%
         ungroup() %>%
-        group_by(campus, vinculo, genero, cor, filhos, resposta) %>%
+        group_by(unidade, vinculo, genero, cor, filhos, resposta) %>%
         summarise(n = sum(n2)) %>% ungroup()
       
       #print("salvou dados")
@@ -185,9 +187,12 @@ filtros <- list(
   
   genero  = base[["G04Q240"]]$genero %>% levels(),
   vinculo = base[["G04Q240"]]$vinculo %>% levels(),
-  cor     = base[["G04Q240"]]$G7Q00003 %>% levels(),
-  filhos  = base[["G04Q240"]]$G3Q00006 %>% levels(),
-  campus   = base[["G04Q240"]]$campus %>% levels()
+  cor     = base[["G04Q240"]]$cor %>% levels(),
+  filhos  = base[["G04Q240"]]$filhos_menores %>% levels(),
+  unidade  = base[["G04Q240"]]$unidade %>% levels()
+  #cor     = base[["G04Q240"]]$G7Q00003 %>% levels(),
+  #filhos  = base[["G04Q240"]]$G3Q00006 %>% levels(),
+  #campus   = base[["G04Q240"]]$campus %>% levels()
   
 )
 
