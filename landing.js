@@ -916,7 +916,7 @@ const vis = {
 
     filter : {
 
-        criterios : ['campus', 'cor', 'genero', 'vinculo', 'filhos'],
+        criterios : ['unidade', 'cor', 'genero', 'vinculo', 'filhos'],
 
         populate : function() {
 
