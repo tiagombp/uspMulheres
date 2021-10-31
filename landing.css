@@ -142,12 +142,14 @@ nav button[aria-selected="true"] {
     font-family: var(--fonte-corpo);
     font-size: .8rem;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
-    padding: .5rem 0;
+    align-items: stretch;
+    padding: 0;
+    padding-bottom: .5em;
     border-bottom: 1px solid grey;
     background-color: white;
-    height: var(--nav-height);
+    min-height: var(--nav-height);
     color: #333;
 
 }
@@ -174,6 +176,7 @@ nav button[aria-selected="true"] {
 
 .filtros-controles div {
 
+    padding-top: .5em;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -207,6 +210,12 @@ nav button[aria-selected="true"] {
 
     }
 
+
+}
+
+select {
+
+    max-width: 100vw;
 
 }
 
