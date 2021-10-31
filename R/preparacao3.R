@@ -3,7 +3,7 @@ library(tidyverse)
 library(jsonlite)
 library(weights)
 
-base <- readRDS("./R/base_com_pesos_em_03_008_2021.rds") #readRDS("./R/base_em_20_05_2021.rds")
+base <- readRDS("./R/base_com_pesos_em_26_10_2021.rds") #readRDS("./R/base_em_20_05_2021.rds")
 load("./R/questoes.rda")
 
 # exemplo do novo cálculo com pesos
@@ -126,8 +126,10 @@ for (bloco in blocos) {
             campus,
             vinculo,
             genero, 
-            cor = G7Q00003,
-            filhos = G3Q00006,
+            #cor = G7Q00003,
+            #filhos = G3Q00006,
+            cor,
+            filhos = filhos_menores,
             resposta,
             weights
           ) %>%
@@ -148,8 +150,10 @@ for (bloco in blocos) {
           campus,
           vinculo,
           genero, 
-          cor = G7Q00003,
-          filhos = G3Q00006,
+          #cor = G7Q00003,
+          #filhos = G3Q00006,
+          cor,
+          filhos = filhos_menores,
           resposta,
           weights
         ) %>%
