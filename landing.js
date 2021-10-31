@@ -488,7 +488,7 @@ const vis = {
                   .classed('cat-labels', true)
                   .style("left", 0)
                   .style("top", d => vis.barcharts.scales.y(d.categoria) + "px")
-                  .text(d => d.categoria)
+                  .text(d => d.categoria == null ? "N/D" : d.categoria)
                 ;
 
             },
