@@ -845,7 +845,7 @@ const vis = {
                 section.dataset.pergunta = codigo_pergunta;
 
                 const h2 = document.createElement("h2");
-                h2.innerText = pergunta; //+ " (" + codigo_pergunta + ")";
+                h2.innerText = pergunta + " (" + codigo_pergunta + ")";
 
                 section.appendChild(h2);
 
