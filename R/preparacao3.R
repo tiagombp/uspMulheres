@@ -3,16 +3,25 @@ library(tidyverse)
 library(jsonlite)
 library(weights)
 
-base <- readRDS("./R/base_com_pesos_em_26_10_2021.rds") #readRDS("./R/base_em_20_05_2021.rds")
+base <- readRDS("./R/base_com_pesos_em_11_11_2021.rds") #readRDS("./R/base_em_20_05_2021.rds")
 load("./R/questoes.rda")
 
+
+# # corrige "G3Q00039", que está com a coluna "pergunta", mas toda como NA
+# base[["G3Q00039"]]$pergunta <- NULL
+# base[["G3Q00040"]]$pergunta <- NULL
+# base[["G3Q00041"]]$pergunta <- NULL
+# base[["G3Q00042"]]$pergunta <- NULL
+# base[["G3Q00044"]]$pergunta <- NULL
+
+
 # exemplo do novo cálculo com pesos
-calc <- base[[1]] %>%
-  count(genero, resposta, weights) %>%
-  mutate(n2 = weights * n) %>%
-  ungroup() %>%
-  group_by(genero, resposta) %>%
-  summarise(soma = sum(n2))
+# calc <- base[[1]] %>%
+#   count(genero, resposta, weights) %>%
+#   mutate(n2 = weights * n) %>%
+#   ungroup() %>%
+#   group_by(genero, resposta) %>%
+#   summarise(soma = sum(n2))
 # %>%
 #   group_by(genero) %>%
 #   mutate(pct = soma/sum(soma))
@@ -70,7 +79,7 @@ names(nomes_questoes) <- questoes$titulo
 # df2 <- base[["G3Q00019"]]
 # nomes_questoes[["G3Q00026"]]
 
-output <- list()
+# output <- list()
 
 # facetas
 
@@ -90,6 +99,13 @@ for (bloco in blocos) {
   for (pergunta in bloco) {
     
     dados_pre <- base[[pergunta]]
+    
+    # testa se está com o problema de vir com a coluna "pergunta", mas toda preenchida com NA
+    if (!is.null(dados_pre$pergunta)) {
+      if (sum(!is.na(dados_pre$pergunta)) == 0) {
+        dados_pre$pergunta <- NULL
+      }
+    }
     
     if (is.null(dados_pre) || nrow(dados_pre) == 0) {
       print(paste(pergunta, 'Base vazia, pulando.'))
@@ -141,6 +157,11 @@ for (bloco in blocos) {
       }
     
     } else {
+      
+      # para a pergunta G3Q00006, filhos, que é uma faceta
+      if (pergunta == "G3Q00006") {
+        dados_pre$filhos_menores = dados_pre$resposta 
+      }
       
       pesos <- dados_pre$weights
       
