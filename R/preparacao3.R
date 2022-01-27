@@ -3,7 +3,7 @@ library(tidyverse)
 library(jsonlite)
 library(weights)
 
-base <- readRDS("./R/base_com_pesos_em_11_11_2021.rds") #readRDS("./R/base_em_20_05_2021.rds")
+base <- readRDS("./R/base_com_pesos_em_16_12_2021.rds") #readRDS("./R/base_em_20_05_2021.rds")
 load("./R/questoes.rda")
 
 
