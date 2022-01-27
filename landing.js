@@ -553,7 +553,7 @@ const vis = {
                 if (type == "main") {
                     vis.barcharts.scales.set.w(grupo);
                 } 
-                // evita fazer nova escaça w para as barras filtradas
+                // evita fazer nova escala w para as barras filtradas
                 
 
                 const codigos_perguntas = Object.keys(data[grupo]);
@@ -845,7 +845,7 @@ const vis = {
                 section.dataset.pergunta = codigo_pergunta;
 
                 const h2 = document.createElement("h2");
-                h2.innerText = pergunta + " (" + codigo_pergunta + ")";
+                h2.innerText = pergunta; //+ " (" + codigo_pergunta + ")";
 
                 section.appendChild(h2);
 
