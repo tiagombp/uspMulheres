@@ -119,6 +119,8 @@ const vis = {
 
                         sub_perguntas.forEach(sub_pergunta => {
 
+                            //console.log(grupo, pergunta, sub_pergunta);
+
                             let sub_data = data[grupo][pergunta].dados[sub_pergunta];
 
                             if (filter) {
@@ -820,6 +822,8 @@ const vis = {
                 const codigos_perguntas = Object.keys(data[grupo]);
     
                 codigos_perguntas.forEach(codigo_pergunta => {
+
+                    //console.log(codigo_pergunta);
     
                     grupo_element.appendChild(vis.structure.build.common(grupo, codigo_pergunta));
     
