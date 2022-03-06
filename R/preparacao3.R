@@ -3,7 +3,7 @@ library(tidyverse)
 library(jsonlite)
 library(weights)
 
-base <- readRDS("./R/base_com_pesos_em_16_12_2021.rds") #readRDS("./R/base_em_20_05_2021.rds")
+base <- readRDS("./R/base_com_pesos_em_04_02_2022.rds") #readRDS("./R/base_em_20_05_2021.rds")
 load("./R/questoes.rda")
 
 
@@ -58,7 +58,7 @@ load("./R/questoes.rda")
 pega_questoes <- function(identificador) {
   
   quest <- questoes %>% 
-    filter(grupo == identificador, !str_detect(titulo, "Copy")) %>% 
+    filter(grupo == identificador) %>% #, !str_detect(titulo, "Copy")) %>% 
     .$titulo %>% 
     unique()
   
